@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tabbar-->
         <scene sceneID="QrE-3j-Y1K">
             <objects>
-                <tabBarController id="LQz-8N-ayS" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="Tabbar" storyboardIdentifier="Tabbar" id="LQz-8N-ayS" customClass="Tabbar" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JqH-Wc-jCQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
         <scene sceneID="7Fs-Wg-G0l">
             <objects>
                 <viewControllerPlaceholder storyboardName="Main" id="HVk-dU-Io1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="wYm-Am-9ux"/>
+                    <tabBarItem key="tabBarItem" title="홈" id="wYm-Am-9ux"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGq-W1-qUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,7 +38,7 @@
         <scene sceneID="RoT-GI-w8e">
             <objects>
                 <viewControllerPlaceholder storyboardName="Moim" id="0Ok-zy-k38" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Pb4-7o-G7J"/>
+                    <tabBarItem key="tabBarItem" title="나의 모임" id="Pb4-7o-G7J"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ezq-Ha-gJr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
