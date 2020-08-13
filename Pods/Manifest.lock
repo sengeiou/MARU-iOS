@@ -1,0 +1,78 @@
+PODS:
+  - Alamofire (4.8.2)
+  - CHIPageControl (0.1.8):
+    - CHIPageControl/Aji (= 0.1.8)
+    - CHIPageControl/Aleppo (= 0.1.8)
+    - CHIPageControl/Chimayo (= 0.1.8)
+    - CHIPageControl/Fresno (= 0.1.8)
+    - CHIPageControl/Jalapeno (= 0.1.8)
+    - CHIPageControl/Jaloro (= 0.1.8)
+    - CHIPageControl/Paprika (= 0.1.8)
+    - CHIPageControl/Puya (= 0.1.8)
+  - CHIPageControl/Aji (0.1.8)
+  - CHIPageControl/Aleppo (0.1.8)
+  - CHIPageControl/Chimayo (0.1.8)
+  - CHIPageControl/Fresno (0.1.8)
+  - CHIPageControl/Jalapeno (0.1.8)
+  - CHIPageControl/Jaloro (0.1.8)
+  - CHIPageControl/Paprika (0.1.8)
+  - CHIPageControl/Puya (0.1.8)
+  - Gedatsu (1.2.0)
+  - Kingfisher (5.14.1):
+    - Kingfisher/Core (= 5.14.1)
+  - Kingfisher/Core (5.14.1)
+  - PryntTrimmerView (4.0.0)
+  - SnapKit (5.0.1)
+  - SteviaLayout (4.7.3)
+  - SwiftKeychainWrapper (3.4.0)
+  - SwiftyGif (5.3.0)
+  - Then (2.7.0)
+  - UPCarouselFlowLayout (1.1.2)
+  - YPImagePicker (4.2.1):
+    - PryntTrimmerView (~> 4.0.0)
+    - SteviaLayout (~> 4.7.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.2)
+  - CHIPageControl (~> 0.1.3)
+  - Gedatsu
+  - Kingfisher
+  - SnapKit (~> 5.0.0)
+  - SwiftKeychainWrapper
+  - SwiftyGif
+  - Then
+  - UPCarouselFlowLayout
+  - YPImagePicker
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CHIPageControl
+    - Gedatsu
+    - Kingfisher
+    - PryntTrimmerView
+    - SnapKit
+    - SteviaLayout
+    - SwiftKeychainWrapper
+    - SwiftyGif
+    - Then
+    - UPCarouselFlowLayout
+    - YPImagePicker
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CHIPageControl: 76b35c8309d8dd155e869c109cc6ffc0aaa465ff
+  Gedatsu: 13a21a3cbf7978f9ff671eca5715b94a4309d9a8
+  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
+  PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
+  SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
+  YPImagePicker: 3b88ca0c50134af2856c48c481572c98a8b8b65b
+
+PODFILE CHECKSUM: a7001c67c9d80168b990a5bfd868925f0b4ba2ee
+
+COCOAPODS: 1.9.3
