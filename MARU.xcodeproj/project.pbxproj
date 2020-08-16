@@ -33,8 +33,19 @@
 		D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6524E5990400BB1656 /* APIConstants.swift */; };
 		D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6724E5990D00BB1656 /* Utils.swift */; };
 		D13A8F6A24E5991700BB1656 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6924E5991700BB1656 /* Models.swift */; };
-		D13A8F6C24E5992100BB1656 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6B24E5992100BB1656 /* Extensions.swift */; };
 		D13A8F6E24E5992800BB1656 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6D24E5992800BB1656 /* Enums.swift */; };
+		D13D626F24E82EF600A3A4A1 /* ChatCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */; };
+		D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627024E82F9C00A3A4A1 /* Identifier.swift */; };
+		D13D627324E8316100A3A4A1 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627224E8316100A3A4A1 /* Font.swift */; };
+		D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627424E83A2D00A3A4A1 /* UIViewController+Extension.swift */; };
+		D13D627724E83A4200A3A4A1 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627624E83A4200A3A4A1 /* UITextView+Extension.swift */; };
+		D13D627924E83A5100A3A4A1 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627824E83A5100A3A4A1 /* UIButton+Extension.swift */; };
+		D13D627B24E83A6100A3A4A1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627A24E83A6100A3A4A1 /* UIView+Extension.swift */; };
+		D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627C24E83A7700A3A4A1 /* Date+Extension.swift */; };
+		D13D627F24E83A8500A3A4A1 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627E24E83A8500A3A4A1 /* UITableView+Extension.swift */; };
+		D13D628124E83A9A00A3A4A1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D628024E83A9A00A3A4A1 /* String+Extension.swift */; };
+		D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D628224E83AB300A3A4A1 /* UITabbar+Extension.swift */; };
+		D13D628524E8403700A3A4A1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D628424E8403700A3A4A1 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +79,19 @@
 		D13A8F6524E5990400BB1656 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		D13A8F6724E5990D00BB1656 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D13A8F6924E5991700BB1656 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		D13A8F6B24E5992100BB1656 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D13A8F6D24E5992800BB1656 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCVCell.swift; sourceTree = "<group>"; };
+		D13D627024E82F9C00A3A4A1 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		D13D627224E8316100A3A4A1 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D13D627424E83A2D00A3A4A1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D13D627624E83A4200A3A4A1 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
+		D13D627824E83A5100A3A4A1 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		D13D627A24E83A6100A3A4A1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D13D627C24E83A7700A3A4A1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		D13D627E24E83A8500A3A4A1 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		D13D628024E83A9A00A3A4A1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D13D628224E83AB300A3A4A1 /* UITabbar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbar+Extension.swift"; sourceTree = "<group>"; };
+		D13D628424E8403700A3A4A1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				D13A8F6D24E5992800BB1656 /* Enums.swift */,
+				D13D627024E82F9C00A3A4A1 /* Identifier.swift */,
+				D13D627224E8316100A3A4A1 /* Font.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -293,7 +317,15 @@
 		D13A8F5D24E5984E00BB1656 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D13A8F6B24E5992100BB1656 /* Extensions.swift */,
+				D13D627424E83A2D00A3A4A1 /* UIViewController+Extension.swift */,
+				D13D627624E83A4200A3A4A1 /* UITextView+Extension.swift */,
+				D13D627824E83A5100A3A4A1 /* UIButton+Extension.swift */,
+				D13D627A24E83A6100A3A4A1 /* UIView+Extension.swift */,
+				D13D627C24E83A7700A3A4A1 /* Date+Extension.swift */,
+				D13D627E24E83A8500A3A4A1 /* UITableView+Extension.swift */,
+				D13D628024E83A9A00A3A4A1 /* String+Extension.swift */,
+				D13D628224E83AB300A3A4A1 /* UITabbar+Extension.swift */,
+				D13D628424E8403700A3A4A1 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,6 +408,7 @@
 		D13A8F7124E5993000BB1656 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				D13D626D24E8245100A3A4A1 /* Cell */,
 				D11D520E24E59A9E00683870 /* Storyboards */,
 				D11D520D24E59A9800683870 /* ViewContollers */,
 			);
@@ -424,6 +457,14 @@
 				D11D520124E59A3B00683870 /* ViewControllers */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		D13D626D24E8245100A3A4A1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,22 +590,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13D627B24E83A6100A3A4A1 /* UIView+Extension.swift in Sources */,
 				D13A8F4824E596E700BB1656 /* ViewController.swift in Sources */,
 				D11D520C24E59A9500683870 /* MoimVC.swift in Sources */,
+				D13D628524E8403700A3A4A1 /* UIColor+Extension.swift in Sources */,
 				D11D520824E59A7800683870 /* QuizVC.swift in Sources */,
+				D13D627724E83A4200A3A4A1 /* UITextView+Extension.swift in Sources */,
 				D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */,
+				D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */,
+				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
+				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
+				D13D628124E83A9A00A3A4A1 /* String+Extension.swift in Sources */,
 				D11D520024E59A3700683870 /* SplashVC.swift in Sources */,
 				D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */,
 				D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */,
-				D13A8F6C24E5992100BB1656 /* Extensions.swift in Sources */,
+				D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */,
 				D13A8F4E24E596E700BB1656 /* MARU.xcdatamodeld in Sources */,
 				D11D521024E59AB000683870 /* ChatVC.swift in Sources */,
+				D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */,
+				D13D626F24E82EF600A3A4A1 /* ChatCVCell.swift in Sources */,
 				D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */,
 				D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */,
 				D13A8F6E24E5992800BB1656 /* Enums.swift in Sources */,
 				D11D520424E59A5F00683870 /* ProfileVC.swift in Sources */,
 				D13A8F6A24E5991700BB1656 /* Models.swift in Sources */,
 				D11D521924E59B6000683870 /* LoginVC.swift in Sources */,
+				D13D627924E83A5100A3A4A1 /* UIButton+Extension.swift in Sources */,
+				D13D627F24E83A8500A3A4A1 /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
