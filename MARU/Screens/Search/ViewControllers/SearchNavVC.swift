@@ -1,21 +1,22 @@
 //
-//  SearchVC.swift
+//  SearchNavVC.swift
 //  MARU
 //
-//  Created by 이윤진 on 2020/08/16.
+//  Created by 이윤진 on 2020/08/17.
 //  Copyright © 2020 maru. All rights reserved.
 //
 
-import UIKit
-import CoreData
+// MARK: - Navigation Controller connect
 
-class SearchVC: UIViewController{
+import UIKit
+
+class SearchNavVC: UINavigationController {
     
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
     }
     
-    //MARK: - hide navigation bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -27,3 +28,4 @@ class SearchVC: UIViewController{
     }
     
 }
+
