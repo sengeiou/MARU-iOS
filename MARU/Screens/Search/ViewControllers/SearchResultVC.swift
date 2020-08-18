@@ -22,6 +22,7 @@ class SearchResultVC: UIViewController{
         SearchResultTV.delegate = self
         SearchResultTV.dataSource = self
         super.viewDidLoad()
+        SearchResultTV.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     
 }
