@@ -11,10 +11,13 @@ import UIKit
 import Then
 import SnapKit
 import SwiftKeychainWrapper
+import RxSwift
+import RxCocoa
 
-struct Message {
+struct Message: Codable {
     let name: String
     let message: String
+    let time: Int
 }
 
 class ChatVC: UIViewController {
@@ -26,37 +29,51 @@ class ChatVC: UIViewController {
         {
             $0.backgroundColor = .white
             $0.allowsMultipleSelection = true
+            $0.isPrefetchingEnabled = true
+            $0.isScrollEnabled = true
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            layout.minimumLineSpacing = 3
+            layout.minimumInteritemSpacing = 0
+            
+            $0.collectionViewLayout = layout
+    }
+    
+    let textFieldView = UIView().then {
+        $0.backgroundColor = .veryLightPink
+    }
+    
+    let textField = UITextField().then {
+        $0.tintColor = .black22
+//        $0.backgroundColor = .veryLightPinkTwo
+    }
+    
+    let noticeView = UIView().then {
+        $0.backgroundColor = .veryLightPinkTwo
+    }
+    
+    let noticeLabel = UILabel().then {
+        $0.text = "토론방의 유지기간은 1주일입니다. 1주일 후 방에 입장하실 수 없습니다. 비속어 및 욕설, 상대방에 대한 인신공격은 금지합니다. 스팸, 광고성 홍보글은 금지합니다. 토론방의 목적에 맞게 토론합니다. "
+        $0.numberOfLines = 0
+        $0.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+    }
+    
+    let noticeDeleteButton = UIButton().then {
+        $0.setTitle("X", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+        $0.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
     }
     
     // MARK: - Variables and Properties
     
+    let id = "오준현"
     
     // MARK: - Dummy Data
     
-    let chatDummy: [Message] = [ Message.init(name: "최정균", message: "아이패드 사고싶어"),
-                                 Message.init(name: "정효원", message: "맥북 사고싶어"),
-                                 Message.init(name: "이예인", message: "조아여~~"),
-                                 Message.init(name: "최현정", message: "오부장!"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "최혜리", message: "큨"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~"),
-                                 Message.init(name: "오준현", message: "마시써~")
-    ]
-    
+    var chatDummy: [Message] = []
+    var chat: [Message] = []
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -67,30 +84,148 @@ class ChatVC: UIViewController {
         KeychainWrapper.standard.set("오준현", forKey: "id")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchChatData()
+        addKeyboardNotification()
+        self.chatCollectionView.reloadData()
+        scrollToBottom()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?){
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: - Helper
 
 extension ChatVC {
+    func scrollToBottom() {
+        DispatchQueue.main.async {
+            let lastItem = self.chatDummy.count - 1
+            let indexPath = IndexPath(row: lastItem,
+                                      section: 0)
+            self.chatCollectionView.scrollToItem(at: indexPath,
+                                                 at: .bottom,
+                                                 animated: false)
+        }
+    }
+    
+    func scrollToBottomAnimate() {
+        DispatchQueue.main.async {
+            let lastItem = self.chatDummy.count - 1
+            let indexPath = IndexPath(row: lastItem, section: 0)
+            self.chatCollectionView.scrollToItem(at: indexPath,
+                                                 at: .bottom,
+                                                 animated: true)
+        }
+    }
+    
     func constraint() {
+        view.addSubview(textFieldView)
+        view.addSubview(textField)
         view.addSubview(chatCollectionView)
+        view.addSubview(noticeView)
+        view.addSubview(noticeLabel)
+        view.addSubview(noticeDeleteButton)
+
+        textFieldView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(46)
+        }
+        
+        textField.snp.makeConstraints { (make) in
+            make.leading.equalTo(textFieldView.snp.leading).offset(10)
+            make.trailing.equalTo(textFieldView.snp.trailing).offset(-10)
+            make.bottom.equalTo(textFieldView.snp.bottom)
+            make.height.equalTo(46)
+        }
         
         chatCollectionView.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(textFieldView.snp.top)
         }
         
+        noticeView.snp.makeConstraints { (make) in
+            make.top.equalTo(chatCollectionView.snp.top)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(60)
+        }
+        
+        noticeLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(chatCollectionView.snp.top).offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-32)
+            make.height.equalTo(36)
+        }
+        
+        noticeDeleteButton.snp.makeConstraints { (make) in
+            make.top.equalTo(chatCollectionView.snp.top).offset(9)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(10)
+            make.width.equalTo(10)
+        }
+
     }
     
-    func collectionView(){
+    func collectionView() {
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
         chatCollectionView.prefetchDataSource = self
         chatCollectionView.register(ChatCVCell.self,
                                     forCellWithReuseIdentifier: Identifier.Chat)
+        chatCollectionView.register(MyChatCVCell.self,
+                                    forCellWithReuseIdentifier: Identifier.MyChat)
         
+    }
+    
+    func delegate() {
+        textField.delegate = self
+    }
+    
+    @objc func didTapDeleteButton() {
+        print(#function)
+    }
+    
+    private func fetchChatData() {
+        
+        let spinner = Spinner.init()
+        spinner.show()
+        
+        if let url = Bundle.main.url(forResource: "chat", withExtension: "json") {
+            DispatchQueue.main.async {
+                spinner.hide()
+            }
+            do {
+                let data = try Data.init(contentsOf: url)
+                let decoder = JSONDecoder.init()
+                self.chatDummy = try decoder.decode([Message].self, from: data)
+                self.chat = try decoder.decode([Message].self, from: data)
+
+                for index in 0 ..< chatDummy.count - 1 {
+                    if chatDummy[index].name == id {
+                        
+                    } else if chatDummy[index].name == chatDummy[index + 1].name {
+                        chat[index + 1] = Message(name: "",
+                                                  message: chatDummy[index+1].message,
+                                                  time: chatDummy[index+1].time)
+                    }
+                }
+                
+                self.chatCollectionView.reloadData()
+                
+            } catch let err {
+                print(err.localizedDescription)
+            }
+            
+        }
     }
     
 }
@@ -99,14 +234,34 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let chatting = chatDummy[indexPath.item]
+        let size = CGSize(width: 250, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        var estimatedFrame = NSString(string: chatting.message)
+            .boundingRect(with: size,
+                          options: options,
+                          attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
+                          context: nil)
 
-        return CGSize(width: view.frame.width, height: 60)
+        if chatDummy[indexPath.row].name == id || chat[indexPath.row].name == "" {
+            estimatedFrame.size.height += 3
+        } else {
+            estimatedFrame.size.height += 22
+        }
+
+        return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
+
     }
     
 }
 
 extension ChatVC: UICollectionViewDelegate { }
 extension ChatVC: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
@@ -115,15 +270,25 @@ extension ChatVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.Chat,
-                                                      for: indexPath) as! ChatCVCell
-        
-        cell.message = chatDummy[indexPath.row]
-        cell.setConstraint()
-        cell.find()
-        
-        return cell
+
+        if chatDummy[indexPath.row].name == id {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.MyChat,
+                                                          for: indexPath) as! MyChatCVCell
+            cell.message = chat[indexPath.row]
+            cell.setConstraint()
+            cell.setMyChat()
+            
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.Chat,
+                                                          for: indexPath) as! ChatCVCell
+            cell.message = chat[indexPath.row]
+            cell.setConstraint()
+            cell.setOtherChat()
+            
+            return cell
+        }
     }
     
     
@@ -131,8 +296,79 @@ extension ChatVC: UICollectionViewDataSource {
 
 extension ChatVC: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-
+        
     }
     
+    
+}
 
+// MARK: - Keyboard
+extension ChatVC {
+    func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(_ notification: Notification)  {
+        if let info = notification.userInfo {
+            let duration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+            let curve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+            let keyboardFrame = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let keyboardHeight = keyboardFrame.height
+            let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .map({$0 as? UIWindowScene})
+                .compactMap({$0})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+            let bottomPadding = keyWindow?.safeAreaInsets.bottom ?? 0
+            
+            textFieldView.snp.updateConstraints{
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+                    .inset(keyboardHeight - bottomPadding)
+            }
+            
+            chatCollectionView.snp.updateConstraints{
+                $0.bottom.equalTo(textFieldView.snp.top)
+            }
+            
+            
+            self.view.setNeedsLayout()
+            UIView.animate(withDuration: duration,
+                           delay: 0,
+                           options: .init(rawValue: curve),
+                           animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        if let info = notification.userInfo {
+            let duration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+            let curve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+            
+            textFieldView.snp.updateConstraints {
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            }
+            
+            chatCollectionView.snp.updateConstraints{
+                $0.bottom.equalTo(textFieldView.snp.top)
+            }
+
+
+            self.view.setNeedsLayout()
+            UIView.animate(withDuration: duration,
+                           delay: 0,
+                           options: .init(rawValue: curve),
+                           animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+        
+}
+
+extension ChatVC: UITextFieldDelegate {
+    
 }
