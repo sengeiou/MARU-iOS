@@ -37,6 +37,7 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultTVCell", for: indexPath) as! SearchResultTVCell
         cell.searchBookName.text = bookTitle[indexPath.row]
         cell.searchBookImage.image = UIImage(named:"it8UKXxG2I8Evo3R6IDeNMx4W")
+        cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         return cell
     }
     
