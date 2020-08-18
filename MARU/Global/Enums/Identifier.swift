@@ -8,4 +8,5 @@
 
 enum Identifier {
     static let Chat = "ChatCVCell"
+    static let MyChat = "MyChatCVCell"
 }
