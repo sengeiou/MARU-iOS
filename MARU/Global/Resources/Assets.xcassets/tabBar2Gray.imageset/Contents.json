@@ -1,19 +1,19 @@
 {
   "images" : [
     {
+      "filename" : "tabBar2Gray.png",
       "scale" : "1x",
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W.png",
-      "idiom" : "universal"
-    },
-    {
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W@2x.png",
-      "scale" : "2x",
       "idiom" : "universal"
     },
     {
       "idiom" : "universal",
+      "filename" : "tabBar2Gray@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W@3x.png"
+      "filename" : "tabBar2Gray@3x.png"
     }
   ],
   "info" : {

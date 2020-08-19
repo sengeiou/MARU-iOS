@@ -1,19 +1,19 @@
 {
   "images" : [
     {
+      "filename" : "bookClearImg.png",
       "scale" : "1x",
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W.png",
       "idiom" : "universal"
     },
     {
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W@2x.png",
       "scale" : "2x",
+      "filename" : "bookClearImg@2x.png",
       "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "it8UKXxG2I8Evo3R6IDeNMx4W@3x.png"
+      "filename" : "bookClearImg@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

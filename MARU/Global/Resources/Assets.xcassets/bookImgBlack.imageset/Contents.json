@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "bookImgBlack.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "bookImgBlack@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "bookImgBlack@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
