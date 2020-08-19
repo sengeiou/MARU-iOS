@@ -64,8 +64,51 @@
             </objects>
             <point key="canvasLocation" x="1525.5999999999999" y="152.95566502463055"/>
         </scene>
+        <!--Search Entry MoimVC-->
+        <scene sceneID="jgr-wG-Ltl">
+            <objects>
+                <viewController id="N8v-sC-B0H" customClass="SearchEntryMoimVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yv2-XG-JuL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="it8UKXxG2I8Evo3R6IDeNMx4W" translatesAutoresizingMaskIntoConstraints="NO" id="h9J-vn-Q31">
+                                <rect key="frame" x="71" y="194" width="223" height="303"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bookClearImg" translatesAutoresizingMaskIntoConstraints="NO" id="VRs-yX-1DG">
+                                <rect key="frame" x="71" y="194" width="223" height="312"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCG-WL-2Rk">
+                                <rect key="frame" x="31" y="447" width="315" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNR-vj-Y4n">
+                                <rect key="frame" x="0.0" y="729" width="375" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="참여하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="b3D-Up-97L"/>
+                    </view>
+                    <connections>
+                        <outlet property="entryBookImage" destination="h9J-vn-Q31" id="F75-2R-jJa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDo-S6-T8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2277.5999999999999" y="152.95566502463055"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="bookClearImg" width="223" height="312"/>
+        <image name="it8UKXxG2I8Evo3R6IDeNMx4W" width="223" height="303"/>
         <image name="search" width="16" height="16"/>
         <image name="searchBackGround" width="306" height="38"/>
     </resources>

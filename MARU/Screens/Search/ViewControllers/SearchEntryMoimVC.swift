@@ -9,6 +9,7 @@
 import UIKit
 
 class SearchEntryMoimVC: UIViewController{
+    @IBOutlet weak var entryBookImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
