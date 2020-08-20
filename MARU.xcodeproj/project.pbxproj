@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		27BD6584E85B34ED9777BB28 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0283DFAEC1206D9D288E29 /* Pods_MARU.framework */; };
+		77FB7D3E24ED990300365E8C /* MainVC + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB7D3D24ED990200365E8C /* MainVC + Constraints.swift */; };
+		77FB7D4224ED99BF00365E8C /* PopularMeetingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB7D4024ED99BF00365E8C /* PopularMeetingCVC.swift */; };
+		77FB7D4324ED99BF00365E8C /* PopularMeetingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77FB7D4124ED99BF00365E8C /* PopularMeetingCVC.xib */; };
+		77FB7D4624ED99DF00365E8C /* NewMeetingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FB7D4424ED99DF00365E8C /* NewMeetingCVC.swift */; };
+		77FB7D4724ED99DF00365E8C /* NewMeetingCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77FB7D4524ED99DF00365E8C /* NewMeetingCVC.xib */; };
 		D11D51EF24E599D200683870 /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11D51EE24E599D200683870 /* Tabbar.storyboard */; };
 		D11D51F124E599DD00683870 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11D51F024E599DD00683870 /* Chat.storyboard */; };
 		D11D51F324E599E700683870 /* Moim.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11D51F224E599E700683870 /* Moim.storyboard */; };
@@ -25,7 +30,7 @@
 		D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D521B24E59CBB00683870 /* Tabbar.swift */; };
 		D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4324E596E700BB1656 /* AppDelegate.swift */; };
 		D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4524E596E700BB1656 /* SceneDelegate.swift */; };
-		D13A8F4824E596E700BB1656 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4724E596E700BB1656 /* ViewController.swift */; };
+		D13A8F4824E596E700BB1656 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4724E596E700BB1656 /* MainVC.swift */; };
 		D13A8F4B24E596E700BB1656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D13A8F4924E596E700BB1656 /* Main.storyboard */; };
 		D13A8F4E24E596E700BB1656 /* MARU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4C24E596E700BB1656 /* MARU.xcdatamodeld */; };
 		D13A8F5024E596F900BB1656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13A8F4F24E596F900BB1656 /* Assets.xcassets */; };
@@ -59,6 +64,11 @@
 
 /* Begin PBXFileReference section */
 		4A0283DFAEC1206D9D288E29 /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77FB7D3D24ED990200365E8C /* MainVC + Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC + Constraints.swift"; sourceTree = "<group>"; };
+		77FB7D4024ED99BF00365E8C /* PopularMeetingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMeetingCVC.swift; sourceTree = "<group>"; };
+		77FB7D4124ED99BF00365E8C /* PopularMeetingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularMeetingCVC.xib; sourceTree = "<group>"; };
+		77FB7D4424ED99DF00365E8C /* NewMeetingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingCVC.swift; sourceTree = "<group>"; };
+		77FB7D4524ED99DF00365E8C /* NewMeetingCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingCVC.xib; sourceTree = "<group>"; };
 		A896AA83EDD3C4B54136B9BD /* Pods-MARU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.release.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.release.xcconfig"; sourceTree = "<group>"; };
 		B9ABED26B94D4A6683BD7F85 /* Pods-MARU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MARU.debug.xcconfig"; path = "Target Support Files/Pods-MARU/Pods-MARU.debug.xcconfig"; sourceTree = "<group>"; };
 		D11D51EE24E599D200683870 /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
@@ -79,7 +89,7 @@
 		D13A8F4024E596E700BB1656 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13A8F4324E596E700BB1656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D13A8F4524E596E700BB1656 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D13A8F4724E596E700BB1656 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D13A8F4724E596E700BB1656 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		D13A8F4A24E596E700BB1656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D13A8F4D24E596E700BB1656 /* MARU.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MARU.xcdatamodel; sourceTree = "<group>"; };
 		D13A8F4F24E596F900BB1656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +140,17 @@
 				4A0283DFAEC1206D9D288E29 /* Pods_MARU.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77FB7D3F24ED999800365E8C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				77FB7D4024ED99BF00365E8C /* PopularMeetingCVC.swift */,
+				77FB7D4124ED99BF00365E8C /* PopularMeetingCVC.xib */,
+				77FB7D4424ED99DF00365E8C /* NewMeetingCVC.swift */,
+				77FB7D4524ED99DF00365E8C /* NewMeetingCVC.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		A22CC8CA39A60D3DB922EB19 /* Pods */ = {
@@ -225,7 +246,8 @@
 		D11D521124E59AB300683870 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D13A8F4724E596E700BB1656 /* ViewController.swift */,
+				D13A8F4724E596E700BB1656 /* MainVC.swift */,
+				77FB7D3D24ED990200365E8C /* MainVC + Constraints.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -418,6 +440,7 @@
 		D13A8F7024E5992E00BB1656 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				77FB7D3F24ED999800365E8C /* Cells */,
 				D11D521224E59ABB00683870 /* Storyboards */,
 				D11D521124E59AB300683870 /* ViewControllers */,
 			);
@@ -572,10 +595,12 @@
 			files = (
 				D11D51F324E599E700683870 /* Moim.storyboard in Resources */,
 				D11D51EF24E599D200683870 /* Tabbar.storyboard in Resources */,
+				77FB7D4724ED99DF00365E8C /* NewMeetingCVC.xib in Resources */,
 				D11D51F524E599EE00683870 /* Quiz.storyboard in Resources */,
 				D1AD279024EC5E2A00B32D32 /* SearchResultTVCell.xib in Resources */,
 				D11D51FB24E59A0700683870 /* Splash.storyboard in Resources */,
 				D13A8F5324E596F900BB1656 /* LaunchScreen.storyboard in Resources */,
+				77FB7D4324ED99BF00365E8C /* PopularMeetingCVC.xib in Resources */,
 				D13A8F5024E596F900BB1656 /* Assets.xcassets in Resources */,
 				D11D51F124E599DD00683870 /* Chat.storyboard in Resources */,
 				D11D51F924E599FE00683870 /* Profile.storyboard in Resources */,
@@ -637,7 +662,7 @@
 			files = (
 				D1AD279524EC5E7A00B32D32 /* SearchNavVC.swift in Sources */,
 				D13D627B24E83A6100A3A4A1 /* UIView+Extension.swift in Sources */,
-				D13A8F4824E596E700BB1656 /* ViewController.swift in Sources */,
+				D13A8F4824E596E700BB1656 /* MainVC.swift in Sources */,
 				D11D520C24E59A9500683870 /* MoimVC.swift in Sources */,
 				D13D628524E8403700A3A4A1 /* UIColor+Extension.swift in Sources */,
 				D174F1A224EC5DCE0095DEB6 /* SearchResultTVCell.swift in Sources */,
@@ -649,8 +674,10 @@
 				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
 				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
 				D13D628124E83A9A00A3A4A1 /* String+Extension.swift in Sources */,
+				77FB7D4224ED99BF00365E8C /* PopularMeetingCVC.swift in Sources */,
 				D11D520024E59A3700683870 /* SplashVC.swift in Sources */,
 				D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */,
+				77FB7D3E24ED990300365E8C /* MainVC + Constraints.swift in Sources */,
 				D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */,
 				D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */,
 				D13A8F4E24E596E700BB1656 /* MARU.xcdatamodeld in Sources */,
@@ -662,6 +689,7 @@
 				D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */,
 				D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */,
 				D13A8F6E24E5992800BB1656 /* Enums.swift in Sources */,
+				77FB7D4624ED99DF00365E8C /* NewMeetingCVC.swift in Sources */,
 				D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */,
 				D11D520424E59A5F00683870 /* ProfileVC.swift in Sources */,
 				D13A8F6A24E5991700BB1656 /* Models.swift in Sources */,
