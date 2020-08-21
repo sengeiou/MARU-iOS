@@ -22,7 +22,7 @@ class SearchResultVC: UIViewController{
         SearchResultTV.delegate = self
         SearchResultTV.dataSource = self
         super.viewDidLoad()
-        SearchResultTV.separatorStyle = UITableViewCell.SeparatorStyle.none
+        SearchResultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
     }
     
 }

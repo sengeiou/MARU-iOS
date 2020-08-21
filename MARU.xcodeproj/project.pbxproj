@@ -60,6 +60,8 @@
 		D1AD279524EC5E7A00B32D32 /* SearchNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */; };
 		D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */; };
 		D1AD279924EC5E8800B32D32 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279824EC5E8800B32D32 /* SearchVC.swift */; };
+		F271710724EFC5FE00FDAB01 /* SearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */; };
+		F271710824EFC5FE00FDAB01 /* SearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,8 @@
 		D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavVC.swift; sourceTree = "<group>"; };
 		D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		D1AD279824EC5E8800B32D32 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVCell.swift; sourceTree = "<group>"; };
+		F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTVCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +522,8 @@
 			children = (
 				D174F1A124EC5DCE0095DEB6 /* SearchResultTVCell.swift */,
 				D1AD278F24EC5E2A00B32D32 /* SearchResultTVCell.xib */,
+				F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */,
+				F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D11D51F324E599E700683870 /* Moim.storyboard in Resources */,
+				F271710824EFC5FE00FDAB01 /* SearchTVCell.xib in Resources */,
 				D11D51EF24E599D200683870 /* Tabbar.storyboard in Resources */,
 				77FB7D4724ED99DF00365E8C /* NewMeetingCVC.xib in Resources */,
 				D11D51F524E599EE00683870 /* Quiz.storyboard in Resources */,
@@ -673,6 +680,7 @@
 				D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */,
 				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
 				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
+				F271710724EFC5FE00FDAB01 /* SearchTVCell.swift in Sources */,
 				D13D628124E83A9A00A3A4A1 /* String+Extension.swift in Sources */,
 				77FB7D4224ED99BF00365E8C /* PopularMeetingCVC.swift in Sources */,
 				D11D520024E59A3700683870 /* SplashVC.swift in Sources */,
