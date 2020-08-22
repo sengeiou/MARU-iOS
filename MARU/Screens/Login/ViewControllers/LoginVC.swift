@@ -10,21 +10,47 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextField()
+        setButton()
+        setNavigationController()
+    }
 
-        // Do any additional setup after loading the view.
+    func setTextField(){
+        idTextField.attributedPlaceholder =
+            NSAttributedString(string: "아이디",
+                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder =
+            NSAttributedString(string: "비밀번호",
+                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setButton(){
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        loginButton.backgroundColor = .cornflowerBlue
+        signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
     }
-    */
+    
+    func setNavigationController(){
+        navigationController?.navigationBar.setBackgroundImage(UIImage(),
+                                                               for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
 
+    @objc func didTapLoginButton(){
+    }
+    
+    @objc func didTapSignUpButton(){
+        let sb = UIStoryboard(name: "Login", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
