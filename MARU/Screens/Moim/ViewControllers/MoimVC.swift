@@ -14,10 +14,46 @@ class MoimVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        moimCollectionView.delegate = self
+        moimCollectionView.dataSource = self
+        
+        
 
       
     }
-    
+  
 
+}
+
+extension MoimVC:UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoimCVCell", for: indexPath) as!
+        MoimCVCell
+        
+        cell.viewShadow()
+        
+        
+        
+        return cell
+        
+    }
+        
+}
+
+extension MoimVC:UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
+    indexPath: IndexPath) -> CGSize {
+        
+       return CGSize(width: (collectionView.frame.width), height: (collectionView.frame.height))
+        
+}
 }
