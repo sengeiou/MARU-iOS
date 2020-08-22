@@ -16,12 +16,21 @@ extension MainVC {
         self.contentView.addSubview(popularMeetingColletionView)
         self.contentView.addSubview(newMeetingCollectionView)
         self.contentView.addSubview(backImageView)
+        self.contentView.addSubview(popularMeetingLabel)
+        self.contentView.addSubview(newMeetingLabel)
         
+        self.backImageView.addSubview(backImageViewScrim)
         self.backImageView.addSubview(bookLogoImageView)
         self.backImageView.addSubview(commentLabel)
         self.backImageView.addSubview(mypageButton)
-        self.backImageView.addSubview(popularMeetingLabel)
-        self.backImageView.addSubview(newMeetingLabel)
+        
+        self.contentView.addSubview(searchLabel)
+        self.contentView.addSubview(searchImage)
+        self.contentView.addSubview(searchTextField)
+        
+       
+        
+    
         
         popularMeetingColletionView.delegate = self
         popularMeetingColletionView.dataSource = self
@@ -38,7 +47,13 @@ extension MainVC {
             make.top.equalTo(contentView.snp.top)
             make.leading.equalTo(contentView.snp.leading)
             make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(self.view.frame.height * (250/812))
+            make.height.equalTo(250)
+        }
+        backImageViewScrim.snp.makeConstraints { (make) in
+            make.top.equalTo(backImageView.snp.top)
+            make.leading.equalTo(backImageView.snp.leading)
+            make.trailing.equalTo(backImageView.snp.trailing)
+            make.bottom.equalTo(backImageView.snp.bottom)
         }
         mypageButton.snp.makeConstraints { (make) in
             make.top.equalTo(backImageView.snp.top).inset(60)
@@ -59,6 +74,14 @@ extension MainVC {
             make.trailing.equalTo(backImageView.snp.trailing)
             
         }
+        
+        searchLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(commentLabel.snp.bottom).inset(-15)
+            make.leading.equalTo(contentView.snp.leading).inset(16)
+            make.trailing.equalTo(contentView.snp.trailing).inset(16)
+            make.height.equalTo(38)
+        }
+        
         popularMeetingLabel.snp.makeConstraints { (make) in
             make.top.equalTo(backImageView.snp.bottom).inset(-52)
             make.leading.equalTo(contentView.snp.leading).inset(16)
@@ -69,7 +92,7 @@ extension MainVC {
             make.leading.equalTo(contentView.snp.leading)
             make.trailing.equalTo(contentView.snp.trailing)
             make.width.equalTo(self.view.frame.width)
-            make.height.equalTo(ceil(self.view.frame.height * (169/812)))
+            make.height.equalTo(170)
         }
         newMeetingLabel.snp.makeConstraints { (make) in
             make.top.equalTo(popularMeetingColletionView.snp.bottom).inset(-34)
@@ -80,10 +103,21 @@ extension MainVC {
             make.top.equalTo(newMeetingLabel.snp.bottom).inset(-11)
             make.bottom.equalTo(contentView.snp.bottom).inset(0)
             make.width.equalTo(self.view.frame.width)
-            
-            
         }
         
+        searchImage.snp.makeConstraints { (make) in
+            make.top.equalTo(searchLabel.snp.top).inset(11)
+            make.leading    .equalTo(searchLabel.snp.leading).inset(10)
+            make.height.equalTo(16)
+            make.width.equalTo(16)
+        }
+        searchTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(searchLabel.snp.top).inset(11)
+            make.leading    .equalTo(searchImage.snp.trailing).inset(-8)
+            make.trailing.equalTo(searchLabel.snp.trailing)
+            make.height.equalTo(16)
+        }
+    
         
         
     }
