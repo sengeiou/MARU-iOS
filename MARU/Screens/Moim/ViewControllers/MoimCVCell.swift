@@ -6,6 +6,7 @@
 //  Copyright © 2020 maru. All rights reserved.
 //
 
+import CHIPageControl
 import UIKit
 
 class MoimCVCell: UICollectionViewCell {
@@ -32,8 +33,8 @@ class MoimCVCell: UICollectionViewCell {
         backView.layer.cornerRadius = 10.0
         backView.layer.shadowColor = UIColor.black.cgColor
         backView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        backView.layer.shadowRadius = 10.0
-        backView.layer.shadowOpacity = 0.3
+        backView.layer.shadowRadius = 5
+        backView.layer.shadowOpacity = 0.6
         backView.layer.shadowPath = UIBezierPath(roundedRect:
             backView.bounds, cornerRadius: backView.layer.cornerRadius).cgPath
     }

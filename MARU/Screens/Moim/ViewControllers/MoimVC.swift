@@ -9,7 +9,7 @@
 import UIKit
 
 class MoimVC: UIViewController {
-
+    
     @IBOutlet weak var moimCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -17,16 +17,19 @@ class MoimVC: UIViewController {
         
         moimCollectionView.delegate = self
         moimCollectionView.dataSource = self
-        
-        
-
-      
+     
     }
-  
-
 }
 
-extension MoimVC:UICollectionViewDelegate, UICollectionViewDataSource {
+extension MoimVC: UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+   
+    }
+    
+}
+
+extension MoimVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -41,19 +44,18 @@ extension MoimVC:UICollectionViewDelegate, UICollectionViewDataSource {
         cell.viewShadow()
         
         
-        
         return cell
         
     }
-        
+    
 }
 
 extension MoimVC:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
-    indexPath: IndexPath) -> CGSize {
+        indexPath: IndexPath) -> CGSize {
         
-       return CGSize(width: (collectionView.frame.width), height: (collectionView.frame.height))
+        return CGSize(width: (collectionView.frame.width), height: (collectionView.frame.height))
         
-}
+    }
 }
