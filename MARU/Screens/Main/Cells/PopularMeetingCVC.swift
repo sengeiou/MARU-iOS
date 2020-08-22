@@ -35,15 +35,18 @@ class PopularMeetingCVC: UICollectionViewCell {
             make.top.equalTo(contentView.snp.top).inset(0)
             make.leading.equalTo(contentView.snp.leading).inset(0)
             make.trailing.equalTo(contentView.snp.trailing).inset(0)
+            make.height.equalTo(130)
             
         }
         bookTitle.snp.makeConstraints { (make) in
             make.top.equalTo(bookImg.snp.bottom).inset(-11)
             make.leading.equalTo(contentView.snp.leading).inset(0)
+            make.height.equalTo(13)
         }
         bookAuthor.snp.makeConstraints{ (make) in
             make.top.equalTo(bookTitle.snp.bottom).inset(-5)
             make.leading.equalTo(contentView.snp.leading).inset(0)
+            make.height.equalTo(5)
         }
         
         

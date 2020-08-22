@@ -24,7 +24,7 @@ class MainVC: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(PopularMeetingCVC.self, forCellWithReuseIdentifier: "PopularMeetingCVC")
         
-        cv.backgroundColor = . white
+        cv.backgroundColor = . red
         cv.showsHorizontalScrollIndicator = false
         return cv
     }()
@@ -46,6 +46,11 @@ class MainVC: UIViewController {
     let backImageView = UIImageView().then {
         $0.image = UIImage(named: "picture")
     }
+    
+    let backImageViewScrim = UIView().then {
+        $0.backgroundColor = UIColor.black2
+        $0.alpha = 0.5
+    }
     let bookLogoImageView = UIImageView().then {
         $0.image = UIImage(named: "bookImgWhite")
     }
@@ -55,6 +60,34 @@ class MainVC: UIViewController {
         $0.textColor = .white
         $0.text = "사람들과 함께\n책장을 넘겨보세요."
     }
+    
+    let searchLabel = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 10
+        $0.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+        $0.layer.masksToBounds = true
+        $0.layer.shadowColor = UIColor.black.cgColor
+
+        $0.layer.shadowOffset = .zero
+        $0.layer.shadowRadius = 1.5
+        $0.layer.shadowOpacity = 0.28
+        $0.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+    }
+    
+    let searchImage = UIImageView().then {
+        $0.image = UIImage(named: "search")
+    }
+    let searchTextField = UITextField().then {
+        $0.text = ""
+        $0.placeholder  = "책 제목을 입력해주세요."
+        $0.tintColor = .black
+        $0.textAlignment = .left
+        $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.bold)
+       
+                
+    }
+    
     let mypageButton = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.bold)
         $0.textColor = .white
@@ -69,8 +102,11 @@ class MainVC: UIViewController {
         $0.text = "지금 새로 나온 모임"
     }
     
+    
+    
     let contentView = UIView()
-    let shadowView = UIView()
+    
+    
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -87,10 +123,10 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         switch collectionView {
             
         case self.popularMeetingColletionView:
-            return CGSize(width: self.view.frame.width * (81/375), height: (collectionView.frame.height))
+            return CGSize(width: 81, height: 170)
             
         case self.newMeetingCollectionView:
-            return CGSize(width: self.view.frame.width * (343/375) , height: self.view.frame.height * (110/812))
+            return CGSize(width: self.view.frame.width * (343/375) , height: 110)
         default:
             return CGSize(width: 0, height: 0)
         }
@@ -102,25 +138,23 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         
         switch collectionView {
         case self.popularMeetingColletionView:
-            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 278)
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
             
         case self.newMeetingCollectionView:
-            return UIEdgeInsets(top: 3, left: 16, bottom: 3, right: 16)
+            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         default:
             return UIEdgeInsets()
         }
-        
     }
     
     //MARK: - distance between Cells
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
-  
+        return 23
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 23
+        return 15
     }
     
     

@@ -12,6 +12,11 @@ class NewMeetingCVC: UICollectionViewCell {
     
     //MARK: - UIComponent
     
+    
+    let shadowView = UIView().then {
+        $0.backgroundColor = .yellow
+    }
+    
     let bookImg = UIImageView().then {
         $0.image = UIImage(named: "564")
     }
@@ -42,17 +47,18 @@ class NewMeetingCVC: UICollectionViewCell {
     
     
     let bookMeetingExplainementLabel = UILabel().then {
-        $0.text = "가나다라마바사아자차카파타"
+        $0.text = "가나다라마바사아자차카타파하가나다라마\n바사아자차카타파하가나다라마바사아자차\n카타파하가나다라마바사아자차카타파하"
         $0.font = UIFont.systemFont(ofSize: 13,weight: UIFont.Weight.semibold)
-        $0.textAlignment = .center
+        $0.textAlignment = .left
         $0.textColor = UIColor.black
+        $0.numberOfLines = 3
     }
     
     let leftQuotataionMarkImage = UIImageView().then {
-        $0.image = UIImage(named: "quotationMarkLeft")
+        $0.image = UIImage(named: "qmarkLeft")
     }
     let rightQuotataionMarkImage = UIImageView().then {
-        $0.image = UIImage(named: "quotationMarkRight")
+        $0.image = UIImage(named: "qmarkRight")
     }
     
     
@@ -61,57 +67,72 @@ class NewMeetingCVC: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(bookImg)
-        self.addSubview(bookTitleLabel)
-        self.addSubview(bookAuthorLabel)
-        self.addSubview(bookMeetingMasterLabel)
-        self.addSubview(explainBox)
-        self.addSubview(bookMeetingExplainementLabel)
-        self.addSubview(leftQuotataionMarkImage)
-        self.addSubview(rightQuotataionMarkImage)
+        self.addSubview(shadowView)
+        shadowView.addSubview(bookImg)
+        shadowView.addSubview(bookTitleLabel)
+        shadowView.addSubview(bookAuthorLabel)
+        shadowView.addSubview(bookMeetingMasterLabel)
+        shadowView.addSubview(explainBox)
+        explainBox.addSubview(bookMeetingExplainementLabel)
+        explainBox.addSubview(leftQuotataionMarkImage)
+        explainBox.addSubview(rightQuotataionMarkImage)
         
         
         
+       // MARK: - Draw shadow Effect
         
-        contentView.borderWidth = 0.2
-        contentView.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        contentView.layer.shadowOffset = .zero
-        contentView.layer.shadowRadius = 8
+        shadowView.layer.borderWidth = 0.5
+        shadowView.layer.cornerRadius = 5
+        shadowView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
+        shadowView.layer.masksToBounds = false
+        shadowView.layer.shadowColor = UIColor.black.cgColor
+
+        shadowView.layer.shadowOffset = .zero
+        shadowView.layer.shadowRadius = 1.5
+        shadowView.layer.shadowOpacity = 0.28
+        shadowView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+
+       // MARK: - AutoLayOut Set
         
-        
+        shadowView.snp.makeConstraints { (make) in
+            make.top.equalTo(contentView.snp.top).inset(1)
+            make.bottom.equalTo(contentView.snp.bottom).inset(1)
+            make.leading.equalTo(contentView.snp.leading).inset(1)
+            make.trailing   .equalTo(contentView.snp.trailing).inset(1)
+        }
+
         bookImg.snp.makeConstraints { ( make ) in
-            make.top.equalTo(contentView.snp.top).inset(0)
-            make.leading.equalTo(contentView.snp.leading).inset(0)
-            make.bottom.equalTo(contentView.snp.bottom).inset(0)
+            make.top.equalTo(shadowView.snp.top).inset(0)
+            make.leading.equalTo(shadowView.snp.leading).inset(0)
+            make.bottom.equalTo(shadowView.snp.bottom).inset(0)
             make.width.equalTo(80)
         }
         
         bookTitleLabel.snp.makeConstraints { ( make ) in
-            make.top.equalTo(contentView.snp.top).inset(10)
+            make.top.equalTo(shadowView.snp.top).inset(10)
             make.leading.equalTo(bookImg.snp.trailing).inset(-10)
             make.height.equalTo(13)
         }
+        
         bookAuthorLabel.snp.makeConstraints { ( make ) in
-            make.top.equalTo(contentView.snp.top).inset(12)
+            make.top.equalTo(shadowView.snp.top).inset(12)
             make.leading.equalTo(bookTitleLabel.snp.trailing).inset(-3)
-            
             make.height.equalTo(12)
         }
-        
+
         bookMeetingMasterLabel.snp.makeConstraints { ( make ) in
             make.top.equalTo(bookTitleLabel.snp.bottom).inset(-7)
             make.leading.equalTo(bookImg.snp.trailing).inset(-10)
             make.height.equalTo(13)
         }
-        
+
         explainBox.snp.makeConstraints { ( make ) in
             make.top.equalTo(bookMeetingMasterLabel.snp.bottom).inset(-10)
-            make.leading.equalTo(bookImg.snp.trailing).inset(-11)
-            make.trailing.equalTo(contentView.snp.trailing).inset(12)
+            make.leading.equalTo(bookImg.snp.trailing).inset(-10)
+            make.trailing.equalTo(shadowView.snp.trailing).inset(12)
             make.height.equalTo(49)
-            
         }
-        
+
         leftQuotataionMarkImage.snp.makeConstraints { ( make ) in
             make.top.equalTo(explainBox.snp.top).inset(0)
             make.leading.equalTo(explainBox.snp.leading).inset(0)
@@ -128,10 +149,10 @@ class NewMeetingCVC: UICollectionViewCell {
             make.top.equalTo(explainBox.snp.top).inset(0)
             make.bottom.equalTo(explainBox.snp.bottom).inset(0)
             make.leading.equalTo(leftQuotataionMarkImage.snp.trailing).inset(-5)
-            make.trailing.equalTo(rightQuotataionMarkImage.snp.leading).inset(-5)
-            
+            make.trailing.equalTo(rightQuotataionMarkImage.snp.leading).inset(0)
+
         }
-        
+
     }
     
     required init?(coder: NSCoder) {
