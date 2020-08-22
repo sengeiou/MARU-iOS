@@ -36,6 +36,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="291" id="DA4-Ej-4k1"/>
+                                    <constraint firstAttribute="height" constant="415" id="mY6-Y7-SSZ"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kVV-l1-W6J">
                                     <size key="itemSize" width="291" height="415"/>
@@ -165,16 +166,13 @@
                                                             <color key="backgroundColor" red="0.62352941176470589" green="0.62352941176470589" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="180" id="pPr-le-IQx"/>
-                                                    </constraints>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iKY-kS-4Oq" firstAttribute="centerX" secondItem="b1w-Jp-e6f" secondAttribute="centerX" id="1at-gV-sBB"/>
-                                                <constraint firstAttribute="bottom" secondItem="iKY-kS-4Oq" secondAttribute="bottom" constant="5" id="2rd-DE-YLY"/>
                                                 <constraint firstItem="SBM-S4-8aG" firstAttribute="width" secondItem="xNz-a0-YOD" secondAttribute="width" id="3kw-uu-qKu"/>
+                                                <constraint firstAttribute="bottom" secondItem="iKY-kS-4Oq" secondAttribute="bottom" constant="5" id="4tt-Yp-Duv"/>
                                                 <constraint firstItem="xNz-a0-YOD" firstAttribute="top" secondItem="b1w-Jp-e6f" secondAttribute="top" id="6yZ-pQ-BuB"/>
                                                 <constraint firstItem="lEK-x9-T2z" firstAttribute="leading" secondItem="b1w-Jp-e6f" secondAttribute="leading" constant="52" id="9HJ-B8-xdf"/>
                                                 <constraint firstItem="iKY-kS-4Oq" firstAttribute="top" secondItem="lEK-x9-T2z" secondAttribute="bottom" constant="18" id="A0R-mw-Wpb"/>
@@ -182,6 +180,7 @@
                                                 <constraint firstItem="HPk-RR-m8u" firstAttribute="leading" secondItem="b1w-Jp-e6f" secondAttribute="leading" constant="47" id="EUh-1q-Lg4"/>
                                                 <constraint firstItem="xNz-a0-YOD" firstAttribute="centerX" secondItem="b1w-Jp-e6f" secondAttribute="centerX" id="KNy-zG-Lbr"/>
                                                 <constraint firstItem="SBM-S4-8aG" firstAttribute="centerX" secondItem="b1w-Jp-e6f" secondAttribute="centerX" id="Q6J-Rt-X8q"/>
+                                                <constraint firstItem="iKY-kS-4Oq" firstAttribute="height" secondItem="xNz-a0-YOD" secondAttribute="height" multiplier="0.576923" id="TM2-tY-CXe"/>
                                                 <constraint firstAttribute="trailing" secondItem="iKY-kS-4Oq" secondAttribute="trailing" constant="5" id="U3s-8f-S8E"/>
                                                 <constraint firstItem="SBM-S4-8aG" firstAttribute="height" secondItem="xNz-a0-YOD" secondAttribute="height" id="YE5-GM-DLh"/>
                                                 <constraint firstItem="iKY-kS-4Oq" firstAttribute="top" secondItem="2Rb-QZ-sEH" secondAttribute="bottom" constant="18" id="btq-tZ-Z5K"/>

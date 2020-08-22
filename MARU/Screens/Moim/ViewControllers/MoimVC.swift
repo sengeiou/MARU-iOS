@@ -19,6 +19,9 @@ class MoimVC: UIViewController {
         moimCollectionView.dataSource = self
      
     }
+    
+    
+    
 }
 
 extension MoimVC: UICollectionViewDelegate{
