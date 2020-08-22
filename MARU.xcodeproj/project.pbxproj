@@ -60,6 +60,7 @@
 		D1AD279524EC5E7A00B32D32 /* SearchNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */; };
 		D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */; };
 		D1AD279924EC5E8800B32D32 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279824EC5E8800B32D32 /* SearchVC.swift */; };
+		D1C7D53E24F0D7A400C097F8 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavVC.swift; sourceTree = "<group>"; };
 		D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		D1AD279824EC5E8800B32D32 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D521824E59B6000683870 /* LoginVC.swift */,
+				D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				D13A8F6E24E5992800BB1656 /* Enums.swift in Sources */,
 				77FB7D4624ED99DF00365E8C /* NewMeetingCVC.swift in Sources */,
 				D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */,
+				D1C7D53E24F0D7A400C097F8 /* SignUpVC.swift in Sources */,
 				D11D520424E59A5F00683870 /* ProfileVC.swift in Sources */,
 				D13A8F6A24E5991700BB1656 /* Models.swift in Sources */,
 				D11D521924E59B6000683870 /* LoginVC.swift in Sources */,
