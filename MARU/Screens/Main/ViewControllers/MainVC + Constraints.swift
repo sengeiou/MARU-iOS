@@ -36,6 +36,7 @@ extension MainVC {
         popularMeetingColletionView.dataSource = self
         newMeetingCollectionView.delegate = self
         newMeetingCollectionView.dataSource = self
+        searchTextField.delegate = self
         
         contentView.snp.makeConstraints{ ( make ) in
             make.top.equalToSuperview()
@@ -117,8 +118,5 @@ extension MainVC {
             make.trailing.equalTo(searchLabel.snp.trailing)
             make.height.equalTo(16)
         }
-    
-        
-        
     }
 }

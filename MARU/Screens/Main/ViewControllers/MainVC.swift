@@ -11,7 +11,7 @@ import UIKit
 import Then
 import SnapKit
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, UITextFieldDelegate {
     
     
     //MARK: - UI Components ( CollectionView )
@@ -84,8 +84,6 @@ class MainVC: UIViewController {
         $0.tintColor = .black
         $0.textAlignment = .left
         $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.bold)
-       
-                
     }
     
     let mypageButton = UILabel().then {
@@ -102,16 +100,15 @@ class MainVC: UIViewController {
         $0.text = "지금 새로 나온 모임"
     }
     
-    
-    
     let contentView = UIView()
-    
-    
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.delegate = self
         layout()
+        keyboardNotification()
+        
     }
 }
 extension MainVC: UICollectionViewDelegateFlowLayout {
@@ -131,7 +128,6 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 0, height: 0)
         }
     }
-    
     //MARK: - CollectionView ContentView Inset
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -146,18 +142,14 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets()
         }
     }
-    
     //MARK: - distance between Cells
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 23
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 15
     }
-    
-    
 }
 
 extension MainVC: UICollectionViewDataSource {
@@ -182,4 +174,34 @@ extension MainVC: UICollectionViewDataSource {
     }
     
 }
+
+    //MARK: - Keyboard setting
+
+extension MainVC {
+    
+    
+    //MARK: - Keyboard에 대한 알림 받으면 행동
+    
+    func keyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ sender: Notification) {
+        }
+    @objc func keyboardWillHide(_ sender: Notification) {
+    }
+    
+    //MARK: - Keyboard 내려감에 관한 함수
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+}
+
 
