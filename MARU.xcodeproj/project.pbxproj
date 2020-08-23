@@ -60,7 +60,16 @@
 		D1AD279524EC5E7A00B32D32 /* SearchNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */; };
 		D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */; };
 		D1AD279924EC5E8800B32D32 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279824EC5E8800B32D32 /* SearchVC.swift */; };
+
 		D1C7D53E24F0D7A400C097F8 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */; };
+
+		F271710724EFC5FE00FDAB01 /* SearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */; };
+		F271710824EFC5FE00FDAB01 /* SearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */; };
+		F271710B24F0157300FDAB01 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F271710A24F0157300FDAB01 /* Create.storyboard */; };
+		F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710C24F0158200FDAB01 /* CreateVC.swift */; };
+		F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */; };
+		F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,7 +130,16 @@
 		D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavVC.swift; sourceTree = "<group>"; };
 		D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		D1AD279824EC5E8800B32D32 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+
 		D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+
+		F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVCell.swift; sourceTree = "<group>"; };
+		F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTVCell.xib; sourceTree = "<group>"; };
+		F271710A24F0157300FDAB01 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
+		F271710C24F0158200FDAB01 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
+		F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTVCell.swift; sourceTree = "<group>"; };
+		F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTVCell.xib; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +352,7 @@
 		D13A8F5B24E5984400BB1656 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F271710924F0143E00FDAB01 /* Create */,
 				D11D521324E59B3900683870 /* Login */,
 				D13A8F7524E5997400BB1656 /* Search */,
 				D13A8F7424E5996F00BB1656 /* Splash */,
@@ -493,7 +512,7 @@
 			children = (
 				D1AD279124EC5E5600B32D32 /* ViewControllers */,
 				D174F1A024EC5DB00095DEB6 /* Cells */,
-				D11D51F624E599F600683870 /* Search.storyboard */,
+				F271711024F015AC00FDAB01 /* Storyboards */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -521,6 +540,8 @@
 			children = (
 				D174F1A124EC5DCE0095DEB6 /* SearchResultTVCell.swift */,
 				D1AD278F24EC5E2A00B32D32 /* SearchResultTVCell.xib */,
+				F271710524EFC5FE00FDAB01 /* SearchTVCell.swift */,
+				F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -534,6 +555,49 @@
 				D1AD279824EC5E8800B32D32 /* SearchVC.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F271710924F0143E00FDAB01 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				F271711124F01A5700FDAB01 /* Cells */,
+				F271710E24F0158C00FDAB01 /* Storyboards */,
+				F271710F24F0159500FDAB01 /* ViewControllers */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		F271710E24F0158C00FDAB01 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F271710A24F0157300FDAB01 /* Create.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F271710F24F0159500FDAB01 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F271710C24F0158200FDAB01 /* CreateVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F271711024F015AC00FDAB01 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D11D51F624E599F600683870 /* Search.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F271711124F01A5700FDAB01 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */,
+				F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -597,6 +661,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D11D51F324E599E700683870 /* Moim.storyboard in Resources */,
+				F271710824EFC5FE00FDAB01 /* SearchTVCell.xib in Resources */,
+				F271710B24F0157300FDAB01 /* Create.storyboard in Resources */,
 				D11D51EF24E599D200683870 /* Tabbar.storyboard in Resources */,
 				77FB7D4724ED99DF00365E8C /* NewMeetingCVC.xib in Resources */,
 				D11D51F524E599EE00683870 /* Quiz.storyboard in Resources */,
@@ -607,6 +673,7 @@
 				D13A8F5024E596F900BB1656 /* Assets.xcassets in Resources */,
 				D11D51F124E599DD00683870 /* Chat.storyboard in Resources */,
 				D11D51F924E599FE00683870 /* Profile.storyboard in Resources */,
+				F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */,
 				D11D51F724E599F600683870 /* Search.storyboard in Resources */,
 				D16EEE4324EBF93B00D0994F /* chat.json in Resources */,
 				D13A8F4B24E596E700BB1656 /* Main.storyboard in Resources */,
@@ -673,9 +740,11 @@
 				D11D520824E59A7800683870 /* QuizVC.swift in Sources */,
 				D13D627724E83A4200A3A4A1 /* UITextView+Extension.swift in Sources */,
 				D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */,
+				F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */,
 				D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */,
 				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
 				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
+				F271710724EFC5FE00FDAB01 /* SearchTVCell.swift in Sources */,
 				D13D628124E83A9A00A3A4A1 /* String+Extension.swift in Sources */,
 				77FB7D4224ED99BF00365E8C /* PopularMeetingCVC.swift in Sources */,
 				D11D520024E59A3700683870 /* SplashVC.swift in Sources */,
@@ -688,6 +757,7 @@
 				D16EEE4524EBFB0800D0994F /* MyChatCVCell.swift in Sources */,
 				D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */,
 				D13D626F24E82EF600A3A4A1 /* ChatCVCell.swift in Sources */,
+				F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */,
 				D1AD279324EC5E6200B32D32 /* SearchEntryMoimVC.swift in Sources */,
 				D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */,
 				D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */,
