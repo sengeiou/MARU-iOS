@@ -110,6 +110,12 @@ class MainVC: UIViewController, UITextFieldDelegate {
         keyboardNotification()
         
     }
+    
+    //MARK: - Method
+    
+    
+    
+    
 }
 extension MainVC: UICollectionViewDelegateFlowLayout {
     
