@@ -12,6 +12,7 @@ class MoimCVCell: UICollectionViewCell {
     
     static let identifier: String = "MoimCVCell"
     
+    @IBOutlet weak var backBookIcon: UIImageView!
     @IBOutlet weak var bookImg: UIImageView!
     @IBOutlet weak var bookFrontImg: UIImageView!
     
