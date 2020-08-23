@@ -64,6 +64,8 @@
 		F271710824EFC5FE00FDAB01 /* SearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */; };
 		F271710B24F0157300FDAB01 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F271710A24F0157300FDAB01 /* Create.storyboard */; };
 		F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710C24F0158200FDAB01 /* CreateVC.swift */; };
+		F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */; };
+		F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		F271710624EFC5FE00FDAB01 /* SearchTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTVCell.xib; sourceTree = "<group>"; };
 		F271710A24F0157300FDAB01 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		F271710C24F0158200FDAB01 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
+		F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTVCell.swift; sourceTree = "<group>"; };
+		F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTVCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +551,7 @@
 		F271710924F0143E00FDAB01 /* Create */ = {
 			isa = PBXGroup;
 			children = (
+				F271711124F01A5700FDAB01 /* Cells */,
 				F271710E24F0158C00FDAB01 /* Storyboards */,
 				F271710F24F0159500FDAB01 /* ViewControllers */,
 			);
@@ -575,6 +580,15 @@
 				D11D51F624E599F600683870 /* Search.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F271711124F01A5700FDAB01 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */,
+				F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -650,6 +664,7 @@
 				D13A8F5024E596F900BB1656 /* Assets.xcassets in Resources */,
 				D11D51F124E599DD00683870 /* Chat.storyboard in Resources */,
 				D11D51F924E599FE00683870 /* Profile.storyboard in Resources */,
+				F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */,
 				D11D51F724E599F600683870 /* Search.storyboard in Resources */,
 				D16EEE4324EBF93B00D0994F /* chat.json in Resources */,
 				D13A8F4B24E596E700BB1656 /* Main.storyboard in Resources */,
@@ -733,6 +748,7 @@
 				D16EEE4524EBFB0800D0994F /* MyChatCVCell.swift in Sources */,
 				D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */,
 				D13D626F24E82EF600A3A4A1 /* ChatCVCell.swift in Sources */,
+				F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */,
 				D1AD279324EC5E6200B32D32 /* SearchEntryMoimVC.swift in Sources */,
 				D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */,
 				D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */,
