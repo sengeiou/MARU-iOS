@@ -36,7 +36,7 @@ class NewMeetingCVC: UICollectionViewCell {
         $0.text = "By 라노벨 정균"
         $0.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.medium)
         $0.textColor = .cornflowerBlue
-        $0.textAlignment = .left
+        $0.textAlignment = .right
         $0.sizeToFit()
     }
     
@@ -49,7 +49,7 @@ class NewMeetingCVC: UICollectionViewCell {
     let bookMeetingExplainementLabel = UILabel().then {
         $0.text = "가나다라마바사아자차카타파하가나다라마\n바사아자차카타파하가나다라마바사아자차\n카타파하가나다라마바사아자차카타파하"
         $0.font = UIFont.systemFont(ofSize: 13,weight: UIFont.Weight.semibold)
-        $0.textAlignment = .left
+        $0.textAlignment = .center
         $0.textColor = UIColor.black
         $0.numberOfLines = 3
     }
@@ -120,14 +120,10 @@ class NewMeetingCVC: UICollectionViewCell {
             make.height.equalTo(12)
         }
 
-        bookMeetingMasterLabel.snp.makeConstraints { ( make ) in
-            make.top.equalTo(bookTitleLabel.snp.bottom).inset(-7)
-            make.leading.equalTo(bookImg.snp.trailing).inset(-10)
-            make.height.equalTo(13)
-        }
+        
 
         explainBox.snp.makeConstraints { ( make ) in
-            make.top.equalTo(bookMeetingMasterLabel.snp.bottom).inset(-10)
+            make.top.equalTo(bookTitleLabel.snp.bottom).inset(-9)
             make.leading.equalTo(bookImg.snp.trailing).inset(-10)
             make.trailing.equalTo(shadowView.snp.trailing).inset(12)
             make.height.equalTo(49)
@@ -150,9 +146,16 @@ class NewMeetingCVC: UICollectionViewCell {
             make.bottom.equalTo(explainBox.snp.bottom).inset(0)
             make.leading.equalTo(leftQuotataionMarkImage.snp.trailing).inset(-5)
             make.trailing.equalTo(rightQuotataionMarkImage.snp.leading).inset(0)
-
         }
-
+        
+        bookMeetingMasterLabel.snp.makeConstraints { ( make ) in
+            make.top.equalTo(explainBox.snp.bottom).inset(-8)
+            make.trailing.equalTo(shadowView.snp.trailing).inset(12)
+            make.height.equalTo(11)
+            make.width.equalTo(200)
+        
+        }
+        
     }
     
     required init?(coder: NSCoder) {
