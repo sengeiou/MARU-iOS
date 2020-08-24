@@ -33,9 +33,11 @@ class MoimVC: UIViewController {
         
         addCollectionView()
         
-        //        moimCollectionView.isPagingEnabled = true
+        //                moimCollectionView.isPagingEnabled = true
         self.moimCollectionView?.showsHorizontalScrollIndicator = false
         
+        self.moimCollectionView?.delegate = self
+        self.moimCollectionView?.dataSource = self
         
         print(currentPage)
         print(paging.currentPage)
@@ -54,24 +56,28 @@ class MoimVC: UIViewController {
         self.currentPage = 0
     }
     
+    // MARK: - 여기가 문제다 !!!!!!
     func addCollectionView(){
         
         let layout = UpCarouselFlowLayout()
         
-//        layout.itemSize = CGSize(width: 219, height: 270)
+        layout.itemSize = CGSize(width: 292, height: 270)
         
         layout.scrollDirection = .horizontal
         
-        self.moimCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        //MARK: - 아래 코드를 살리면 collectionview가 안보임.
+        //        self.moimCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        // 위의 코드를 아래와 같이 변환
+        self.moimCollectionView.collectionViewLayout = layout
+        
         self.moimCollectionView?.translatesAutoresizingMaskIntoConstraints = false
         
-        self.moimCollectionView?.delegate = self
-        self.moimCollectionView?.dataSource = self
         
+        let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
-        //        let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
-        //
-        //        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset:  20)
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset:  42)
         
     }
     
@@ -102,16 +108,18 @@ extension MoimVC: UIScrollViewDelegate {
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
-//        let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
         
-        //        let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
-        //        currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
-        //
+        //        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
+        //        currentPage = Int(scrollPage)
         //        self.paging.set(progress: currentPage, animated: true)
+        //
         
-        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
-        currentPage = Int(scrollPage)
+        //MARK: - 사이즈 문제 , 오토 문제 해결
+        let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
+        let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
+        let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
+        currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+        
         self.paging.set(progress: currentPage, animated: true)
     }
 }
@@ -159,23 +167,4 @@ extension MoimVC:UICollectionViewDelegateFlowLayout {
         return 0
     }
 }
-
-//extension MoimVC: UIScrollViewDelegate {
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//
-////        let scrollPage = scrollView.contentOffset.x / view.frame.width
-//
-//        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
-//        currentPage = Int(scrollPage)
-//        self.paging.set(progress: currentPage, animated: true)
-//
-//
-////        func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-////
-////         }
-//
-//    }
-//}
 
