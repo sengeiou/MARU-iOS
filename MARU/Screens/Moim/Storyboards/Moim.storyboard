@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rCZ-eX-qlp">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rCZ-eX-qlp">
                                 <rect key="frame" x="42" y="230" width="291" height="415"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -221,38 +221,36 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKt-hc-VxH" customClass="CHIPageControlFresno" customModule="CHIPageControl">
-                                <rect key="frame" x="187.66666666666666" y="660" width="0.0" height="0.0"/>
+                                <rect key="frame" x="168.66666666666666" y="665" width="38" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="VdC-58-xrJ"/>
+                                    <constraint firstAttribute="width" constant="38" id="vxa-I1-yoU"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="LKt-hc-VxH" firstAttribute="centerX" secondItem="9A8-5A-ye5" secondAttribute="centerX" id="1bX-pI-zuf"/>
+                            <constraint firstItem="LKt-hc-VxH" firstAttribute="centerX" secondItem="9A8-5A-ye5" secondAttribute="centerX" id="7ay-bM-Pgy"/>
                             <constraint firstItem="rCZ-eX-qlp" firstAttribute="top" secondItem="jN0-9A-uRF" secondAttribute="bottom" constant="33" id="EX3-Vr-JzY"/>
                             <constraint firstItem="jN0-9A-uRF" firstAttribute="leading" secondItem="9A8-5A-ye5" secondAttribute="leading" constant="38" id="MfL-HN-hvd"/>
                             <constraint firstItem="rCZ-eX-qlp" firstAttribute="centerX" secondItem="9A8-5A-ye5" secondAttribute="centerX" id="Mtf-DL-lwd"/>
                             <constraint firstItem="rI8-1L-gGm" firstAttribute="top" secondItem="9A8-5A-ye5" secondAttribute="top" constant="63" id="S72-xb-gaa"/>
                             <constraint firstItem="rI8-1L-gGm" firstAttribute="leading" secondItem="9A8-5A-ye5" secondAttribute="leading" constant="40" id="UXa-S9-Rtg"/>
                             <constraint firstItem="rCZ-eX-qlp" firstAttribute="height" secondItem="9A8-5A-ye5" secondAttribute="height" multiplier="0.605839" id="e19-Pl-VXV"/>
-                            <constraint firstItem="LKt-hc-VxH" firstAttribute="top" secondItem="rCZ-eX-qlp" secondAttribute="bottom" constant="15" id="k1B-ko-VRR"/>
+                            <constraint firstItem="LKt-hc-VxH" firstAttribute="top" secondItem="rCZ-eX-qlp" secondAttribute="bottom" constant="20" id="mQw-pZ-Qrd"/>
                             <constraint firstItem="jN0-9A-uRF" firstAttribute="top" secondItem="rI8-1L-gGm" secondAttribute="bottom" constant="14" id="rX6-6H-gWy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9A8-5A-ye5"/>
