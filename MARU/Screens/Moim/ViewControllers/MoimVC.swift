@@ -11,21 +11,31 @@ import UIKit
 
 class MoimVC: UIViewController {
     
-    var currentPage : Int = 0
-   
+    //    var currentPage : Int = 0
+    
+    fileprivate var currentPage: Int = 0
+    
+    fileprivate var pageSize: CGSize {
+        let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
+        var pageSize = layout.itemSize
+        pageSize.width += layout.minimumLineSpacing
+        return pageSize
+    }
+    
+    
     @IBOutlet weak var moimCollectionView: UICollectionView!
     @IBOutlet weak var paging: CHIPageControlFresno!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        moimCollectionView.delegate = self
-        moimCollectionView.dataSource = self
-        
         pageControlSize()
         
-        moimCollectionView.isPagingEnabled = true
-        moimCollectionView.showsHorizontalScrollIndicator = false
+        addCollectionView()
+        
+        //        moimCollectionView.isPagingEnabled = true
+        self.moimCollectionView?.showsHorizontalScrollIndicator = false
+        
         
         print(currentPage)
         print(paging.currentPage)
@@ -41,11 +51,70 @@ class MoimVC: UIViewController {
         paging.padding = 6
         //        paging.insertTintColor(UIColor(red: 194, green: 194, blue: 194), position: 2)
         
-        //        self.currentPage = 0
+        self.currentPage = 0
     }
+    
+    func addCollectionView(){
+        
+        let layout = UpCarouselFlowLayout()
+        
+//        layout.itemSize = CGSize(width: 219, height: 270)
+        
+        layout.scrollDirection = .horizontal
+        
+        self.moimCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        self.moimCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.moimCollectionView?.delegate = self
+        self.moimCollectionView?.dataSource = self
+        
+        
+        //        let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
+        //
+        //        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset:  20)
+        
+    }
+    
+    class RelativeLayoutUtilityClass {
+        
+        var heightFrame: CGFloat?
+        var widthFrame: CGFloat?
+        
+        init(referenceFrameSize: CGSize){
+            heightFrame = referenceFrameSize.height
+            widthFrame = referenceFrameSize.width
+        }
+        
+        func relativeHeight(multiplier: CGFloat) -> CGFloat{
+            
+            return multiplier * self.heightFrame!
+        }
+        
+        func relativeWidth(multiplier: CGFloat) -> CGFloat{
+            return multiplier * self.widthFrame!
+            
+        }
+    }
+    
 }
 
-
+extension MoimVC: UIScrollViewDelegate {
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
+//        let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
+        
+        //        let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
+        //        currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+        //
+        //        self.paging.set(progress: currentPage, animated: true)
+        
+        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
+        currentPage = Int(scrollPage)
+        self.paging.set(progress: currentPage, animated: true)
+    }
+}
 
 extension MoimVC: UICollectionViewDelegate{
     
@@ -54,6 +123,7 @@ extension MoimVC: UICollectionViewDelegate{
     }
     
 }
+
 
 extension MoimVC: UICollectionViewDataSource {
     
@@ -68,7 +138,6 @@ extension MoimVC: UICollectionViewDataSource {
         MoimCVCell
         
         cell.viewShadow()
-        
         
         return cell
         
@@ -91,19 +160,22 @@ extension MoimVC:UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MoimVC: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        
-        let scrollPage = scrollView.contentOffset.x / view.frame.width
-        
-        currentPage = Int(scrollPage)
-        
-        self.paging.set(progress: currentPage, animated: true)
-        
-    }
-    
-}
-
+//extension MoimVC: UIScrollViewDelegate {
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//
+////        let scrollPage = scrollView.contentOffset.x / view.frame.width
+//
+//        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
+//        currentPage = Int(scrollPage)
+//        self.paging.set(progress: currentPage, animated: true)
+//
+//
+////        func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+////
+////         }
+//
+//    }
+//}
 
