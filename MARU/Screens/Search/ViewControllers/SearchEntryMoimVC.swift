@@ -32,5 +32,15 @@ class SearchEntryMoimVC: UIViewController{
         
         self.entryBookTitle.text = "운다고 달라지는 일은 아무것도 없겠지만"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           navigationController?.setNavigationBarHidden(false, animated: animated)
+       }
+       
+       override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           navigationController?.setNavigationBarHidden(true, animated: animated)
+       }
 }
 
