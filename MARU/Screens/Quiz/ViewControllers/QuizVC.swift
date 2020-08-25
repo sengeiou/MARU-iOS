@@ -18,19 +18,19 @@ class QuizVC: UIViewController {
     let quizView = UIView().then {
         $0.backgroundColor = .yellow
     }
-    let quizFirstCircleLabel = UILabel().then {
+    let quizFirstCheckImageView = UIImageView().then {
         $0.backgroundColor = .blue
     }
-    let quizSecondCircleLabel = UILabel().then {
+    let quizSecondCheckImageView = UIImageView().then {
         $0.backgroundColor = .blue
     }
-    let quizThirdCircleLabel = UILabel().then {
+    let quizThirdCheckImageView = UIImageView().then {
         $0.backgroundColor = .blue
     }
-    let quizFourthCircleLabel = UILabel().then {
+    let quizFourthCheckImageView = UIImageView().then {
         $0.backgroundColor = .blue
     }
-    let quizFifthCircleLabel = UILabel().then {
+    let quizFifthCheckImageView = UIImageView().then {
         $0.backgroundColor = .blue
     }
     
@@ -42,7 +42,7 @@ class QuizVC: UIViewController {
         $0.text = "1 of 5"
         $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
     }
-    let stopwatchLabel = UILabel().then {
+    let stopwatchImageView = UIImageView().then {
         $0.backgroundColor = .red
     }
     
@@ -52,14 +52,14 @@ class QuizVC: UIViewController {
         $0.textAlignment = .left
     }
     
-    let correctLabel = UILabel().then {
+    let correctLabel = UIImageView().then {
         $0.backgroundColor = .blue
     }
     
-    let incorrectLabel = UILabel().then {
+    let incorrectLabel = UIImageView().then {
         $0.backgroundColor = .red
     }
-    let contentView = UILabel()
+    let contentView = UIView()
     
 
     override func viewDidLoad() {
