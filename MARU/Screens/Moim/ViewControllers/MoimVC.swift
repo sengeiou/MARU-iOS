@@ -77,7 +77,7 @@ class MoimVC: UIViewController {
         
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset:  42)
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 20)
         
     }
     
