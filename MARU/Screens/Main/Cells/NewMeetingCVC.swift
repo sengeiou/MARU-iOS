@@ -14,7 +14,7 @@ class NewMeetingCVC: UICollectionViewCell {
     
     
     let shadowView = UIView().then {
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = .white
     }
     
     let bookImg = UIImageView().then {

@@ -26,6 +26,8 @@ class PopularMeetingCVC: UICollectionViewCell {
     //MARK: - Override Init
     
     override init(frame: CGRect){
+        
+        
         super.init(frame: frame)
         self.addSubview(bookImg)
         self.addSubview(bookTitle)
