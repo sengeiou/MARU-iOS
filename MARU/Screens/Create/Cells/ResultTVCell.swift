@@ -10,6 +10,10 @@ import UIKit
 
 class ResultTVCell: UITableViewCell {
 
+    @IBOutlet weak var resultBookImageView: UIImageView!
+    @IBOutlet weak var resultBookAuthor: UILabel!
+    @IBOutlet weak var resultBookTitle: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -26,6 +26,7 @@ class RecentVC: UIViewController{
         RecentTV.register(nibName, forCellReuseIdentifier: "RecentTVCell")
         RecentTV.delegate = self
         RecentTV.dataSource = self
+        RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
         super.viewDidLoad()
     }
 }
