@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jlS-xz-4bf">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mKR-k6-Sq1">
+
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -10,7 +12,7 @@
         <!--Search ResultVC-->
         <scene sceneID="lGD-Dt-b8c">
             <objects>
-                <viewController id="ILM-dq-bKS" customClass="SearchResultVC" customModule="MARU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchResultVC" id="ILM-dq-bKS" customClass="SearchResultVC" customModule="MARU" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ueB-MP-1KI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,6 +42,9 @@
                                     <constraint firstAttribute="height" constant="22" id="tmo-54-sd9"/>
                                 </constraints>
                                 <state key="normal" image="search"/>
+                                <connections>
+                                    <action selector="searchBtnTouched:" destination="ILM-dq-bKS" eventType="touchUpInside" id="f6Y-ry-yHn"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TLF-im-ggP">
                                 <rect key="frame" x="51" y="52" width="37.333333333333343" height="34"/>
@@ -67,11 +72,12 @@
                     </view>
                     <connections>
                         <outlet property="SearchResultTV" destination="xON-5L-H8R" id="7Jh-Gh-qcd"/>
+                        <outlet property="searchTextField" destination="TLF-im-ggP" id="PYl-se-ZWe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2V-fB-CfB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="153"/>
+            <point key="canvasLocation" x="2273" y="153"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="2cu-7f-ab9">
@@ -107,6 +113,9 @@
                                 <state key="normal" title="취소">
                                     <color key="titleColor" red="0.25490196079999999" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelBtnTouched:" destination="jlS-xz-4bf" eventType="touchUpInside" id="046-dj-CnA"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-Qy-SXF">
                                 <rect key="frame" x="16" y="96" width="343" height="682"/>
@@ -120,7 +129,6 @@
                             <constraint firstItem="l1T-3U-KNH" firstAttribute="leading" secondItem="96W-IJ-sag" secondAttribute="trailing" constant="8" id="D2c-8l-mmO"/>
                             <constraint firstItem="C4d-Qy-SXF" firstAttribute="leading" secondItem="8qf-3T-LKW" secondAttribute="leading" constant="16" id="FoB-TZ-nQM"/>
                             <constraint firstItem="C4d-Qy-SXF" firstAttribute="top" secondItem="riX-on-gnX" secondAttribute="bottom" constant="10" id="U4s-w4-eKU"/>
-                            <constraint firstItem="C4d-Qy-SXF" firstAttribute="top" secondItem="96W-IJ-sag" secondAttribute="bottom" constant="8" id="URV-gS-Xfx"/>
                             <constraint firstItem="riX-on-gnX" firstAttribute="top" secondItem="8qf-3T-LKW" secondAttribute="top" constant="8" id="ZWJ-FA-5eV"/>
                             <constraint firstItem="riX-on-gnX" firstAttribute="leading" secondItem="zlK-jg-l36" secondAttribute="trailing" constant="7" id="azU-5N-7Dr"/>
                             <constraint firstItem="8qf-3T-LKW" firstAttribute="trailing" secondItem="C4d-Qy-SXF" secondAttribute="trailing" constant="16" id="cyO-TN-joY"/>
@@ -132,18 +140,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8qf-3T-LKW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="JC7-E7-ii2"/>
                     <connections>
                         <outlet property="SearchTV" destination="C4d-Qy-SXF" id="NFl-bf-RtK"/>
+                        <outlet property="searchBtn" destination="zlK-jg-l36" id="gjZ-7t-FhU"/>
+                        <outlet property="searchTextField" destination="riX-on-gnX" id="WSQ-qh-eq3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNF-mH-UAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="153"/>
+            <point key="canvasLocation" x="1519" y="153"/>
         </scene>
         <!--Search Entry MoimVC-->
         <scene sceneID="jgr-wG-Ltl">
             <objects>
-                <viewController id="N8v-sC-B0H" customClass="SearchEntryMoimVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchEntryMoimVC" id="N8v-sC-B0H" customClass="SearchEntryMoimVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yv2-XG-JuL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -366,7 +377,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDo-S6-T8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2206" y="153"/>
+            <point key="canvasLocation" x="2958" y="153"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qws-29-hp2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mKR-k6-Sq1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ylb-he-get">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jlS-xz-4bf" kind="relationship" relationship="rootViewController" id="HJb-94-EcU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zSs-EH-iQs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744.79999999999995" y="152.95566502463055"/>
         </scene>
     </scenes>
     <resources>
