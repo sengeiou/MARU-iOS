@@ -13,11 +13,11 @@ extension QuizVC {
     func layout() {
         
         self.view.addSubview(contentView)
-        self.contentView.addSubview(quizFirstCircleLabel)
-        self.contentView.addSubview(quizSecondCircleLabel)
-        self.contentView.addSubview(quizThirdCircleLabel)
-        self.contentView.addSubview(quizFourthCircleLabel)
-        self.contentView.addSubview(quizFifthCircleLabel)
+        self.contentView.addSubview(quizFirstCheckImageView)
+        self.contentView.addSubview(quizSecondCheckImageView)
+        self.contentView.addSubview(quizThirdCheckImageView)
+        self.contentView.addSubview(quizFourthCheckImageView)
+        self.contentView.addSubview(quizFifthCheckImageView)
         
         self.contentView.addSubview(correctLabel)
         self.contentView.addSubview(incorrectLabel)
@@ -26,66 +26,72 @@ extension QuizVC {
         self.backgroundView.addSubview(quizView)
         self.quizView.addSubview(quizTextLabel)
         self.quizView.addSubview(quizSequenceLabel)
-        self.quizView.addSubview(stopwatchLabel)
+        self.quizView.addSubview(stopwatchImageView)
         self.quizView.addSubview(quizContent)
-
+        
         
         contentView.snp.makeConstraints{ ( make ) in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide)
         }
+        
         correctLabel.snp.makeConstraints{ ( make ) in
             make.leading.equalTo(contentView.snp.leading).inset(79)
-            make.bottom.equalTo(contentView.snp.bottom).inset(124)
-            make.width.equalTo(89)
-            make.height.equalTo(89)
+            make.bottom.equalTo(contentView.snp.bottom).inset(90)
+            make.width.equalTo(self.view.frame.height * (0.109))
+            make.height.equalTo(self.view.frame.height * (0.109))
         }
+        
         incorrectLabel.snp.makeConstraints{ ( make ) in
-            make.trailing.equalTo(contentView.snp.trailing).inset(78)
-            make.bottom.equalTo(contentView.snp.bottom).inset(124)
-            make.width.equalTo(89)
-            make.height.equalTo(89)
+            make.trailing.equalTo(contentView.snp.trailing).inset(79)
+            make.bottom.equalTo(contentView.snp.bottom).inset(90)
+            make.width.equalTo(self.view.frame.height * (0.109))
+            make.height.equalTo(self.view.frame.height * (0.109))
         }
         
         backgroundView.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(contentView.snp.leading).inset(43)
-            make.trailing.equalTo(contentView.snp.trailing).inset(23)
-            make.bottom.equalTo(correctLabel.snp.top).inset(-60)
-            make.height.equalTo(280)
+            make.leading.equalTo(contentView.snp.leading).inset(0.114 * self.view.frame.width)
+            make.trailing.equalTo(contentView.snp.trailing).inset(0.061 * self.view.frame.width)
+            make.bottom.equalTo(correctLabel.snp.top).inset(-self.view.frame.height * 0.073)
+            make.height.equalTo(0.344 * self.view.frame.height)
         }
-        quizFirstCircleLabel.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(contentView.snp.leading).inset(101)
-            make.bottom.equalTo(backgroundView.snp.top).inset(-33)
-            make.width.equalTo(31)
-            make.height.equalTo(31)
+        
+        quizThirdCheckImageView.snp.makeConstraints{ ( make ) in
+            make.centerX.equalTo(self.view.snp.centerX)
+            make.bottom.equalTo(backgroundView.snp.top).inset(-15)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
-        quizSecondCircleLabel.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(quizFirstCircleLabel.snp.trailing).inset(-4)
-            make.bottom.equalTo(backgroundView.snp.top).inset(-33)
-            make.width.equalTo(31)
-            make.height.equalTo(31)
+        
+        quizSecondCheckImageView.snp.makeConstraints{ ( make ) in
+            make.trailing.equalTo(quizThirdCheckImageView.snp.leading).inset(-2)
+            make.bottom.equalTo(backgroundView.snp.top).inset(-15)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
-        quizThirdCircleLabel.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(quizSecondCircleLabel.snp.trailing).inset(-4)
-            make.bottom.equalTo(backgroundView.snp.top).inset(-33)
-            make.width.equalTo(31)
-            make.height.equalTo(31)
+        
+        quizFirstCheckImageView.snp.makeConstraints{ ( make ) in
+            make.trailing.equalTo(quizSecondCheckImageView.snp.leading).inset(-2)
+            make.bottom.equalTo(backgroundView.snp.top).inset(-15)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
-        quizFourthCircleLabel.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(quizThirdCircleLabel.snp.trailing).inset(-4)
-            make.bottom.equalTo(backgroundView.snp.top).inset(-33)
-            make.width.equalTo(31)
-            make.height.equalTo(31)
+        
+        quizFourthCheckImageView.snp.makeConstraints{ ( make ) in
+            make.leading.equalTo(quizThirdCheckImageView.snp.trailing).inset(-2)
+            make.bottom.equalTo(backgroundView.snp.top).inset(-15)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
-        quizFifthCircleLabel.snp.makeConstraints{ ( make ) in
-            make.leading.equalTo(quizFourthCircleLabel.snp.trailing).inset(-4)
-            make.bottom.equalTo(backgroundView.snp.top).inset(-33)
-            make.width.equalTo(31)
-            make.height.equalTo(31)
+        
+        quizFifthCheckImageView.snp.makeConstraints{ ( make ) in
+            make.leading.equalTo(quizFourthCheckImageView.snp.trailing).inset(-2)
+            make.bottom.equalTo(backgroundView.snp.top).inset(-15)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
-
         
         quizView.snp.makeConstraints{ ( make ) in
             make.leading.equalTo(backgroundView.snp.leading).inset(-10)
@@ -93,31 +99,24 @@ extension QuizVC {
             make.height.equalTo(backgroundView.snp.height)
             make.width.equalTo(backgroundView.snp.width)
         }
-//        quizTextLabel.snp.makeConstraints{ ( make ) in
-//            make.leading.equalTo(backgroundView.snp.leading).inset(22)
-//            make.top.equalTo(quizView.snp.top).inset(21)
-//            make.height.equalTo(29)
-//            make.width.equalTo(68)
-//        }
-//        quizSequenceLabel.snp.makeConstraints{ ( make ) in
-//            make.leading.equalTo(quizTextLabel.snp.trailing).inset(-11)
-//            make.top.equalTo(quizView.snp.top).inset(28)
-//            make.height.equalTo(34)
-//            make.width.equalTo(16)
-//        }
-//        quizSequenceLabel.snp.makeConstraints{ ( make ) in
-//            make.trailing.equalTo(quizView.snp.trailing).inset(20)
-//            make.top.equalTo(quizView.snp.top).inset(23)
-//            make.height.equalTo(31)
-//            make.width.equalTo(31)
-//        }
-//        
-    
-        
-        
-        
-        
-        
+        quizTextLabel.snp.makeConstraints{ ( make ) in
+            make.leading.equalTo(backgroundView.snp.leading).inset(22)
+            make.top.equalTo(quizView.snp.top).inset(21)
+            make.height.equalTo(30)
+            make.width.equalTo(73)
+        }
+        quizSequenceLabel.snp.makeConstraints{ ( make ) in
+            make.leading.equalTo(quizTextLabel.snp.trailing).inset(-7)
+            make.top.equalTo(quizView.snp.top).inset(29)
+            make.height.equalTo(16)
+            make.width.equalTo(36)
+        }
+        stopwatchImageView.snp.makeConstraints{ ( make ) in
+            make.trailing.equalTo(quizView.snp.trailing).inset(19)
+            make.top.equalTo(quizView.snp.top).inset(22)
+            make.height.equalTo(31)
+            make.width.equalTo(31)
+        }
         
     }
     
