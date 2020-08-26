@@ -61,7 +61,7 @@ class MoimVC: UIViewController {
         
         let layout = UpCarouselFlowLayout()
         
-        layout.itemSize = CGSize(width: 292, height: 270)
+        layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
         
         layout.scrollDirection = .horizontal
         
@@ -77,7 +77,7 @@ class MoimVC: UIViewController {
         
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 20)
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 5)
         
     }
     
