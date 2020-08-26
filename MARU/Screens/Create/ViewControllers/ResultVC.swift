@@ -63,6 +63,11 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        print(indexPath)
+        guard let createMoimVC = self.storyboard?.instantiateViewController(identifier:
+            "CreateVC") as? CreateVC else { return }
+        self.navigationController?.pushViewController(createMoimVC, animated: true)
+    }
     
 }

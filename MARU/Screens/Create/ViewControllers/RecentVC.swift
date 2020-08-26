@@ -29,6 +29,12 @@ class RecentVC: UIViewController{
         RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
         super.viewDidLoad()
     }
+    @IBAction func cancelBtnTouched(_ sender: Any) {
+        guard let ResultVC = self.storyboard?.instantiateViewController(identifier:
+               "ResultVC") as? ResultVC else { return }
+               self.navigationController?.pushViewController(ResultVC, animated: true)
+        
+    }
 }
 
 extension RecentVC: UITableViewDelegate,UITableViewDataSource{

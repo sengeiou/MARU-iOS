@@ -16,6 +16,7 @@ class CreateTVCell: UITableViewCell {
     @IBOutlet weak var correctBtn: UIButton!
     @IBOutlet weak var incorrectBtn: UIButton!
     
+    var answer: Int = 0 // 정답 1 오답 0
     override func awakeFromNib() {
         super.awakeFromNib()
         self.shadowView.layer.cornerRadius = 10.0
@@ -27,7 +28,18 @@ class CreateTVCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    @IBAction func correctBtnTouched(_ sender: Any) {
+        answer = 1
+        correctBtn.setImage(UIImage(named: "correctBlue"), for: .normal)
+        incorrectBtn.setImage(UIImage(named:"incorrectWhite"),for: .normal)
+        
+    }
     
+    @IBAction func incorrectBtnTouched(_ sender: Any) {
+        answer = 0
+        incorrectBtn.setImage(UIImage(named: "incorrectWhite52"), for: .normal)
+        correctBtn.setImage(UIImage(named: "correctBlue52"), for: .normal)
+    }
 }
 
 extension CreateTVCell: UITextViewDelegate{
