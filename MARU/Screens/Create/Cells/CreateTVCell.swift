@@ -28,6 +28,10 @@ class CreateTVCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    // 키보드 바깥 뷰 아무데나 터치하면 키보드 다시 들어가는 코드
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
     @IBAction func correctBtnTouched(_ sender: Any) {
         answer = 1
         correctBtn.setImage(UIImage(named: "correctBlue"), for: .normal)
@@ -41,7 +45,7 @@ class CreateTVCell: UITableViewCell {
         correctBtn.setImage(UIImage(named: "correctBlue52"), for: .normal)
     }
 }
-
+// MARK:- textview placeholder
 extension CreateTVCell: UITextViewDelegate{
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -64,5 +68,19 @@ extension CreateTVCell: UITextViewDelegate{
             quizTextView.resignFirstResponder()
         }
         return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        quizTextView.resignFirstResponder()
+        return true
+    }
+    func keyboardWillShow(_ sender: Notification) {
+        
+        self.frame.origin.y = -150 // Move view 150 points upward
+        
+    }
+    
+    func keyboardWillHide(_ sender: Notification){
+        self.frame.origin.y = 0
     }
 }
