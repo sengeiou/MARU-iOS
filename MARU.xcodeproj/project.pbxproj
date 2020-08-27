@@ -10,6 +10,7 @@
 		27BD6584E85B34ED9777BB28 /* Pods_MARU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A0283DFAEC1206D9D288E29 /* Pods_MARU.framework */; };
 		7732D12024F2F546003C772D /* QuizVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7732D11F24F2F546003C772D /* QuizVC.storyboard */; };
 		7732D12224F2F60F003C772D /* QuizVC + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7732D12124F2F60F003C772D /* QuizVC + Constraints.swift */; };
+		77598B3D24F8072B0095DA5D /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77598B3C24F8072B0095DA5D /* NetworkResult.swift */; };
 		77FAE03E24F53F6000FB473C /* HeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAE03C24F53F6000FB473C /* HeaderVC.swift */; };
 		77FAE03F24F53F6000FB473C /* HeaderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77FAE03D24F53F6000FB473C /* HeaderVC.xib */; };
 		77FAE04124F54B0000FB473C /* HeaderVC + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAE04024F54B0000FB473C /* HeaderVC + Constraints.swift */; };
@@ -43,7 +44,7 @@
 		D13A8F5324E596F900BB1656 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D13A8F5124E596F900BB1656 /* LaunchScreen.storyboard */; };
 		D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6524E5990400BB1656 /* APIConstants.swift */; };
 		D13A8F6824E5990D00BB1656 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6724E5990D00BB1656 /* Utils.swift */; };
-		D13A8F6A24E5991700BB1656 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6924E5991700BB1656 /* Models.swift */; };
+		D13A8F6A24E5991700BB1656 /* ResponseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6924E5991700BB1656 /* ResponseResult.swift */; };
 		D13A8F6E24E5992800BB1656 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F6D24E5992800BB1656 /* Enums.swift */; };
 		D13D626F24E82EF600A3A4A1 /* ChatCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */; };
 		D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D627024E82F9C00A3A4A1 /* Identifier.swift */; };
@@ -85,6 +86,7 @@
 		4A0283DFAEC1206D9D288E29 /* Pods_MARU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MARU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7732D11F24F2F546003C772D /* QuizVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizVC.storyboard; sourceTree = "<group>"; };
 		7732D12124F2F60F003C772D /* QuizVC + Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuizVC + Constraints.swift"; sourceTree = "<group>"; };
+		77598B3C24F8072B0095DA5D /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		77FAE03C24F53F6000FB473C /* HeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderVC.swift; sourceTree = "<group>"; };
 		77FAE03D24F53F6000FB473C /* HeaderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderVC.xib; sourceTree = "<group>"; };
 		77FAE04024F54B0000FB473C /* HeaderVC + Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HeaderVC + Constraints.swift"; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 		D13A8F5424E596F900BB1656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D13A8F6524E5990400BB1656 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		D13A8F6724E5990D00BB1656 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		D13A8F6924E5991700BB1656 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		D13A8F6924E5991700BB1656 /* ResponseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseResult.swift; sourceTree = "<group>"; };
 		D13A8F6D24E5992800BB1656 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCVCell.swift; sourceTree = "<group>"; };
 		D13D627024E82F9C00A3A4A1 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
@@ -428,7 +430,7 @@
 		D13A8F5F24E5987200BB1656 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D13A8F6924E5991700BB1656 /* Models.swift */,
+				D13A8F6924E5991700BB1656 /* ResponseResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -445,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				D13A8F6524E5990400BB1656 /* APIConstants.swift */,
+				77598B3C24F8072B0095DA5D /* NetworkResult.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -769,7 +772,7 @@
 				D13D627B24E83A6100A3A4A1 /* UIView+Extension.swift in Sources */,
 				D13A8F4824E596E700BB1656 /* MainVC.swift in Sources */,
 				7F2778B224F4484100599279 /* UpCarouselFlowLayout.swift in Sources */,
-				D13A8F4824E596E700BB1656 /* ViewController.swift in Sources */,
+				D13A8F4824E596E700BB1656 /* MainVC.swift in Sources */,
 				D11D520C24E59A9500683870 /* MoimVC.swift in Sources */,
 				D13D628524E8403700A3A4A1 /* UIColor+Extension.swift in Sources */,
 				7FFA711224ED8A33000C1D33 /* MoimCVCell.swift in Sources */,
@@ -782,6 +785,7 @@
 				77FAE03E24F53F6000FB473C /* HeaderVC.swift in Sources */,
 				D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */,
 				F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */,
+				77598B3D24F8072B0095DA5D /* NetworkResult.swift in Sources */,
 				D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */,
 				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
 				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
@@ -808,7 +812,7 @@
 				D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */,
 				D1C7D53E24F0D7A400C097F8 /* SignUpVC.swift in Sources */,
 				D11D520424E59A5F00683870 /* ProfileVC.swift in Sources */,
-				D13A8F6A24E5991700BB1656 /* Models.swift in Sources */,
+				D13A8F6A24E5991700BB1656 /* ResponseResult.swift in Sources */,
 				D11D521924E59B6000683870 /* LoginVC.swift in Sources */,
 				77FAE04124F54B0000FB473C /* HeaderVC + Constraints.swift in Sources */,
 				D13D627924E83A5100A3A4A1 /* UIButton+Extension.swift in Sources */,
