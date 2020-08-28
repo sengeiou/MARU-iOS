@@ -33,7 +33,7 @@ class MoimVC: UIViewController {
         
         addCollectionView()
         
-        //                moimCollectionView.isPagingEnabled = true
+        // moimCollectionView.isPagingEnabled = true
         self.moimCollectionView?.showsHorizontalScrollIndicator = false
         
         self.moimCollectionView?.delegate = self
@@ -61,6 +61,7 @@ class MoimVC: UIViewController {
         
         let layout = UpCarouselFlowLayout()
         
+        
         layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
         
         layout.scrollDirection = .horizontal
@@ -77,6 +78,7 @@ class MoimVC: UIViewController {
         
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
+        // cell spacing 조절하기
         spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 5)
         
     }
@@ -127,7 +129,7 @@ extension MoimVC: UIScrollViewDelegate {
 extension MoimVC: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
     }
     
 }
@@ -153,18 +155,27 @@ extension MoimVC: UICollectionViewDataSource {
     
 }
 
-extension MoimVC:UICollectionViewDelegateFlowLayout {
+extension MoimVC: UICollectionViewDelegateFlowLayout {
     
-    
+    // collectionVeiw Cell의 "크기" 조정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
         indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width), height: (collectionView.frame.height))
+        return CGSize(width: (collectionView.frame.width - 28), height: (collectionView.frame.height))
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 20
+//    }
+
+//         MARK: - cell 위치 잡기 !
+//         collectionView Cell의 "위치" 조정
+            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+
+                    return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+
+            }
 }
 
