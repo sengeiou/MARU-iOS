@@ -85,9 +85,15 @@ class HeaderVC: UICollectionReusableView {
     }
     
     
+    //MARK: - Properties
+    
+    var popularMeetingInfo: MainLists?
+    
     override init(frame: CGRect){
         super.init(frame: frame)
+        self.popularMeetingService()
         self.headerLayout()
+        
         
         
     }
@@ -123,14 +129,46 @@ extension HeaderVC: UICollectionViewDelegateFlowLayout {
 
 extension HeaderVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        
+        return popularMeetingInfo?.maxRoomList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let popularCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularMeetingCVC", for: indexPath) as? PopularMeetingCVC else { return UICollectionViewCell()}
         popularCell.backgroundColor = .white
+        popularCell.popularMeetingInfo = popularMeetingInfo
+        popularCell.setCall(number: indexPath.row)
+        
+        
         return popularCell
     }
     
+}
+
+
+extension HeaderVC {
+    
+    //MARK: - Server Communication
+    
+    func popularMeetingService(){
+        MainPopularMeetingService.shared.getMainPopularMeeting() { responseData in
+            switch responseData {
+            case.success(let res):
+                let popularMeetingList = res as! MainLists
+                self.popularMeetingInfo = popularMeetingList
+                self.popularMeetingColletionView.reloadData()
+                //dump(res)
+                
+            case .requestErr(_):
+                print("Request Error")
+            case .pathErr:
+                print("Path Error")
+            case .serverErr:
+                print("Server Error")
+            case .networkFail:
+                print("Failure Error")
+            }
+        }
+    }
 }

@@ -19,7 +19,7 @@ extension MainVC {
         newMeetingCollectionView.dataSource = self
         
         
-
+        
         
         self.newMeetingCollectionView.contentInsetAdjustmentBehavior = .never
         
