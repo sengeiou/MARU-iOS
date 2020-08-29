@@ -10,6 +10,7 @@ import UIKit
 
 import Then
 import SnapKit
+import Kingfisher
 
 class MainVC: UIViewController, UITextFieldDelegate {
     
@@ -32,22 +33,29 @@ class MainVC: UIViewController, UITextFieldDelegate {
         return cv
     }()
     
-        let contentView = UIView()
+    let contentView = UIView()
+    
+    
+    //MARK: - Properties
+    
+    var popularMeetingInfo: MainLists?
+    var newMeetingInfo: MainLists?
+    var newMeetingIndex: [Int] = [0,2]
+    var collectionView: UICollectionView?
+    
+    
     
     //MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         layout()
+        newMeetingService()
     }
     //MARK: - Method
     
 }
 extension MainVC: UICollectionViewDelegateFlowLayout {
-    
-    
-    
     
     //MARK: - Header View Size
     
@@ -55,7 +63,7 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: collectionView.frame.width, height:560 )
     }
-
+    
     //self.view.frame.height * (0.689)
     //MARK: - CellCize
     
@@ -70,9 +78,6 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
     }
-    
-    
-    
     
     //MARK: - distance between Cells
     
@@ -90,12 +95,17 @@ extension MainVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return newMeetingInfo?.newRoomList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let newMeetingCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewMeetingCVC", for: indexPath) as? NewMeetingCVC else { return UICollectionViewCell()}
+        
+        newMeetingCell.newMeetingInfo = newMeetingInfo
+        newMeetingCell.setCall(number: indexPath.row)
+        
+        
         return newMeetingCell
     }
     
@@ -143,4 +153,29 @@ extension MainVC {
     
 }
 
+extension MainVC {
+    
+    //MARK: - Server Communication
+    
+    func newMeetingService(){
+        MainNewMeetingService.shared.getNewMeeting() { responseData in
+            switch responseData {
+            case.success(let res):
+                let newMeetingList = res as! MainLists
+                self.newMeetingInfo = newMeetingList
+                self.newMeetingCollectionView.reloadData()
+                
+                
+            case .requestErr(_):
+                print("Request Error")
+            case .pathErr:
+                print("Path Error")
+            case .serverErr:
+                print("Server Error")
+            case .networkFail:
+                print("Failure Error")
+            }
+        }
+    }
+}
 
