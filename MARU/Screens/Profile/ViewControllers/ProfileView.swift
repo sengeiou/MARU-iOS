@@ -39,6 +39,25 @@ class ProfileView: UIView {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
     
+    let loginButton = UIButton().then {
+        $0.setTitle("로그인 하세요", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        $0.setTitleColor(.veryLightPink, for: .normal)
+        $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+    }
+    
+    let loginSecondButton = UIButton().then {
+        $0.setTitle("""
+                    책을 읽고 다양한 사람들과
+                    이야기 해보세요.
+                    """, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        $0.titleLabel?.numberOfLines = 0
+        $0.setTitleColor(.veryLightPink, for: .normal)
+        $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+    }
+
+    
     func setView(){
         addSubview(closeButton)
         addSubview(nameLabel)
@@ -77,7 +96,31 @@ class ProfileView: UIView {
     }
     
     func toLoginView(){
+        addSubview(closeButton)
+        addSubview(loginButton)
+        addSubview(loginSecondButton)
+
+        closeButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(14)
+            make.leading.equalToSuperview().offset(17)
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+        }
         
+        loginButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(60)
+            make.leading.equalToSuperview().offset(16)
+            make.width.equalTo(162)
+            make.height.equalTo(35)
+        }
+        
+        loginSecondButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(111)
+            make.leading.equalToSuperview().offset(16)
+            make.width.equalTo(184)
+            make.height.equalTo(46)
+        }
+
     }
     
     @objc func didTapCloseButton() {

@@ -56,8 +56,9 @@ extension ProfileVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = ProfileView()
         
-        view.setView()
-        
+//        view.setView()
+        view.toLoginView()
+
         return view
     }
     
