@@ -10,7 +10,6 @@ import UIKit
 
 import SwiftKeychainWrapper
 import SnapKit
-import QuickLookThumbnailing
 
 class ProfileVC: UIViewController {
 
