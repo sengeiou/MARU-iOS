@@ -157,7 +157,7 @@ extension RecentVC {
         self.view.endEditing(true)
     }
     func set(){
-        searchBtn.isHidden = true
+        //searchBtn.isHidden = true
         searchTextField.becomeFirstResponder()
         searchBtn.addTarget(self,
         action: #selector(search),

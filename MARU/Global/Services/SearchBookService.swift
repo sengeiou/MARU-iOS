@@ -20,6 +20,7 @@ struct SearchBookService {
                     completion: @escaping(NetworkResult<Any>)->Void){
         
         let URL = APIConstants.searchBook + "?title=" + title
+        //let newURL = URL.stringByAddingPercentEncodingForFormData()
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -43,7 +44,8 @@ struct SearchBookService {
                                 let decoder = JSONDecoder()
                                 let result = try decoder.decode(ResponseResult<SearchBookResult>.self,
                                                                 from: value)
-                                completion(.success(result.data ?? [SearchBookResult].self))
+                                completion(.success(result.data ?? SearchBookResult.self))
+                                dump(result)
                             } catch {
                                 completion(.pathErr)
                             }

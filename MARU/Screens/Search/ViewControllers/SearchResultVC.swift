@@ -36,6 +36,10 @@ class SearchResultVC: UIViewController{
         
     }
     
+    @IBAction func cancelBtnTouched(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func save(_ inputRecode: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
