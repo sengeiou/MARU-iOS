@@ -19,15 +19,16 @@ struct SearchBookService {
     func searchBook(_ title: String,
                     completion: @escaping(NetworkResult<Any>)->Void){
         
+        guard let title = title.stringByAddingPercentEncodingForFormData() else { return }
         let URL = APIConstants.searchBook + "?title=" + title
-        //let newURL = URL.stringByAddingPercentEncodingForFormData()
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
+        print(URL)
         Alamofire.request(URL,
                           method: .get,
                           parameters: nil,
-                          encoding: JSONEncoding.default,
+                          encoding: URLEncoding.queryString,
                           headers: headers).responseData{
             response in
 
