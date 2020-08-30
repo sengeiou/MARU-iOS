@@ -13,7 +13,7 @@ class ResultTVCell: UITableViewCell {
     @IBOutlet weak var resultBookImageView: UIImageView!
     @IBOutlet weak var resultBookAuthor: UILabel!
     @IBOutlet weak var resultBookTitle: UILabel!
-    
+    var searchedBookResult: SearchBookResult?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +23,10 @@ class ResultTVCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCell(_ productInfo: SearchBookResult){
+//        resultBookImageView =
     }
     
 }

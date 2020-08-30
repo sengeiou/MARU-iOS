@@ -36,9 +36,6 @@
                                 <state key="normal" title="취소">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="cancelBtnTouched:" destination="GSQ-kK-TKi" eventType="touchUpInside" id="pXJ-Rk-enp"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lO7-oo-3SV">
                                 <rect key="frame" x="16" y="96" width="343" height="682"/>
@@ -72,6 +69,8 @@
                     <navigationItem key="navigationItem" id="Jzb-W1-3Ia"/>
                     <connections>
                         <outlet property="RecentTV" destination="lO7-oo-3SV" id="q00-nY-fx1"/>
+                        <outlet property="searchBtn" destination="OVD-Tc-xkm" id="4d3-wv-cyh"/>
+                        <outlet property="searchTextField" destination="htA-vp-vtS" id="JV7-0D-gJl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRv-gp-rWA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -99,6 +98,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fy3-fd-gHZ">
                                 <rect key="frame" x="28" y="57" width="16" height="22"/>
                                 <state key="normal" image="search"/>
+                                <connections>
+                                    <action selector="searchBtnTouched:" destination="7w5-ag-9jh" eventType="touchUpInside" id="zvh-9H-GAv"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Qm-E5-UJI">
                                 <rect key="frame" x="51" y="52" width="37.333333333333343" height="34"/>
@@ -139,6 +141,7 @@
                     </view>
                     <connections>
                         <outlet property="resultTV" destination="P6O-Qn-h4G" id="uVj-zP-8Cb"/>
+                        <outlet property="searchTextField" destination="9Qm-E5-UJI" id="hJm-Vp-A2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F7W-EU-a36" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
