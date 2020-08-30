@@ -34,52 +34,52 @@ struct UserService {
                           method: .post,
                           parameters: body,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseData {
-                            response in
-                            
-                            switch response.result {
-                                
-                            case .success:
-                                // parameter 위치
-                                if let value = response.result.value {
-                                    //response의 respones안에 있는 statusCode를 추출
-                                    if let status = response.response?.statusCode {
-                                        switch status {
-                                        case 200:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseSimpleResult<Token>.self,
-                                                                                from: value)
-                                                
-                                                KeychainWrapper.standard.set(result.data?.accessToken ?? "",
-                                                                             forKey: Keychian.token.rawValue)
-                                                
-                                                completion(.success(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 400:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.requestErr(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 500:
-                                            print("실패 500")
-                                            completion(.serverErr)
-                                        default:
-                                            break
-                                        }
-                                    }
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            switch status {
+                            case 200:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseSimpleResult<Token>.self,
+                                                                    from: value)
+                                    
+                                    KeychainWrapper.standard.set(result.data?.accessToken ?? "",
+                                                                 forKey: Keychian.token.rawValue)
+                                    
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
                                 }
+                            case 400:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
                                 break
-                            case .failure(let err):
-                                print(err.localizedDescription)
-                                completion(.networkFail)
                             }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
         }
     }
     
@@ -98,48 +98,48 @@ struct UserService {
                           method: .post,
                           parameters: body,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseData {
-                            response in
-                            
-                            switch response.result {
-                                
-                            case .success:
-                                // parameter 위치
-                                if let value = response.result.value {
-                                    //response의 respones안에 있는 statusCode를 추출
-                                    if let status = response.response?.statusCode {
-                                        switch status {
-                                        case 200:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.success(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 400:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.requestErr(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 500:
-                                            print("실패 500")
-                                            completion(.serverErr)
-                                        default:
-                                            break
-                                        }
-                                    }
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            switch status {
+                            case 200:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
                                 }
+                            case 400:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
                                 break
-                            case .failure(let err):
-                                print(err.localizedDescription)
-                                completion(.networkFail)
                             }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
         }
     }
     
@@ -159,48 +159,48 @@ struct UserService {
                           method: .post,
                           parameters: body,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseData {
-                            response in
-                            
-                            switch response.result {
-                                
-                            case .success:
-                                // parameter 위치
-                                if let value = response.result.value {
-                                    //response의 respones안에 있는 statusCode를 추출
-                                    if let status = response.response?.statusCode {
-                                        switch status {
-                                        case 200:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.success(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 400:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.requestErr(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 500:
-                                            print("실패 500")
-                                            completion(.serverErr)
-                                        default:
-                                            break
-                                        }
-                                    }
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            switch status {
+                            case 200:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
                                 }
+                            case 400:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
                                 break
-                            case .failure(let err):
-                                print(err.localizedDescription)
-                                completion(.networkFail)
                             }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
         }
     }
     
@@ -225,54 +225,116 @@ struct UserService {
                           method: .post,
                           parameters: body,
                           encoding: JSONEncoding.default,
-                          headers: headers).responseData { response in
-                            
-                            switch response.result {
-                                
-                            case .success:
-                                // parameter 위치
-                                if let value = response.result.value {
-                                    //response의 respones안에 있는 statusCode를 추출
-                                    if let status = response.response?.statusCode {
-                                        switch status {
-                                        case 200:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseSimpleResult<Token>.self,
-                                                                                from: value)
-                                                
-                                                KeychainWrapper.standard.set(result.data?.accessToken ?? "",
-                                                                             forKey: Keychian.token.rawValue)
-                                                
-                                                completion(.success(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 400:
-                                            do{
-                                                let decoder = JSONDecoder()
-                                                let result = try decoder.decode(ResponseTempResult.self,
-                                                                                from: value)
-                                                completion(.requestErr(result))
-                                            } catch {
-                                                completion(.pathErr)
-                                            }
-                                        case 500:
-                                            print("실패 500")
-                                            completion(.serverErr)
-                                        default:
-                                            break
-                                        }
-                                    }
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            switch status {
+                            case 200:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseSimpleResult<Token>.self,
+                                                                    from: value)
+                                    
+                                    KeychainWrapper.standard.set(result.data?.accessToken ?? "",
+                                                                 forKey: Keychian.token.rawValue)
+                                    
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
                                 }
+                            case 400:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
                                 break
-                            case .failure(let err):
-                                print(err.localizedDescription)
-                                completion(.networkFail)
                             }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
         }
     }
     
+    func profile(completion: @escaping (NetworkResult<Any>) -> Void) {
+        
+        let URL = APIConstants.myInfo
+        let token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "token": token
+        ]
+        print(token)
+        
+        Alamofire.request(URL,
+                          method: .get,
+                          parameters: nil,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            print(status)
+                            dump(value)
+                            switch status {
+                            case 200:
+                                do {
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseSimpleResult<Profile>.self,
+                                                                    from: value)
+                                    print(result)
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 400:
+                                do {
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
+                                break
+                            }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
+        }
+    }
     
     
 }
@@ -280,4 +342,9 @@ struct UserService {
 
 struct Token: Codable {
     var accessToken: String
+}
+
+struct Profile: Codable {
+    var nickName: String
+    var avgRating: Double
 }
