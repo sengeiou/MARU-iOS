@@ -57,6 +57,7 @@ class ProfileView: UIView {
         $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
     }
 
+    var data: Profile?
     
     func setView(){
         addSubview(closeButton)
@@ -77,6 +78,8 @@ class ProfileView: UIView {
             make.leading.equalToSuperview().offset(16)
         }
         
+        nameLabel.text = data?.nickName
+        
         ratingGuideLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(101)
             make.leading.equalToSuperview().offset(16)
@@ -93,6 +96,9 @@ class ProfileView: UIView {
             make.top.equalToSuperview().offset(129)
             make.leading.equalToSuperview().offset(33)
         }
+        
+        ratingLabel.text = data?.avgRating.description
+        
     }
     
     func toLoginView(){
