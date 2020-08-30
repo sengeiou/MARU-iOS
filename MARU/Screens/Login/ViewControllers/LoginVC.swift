@@ -8,6 +8,9 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class LoginVC: UIViewController {
 
     @IBOutlet weak var idTextField: UITextField!
@@ -30,6 +33,10 @@ class LoginVC: UIViewController {
         passwordTextField.attributedPlaceholder =
             NSAttributedString(string: "비밀번호",
                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+
     }
     
     func setButton(){
@@ -45,12 +52,57 @@ class LoginVC: UIViewController {
     }
 
     @objc func didTapLoginButton(){
+        
+        signInService(idTextField?.text ?? "", passwordTextField?.text ?? "")
+        
     }
     
     @objc func didTapSignUpButton(){
         let sb = UIStoryboard(name: "Login", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
-        
+
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.title = ""
+        navigationController?.navigationItem.backBarButtonItem?.title = ""
+
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+// MARK: - TextField
+extension LoginVC: UITextFieldDelegate {
+    
+}
+
+// MARK: - Server Connect
+extension LoginVC {
+    func signInService(_ id: String, _ password: String) {
+        UserService.shared.signIn(id, password) { responsedata in
+            
+            switch responsedata {
+                
+            case .success(let res):
+                
+                print(res)
+                
+            case .requestErr(let res):
+                
+                print(res)
+
+            case .pathErr:
+                print(".pathErr")
+                
+            case .serverErr:
+                
+                print(".serverErr")
+                
+            case .networkFail :
+                
+                print("failure")
+                
+            }
+        }
+        
+    }
+
 }

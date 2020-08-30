@@ -6,4 +6,6 @@
 //  Copyright © 2020 maru. All rights reserved.
 //
 
-import Foundation
+enum Keychian: String {
+    case token = "token"
+}
