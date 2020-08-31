@@ -10,6 +10,10 @@ import CHIPageControl
 import UIKit
 
 class MoimVC: UIViewController {
+ 
+    @IBOutlet weak var moimCollectionView: UICollectionView!
+    @IBOutlet weak var paging: CHIPageControlFresno!
+    
     
     fileprivate var currentPage: Int = 0
     
@@ -21,14 +25,10 @@ class MoimVC: UIViewController {
     }
     
     
-    @IBOutlet weak var moimCollectionView: UICollectionView!
-    @IBOutlet weak var paging: CHIPageControlFresno!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pageControlSize()
-        
         addCollectionView()
         
 //      self.moimCollectionView?.isPagingEnabled = true
@@ -36,21 +36,17 @@ class MoimVC: UIViewController {
         
         self.moimCollectionView?.delegate = self
         self.moimCollectionView?.dataSource = self
-        
-        print(currentPage)
-        print(paging.currentPage)
     }
     
+    
     func pageControlSize() {
-        
         paging.frame = .init(x: 0, y: 0, width: 100, height: 10)
         paging.numberOfPages = 3
         paging.radius = 4
         paging.tintColor = UIColor(red: 194, green: 194, blue: 194)
         paging.currentPageTintColor = UIColor(red: 194, green: 194, blue: 194)
         paging.padding = 6
-        //        paging.insertTintColor(UIColor(red: 194, green: 194, blue: 194), position: 2)
-        
+
         self.currentPage = 0
     }
     
@@ -58,27 +54,19 @@ class MoimVC: UIViewController {
     func addCollectionView(){
         
         let layout = UpCarouselFlowLayout()
-        
-        
-        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.766, height: view.frame.height)
-        
+        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.7, height: view.frame.height)
         layout.scrollDirection = .horizontal
         
-        
         self.moimCollectionView.collectionViewLayout = layout
-        
         self.moimCollectionView?.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
         // cell spacing 조절하기
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 14)
-        
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 40)
     }
     
+    
     class RelativeLayoutUtilityClass {
-        
         var heightFrame: CGFloat?
         var widthFrame: CGFloat?
         
@@ -87,22 +75,22 @@ class MoimVC: UIViewController {
             widthFrame = referenceFrameSize.width
         }
         
+        
         func relativeHeight(multiplier: CGFloat) -> CGFloat{
             
             return multiplier * self.heightFrame!
         }
+        
         
         func relativeWidth(multiplier: CGFloat) -> CGFloat{
             return multiplier * self.widthFrame!
             
         }
     }
-    
 }
 
+
 extension MoimVC: UIScrollViewDelegate {
-    
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         //MARK: - 사이즈 문제 , 오토 문제 해결
@@ -115,21 +103,21 @@ extension MoimVC: UIScrollViewDelegate {
     }
 }
 
+
 extension MoimVC: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-    
 }
 
 
 extension MoimVC: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 3
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -139,10 +127,9 @@ extension MoimVC: UICollectionViewDataSource {
         cell.viewShadow()
         
         return cell
-        
     }
-    
 }
+
 
 extension MoimVC: UICollectionViewDelegateFlowLayout {
     
@@ -151,7 +138,6 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
         indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: (collectionView.frame.width * 0.766323), height: (collectionView.frame.height))
-        
     }
     
     //     collectionView "ContentInset" 조정
@@ -160,4 +146,3 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
         }
     }
-
