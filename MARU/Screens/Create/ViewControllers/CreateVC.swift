@@ -23,12 +23,11 @@ class CreateVC: UIViewController{
         CreateTV.dataSource = self
         CreateTV.separatorStyle = UITableViewCell.SeparatorStyle.none
         introTextView.delegate = self
-        introTextView.text = "토론에 대한 소개를 70자 이내로 입력해주세요"
+        introTextView.placeholder = "토론에 대한 소개를 70자 이내로 입력해주세요"
         introTextView.textColor = UIColor.lightGray
         introTextView.layer.borderWidth = 1.0
         introTextView.layer.borderColor = UIColor.lightGray.cgColor
         introTextView.layer.cornerRadius = 8.0
-        
         introInfoView.layer.cornerRadius = 8.0
         introInfoView.layer.shadowColor = UIColor.black.cgColor
         introInfoView.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -73,7 +72,7 @@ extension CreateVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreateTVCell", for: indexPath) as! CreateTVCell
         cell.quizNumber.text = numbering[indexPath.row]
         cell.quizTextView.delegate = self
-        cell.quizTextView.text = "퀴즈를 70자 이내로 입력해주세요."
+        cell.quizTextView.placeholder = "퀴즈를 70자 이내로 입력해주세요."
         cell.quizTextView.textColor = UIColor.lightGray
         cell.quizTextView.layer.borderWidth = 1.0
         cell.quizTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -97,15 +96,15 @@ extension CreateVC: UITextViewDelegate{
             introTextView.textColor = UIColor.black
         }
     }
-    
+   
     func textViewDidEndEditing(_ textView: UITextView) {
-        
+
         if introTextView.text.isEmpty {
             introTextView.text = "토론에 대한 소개를 70자 이내로 입력해주세요."
             introTextView.textColor = UIColor.lightGray
         }
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"{
             introTextView.resignFirstResponder()
@@ -117,14 +116,13 @@ extension CreateVC: UITextViewDelegate{
         return true
     }
     func keyboardWillShow(_ sender: Notification) {
-        
+
         self.view.frame.origin.y = -150 // Move view 150 points upward
-        
+
     }
-    
+
     func keyboardWillHide(_ sender: Notification){
         self.view.frame.origin.y = 0
     }
-    
+ 
 }
-

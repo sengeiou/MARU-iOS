@@ -38,14 +38,15 @@ struct SearchBookService {
                 // parameter 위치
                 if let value = response.result.value {
                     if let status = response.response?.statusCode {
-                        print(status)
+                        print("상태",status)
                         switch status {
                         case 200:
                             do{
                                 let decoder = JSONDecoder()
                                 let result = try decoder.decode(ResponseResult<SearchBookResult>.self,
                                                                 from: value)
-                                completion(.success(result.data ?? SearchBookResult.self))
+                                
+                                completion(.success(result.data ?? [SearchBookResult].self))
                                 dump(result)
                             } catch {
                                 completion(.pathErr)
