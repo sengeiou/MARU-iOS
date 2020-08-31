@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension QuizVC {
+extension FirstQuizVC {
     
     func layout() {
         
@@ -30,20 +30,7 @@ extension QuizVC {
         self.quizView.addSubview(quizContent)
         self.stopwatchView.addSubview(timeLabel)
         
-        bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: stopwatchView.frame.midX + 15 , y: stopwatchView.frame.midY + 15), radius:
-            15, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
-        bgShapeLayer.strokeColor = UIColor.white.cgColor
-        bgShapeLayer.fillColor = UIColor.clear.cgColor
-        bgShapeLayer.lineWidth = 3
-        stopwatchView.layer.addSublayer(bgShapeLayer)
-        
-        timeLeftShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: stopwatchView.frame.midX + 15 , y: stopwatchView.frame.midY + 15), radius:
-            15, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
-        timeLeftShapeLayer.strokeColor = UIColor.blue.cgColor
-        timeLeftShapeLayer.fillColor = UIColor.clear.cgColor
-        timeLeftShapeLayer.lineWidth = 3
-        stopwatchView.layer.addSublayer(timeLeftShapeLayer)
-    
+
         contentView.snp.makeConstraints{ ( make ) in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
@@ -123,7 +110,7 @@ extension QuizVC {
             make.leading.equalTo(quizTextLabel.snp.trailing).inset(-7)
             make.top.equalTo(quizView.snp.top).inset(29)
             make.height.equalTo(16)
-            make.width.equalTo(36)
+            make.width.equalTo(37)
         }
         stopwatchView.snp.makeConstraints{ ( make ) in
             make.trailing.equalTo(quizView.snp.trailing).inset(19)
