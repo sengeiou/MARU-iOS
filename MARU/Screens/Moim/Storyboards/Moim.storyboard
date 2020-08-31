@@ -139,11 +139,11 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="타인이 나를 알아주지 않을 때 드는 감정은 외로움이고, 내가 나 자신을 알아주지 않을 때 드는 감정은 고독이다. 가나다라마바사" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bin-QL-Ged">
-                                                            <rect key="frame" x="32.666666666666657" y="31" width="216" height="43"/>
+                                                            <rect key="frame" x="32.666666666666657" y="30.999999999999996" width="216" height="46.666666666666657"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="216" id="Z1f-g5-0pZ"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -189,7 +189,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="gdr-J5-que" firstAttribute="top" secondItem="C05-ca-94B" secondAttribute="bottom" constant="17" id="0KH-ku-NUX"/>
                                                         <constraint firstItem="gdr-J5-que" firstAttribute="leading" secondItem="iKY-kS-4Oq" secondAttribute="leading" constant="17" id="76O-7u-6Ne"/>

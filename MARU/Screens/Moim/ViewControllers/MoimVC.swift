@@ -11,8 +11,6 @@ import UIKit
 
 class MoimVC: UIViewController {
     
-    //    var currentPage : Int = 0
-    
     fileprivate var currentPage: Int = 0
     
     fileprivate var pageSize: CGSize {
@@ -62,17 +60,11 @@ class MoimVC: UIViewController {
         let layout = UpCarouselFlowLayout()
         
         
-        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.766323 - 42, height: view.frame.height)
+        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.8, height: view.frame.height)
         
         layout.scrollDirection = .horizontal
         
         
-        
-        
-        //MARK: - 아래 코드를 살리면 collectionview가 안보임.
-        //        self.moimCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        // 위의 코드를 아래와 같이 변환
         self.moimCollectionView.collectionViewLayout = layout
         
         self.moimCollectionView?.translatesAutoresizingMaskIntoConstraints = false
@@ -81,8 +73,7 @@ class MoimVC: UIViewController {
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
         // cell spacing 조절하기
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 42
-        )
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 42)
         
     }
     
@@ -114,16 +105,11 @@ extension MoimVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        //        let scrollPage = moimCollectionView.contentOffset.x / view.frame.width
-        //        currentPage = Int(scrollPage)
-        //        self.paging.set(progress: currentPage, animated: true)
-        //
-        
         //MARK: - 사이즈 문제 , 오토 문제 해결
         let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
-        let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x * 0.766323): scrollView.contentOffset.y
-         currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+        let offset = (layout.scrollDirection == .horizontal) ? (scrollView.contentOffset.x * 0.766): scrollView.contentOffset.y
+        currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         
         self.paging.set(progress: currentPage, animated: true)
     }
@@ -132,7 +118,7 @@ extension MoimVC: UIScrollViewDelegate {
 extension MoimVC: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
     }
     
 }
@@ -168,26 +154,10 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
         
     }
     
-//     collectionView "ContentInset" 조정
-            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-                
-                if section == 0 {
-                    return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
-                }
-                // 적용 안됨
-                if section == 1 {
-                    return UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 14)
-                }
-                else{
-                    return UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 100)
-                }
-            }
-    
-//     cell 좌우 간격 조정
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//    return 28
-//
-//    }
-}
+    //     collectionView "ContentInset" 조정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+            return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
+        }
+    }
 
