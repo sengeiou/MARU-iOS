@@ -157,7 +157,7 @@ extension MoimVC: UICollectionViewDataSource {
 
 extension MoimVC: UICollectionViewDelegateFlowLayout {
     
-    // collectionVeiw Cell의 "크기" 조정
+    // collectionVeiw Cell의 "위치" 조정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
         indexPath: IndexPath) -> CGSize {
         
@@ -165,17 +165,18 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 20
-//    }
-
-//         MARK: - cell 위치 잡기 !
-//         collectionView Cell의 "위치" 조정
+    // collectionView "ContentInset" 조정
             func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 
 
                     return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
 
             }
+    
+    // cell 좌우 간격 조정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 28
+        
+    }
 }
 
