@@ -35,10 +35,35 @@ class CreateVC: UIViewController{
         introInfoView.layer.shadowRadius = 8.0
         introInfoView.layer.shadowOpacity = 0.2
         introInfoView.layer.shadowPath = UIBezierPath(roundedRect: introInfoView.bounds, cornerRadius: introInfoView.layer.cornerRadius).cgPath
+        introTextView.returnKeyType = .done
+
+      
+
+
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    // 키보드 바깥 뷰 아무데나 터치하면 키보드 다시 들어가는 코드
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
 }
 
+// MARK: - Tableview setting
 extension CreateVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numbering.count
@@ -76,7 +101,7 @@ extension CreateVC: UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if introTextView.text.isEmpty {
-            introTextView.text = "토론에 대한 소개를 70자 이내로 입력해주세요"
+            introTextView.text = "토론에 대한 소개를 70자 이내로 입력해주세요."
             introTextView.textColor = UIColor.lightGray
         }
     }
@@ -86,6 +111,19 @@ extension CreateVC: UITextViewDelegate{
             introTextView.resignFirstResponder()
         }
         return true
+    }
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        introTextView.resignFirstResponder()
+        return true
+    }
+    func keyboardWillShow(_ sender: Notification) {
+        
+        self.view.frame.origin.y = -150 // Move view 150 points upward
+        
+    }
+    
+    func keyboardWillHide(_ sender: Notification){
+        self.view.frame.origin.y = 0
     }
     
 }

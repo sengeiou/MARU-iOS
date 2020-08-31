@@ -51,6 +51,9 @@
                             <constraint firstAttribute="width" constant="52" id="V28-K3-eGy"/>
                         </constraints>
                         <state key="normal" image="incorrectWhite"/>
+                        <connections>
+                            <action selector="incorrectBtnTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zrD-T3-RqP"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHN-Nc-ioq">
                         <rect key="frame" x="129" y="128" width="52" height="52"/>
@@ -58,7 +61,10 @@
                             <constraint firstAttribute="height" constant="52" id="TPr-iD-pQZ"/>
                             <constraint firstAttribute="width" constant="52" id="dZD-yH-Dl1"/>
                         </constraints>
-                        <state key="normal" image="correctWhite"/>
+                        <state key="normal" image="correctBlue52"/>
+                        <connections>
+                            <action selector="correctBtnTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BTv-ac-6Mx"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -90,7 +96,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="correctWhite" width="89" height="89"/>
+        <image name="correctBlue52" width="52" height="52"/>
         <image name="incorrectWhite" width="52" height="52"/>
     </resources>
 </document>

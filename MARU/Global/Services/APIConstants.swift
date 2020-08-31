@@ -25,7 +25,7 @@ struct APIConstants {
     // GET 메인화면
     static let main = BaseURL + "main"
     
-    // GET 책 검색 - 토론방 개설 목적
+    // GET 책 검색 - 토론방 개설 목적 search/book?title=책제목
     static let searchBook = BaseURL + "search/book"
     // GET 토론방 방장 제한(1번가능)
     static let limitLeader = BaseURL + "room/limitLeader"

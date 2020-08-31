@@ -13,8 +13,9 @@ class NewMeetingCVC: UICollectionViewCell {
     //MARK: - UIComponent
     
     
+    
     let shadowView = UIView().then {
-        $0.backgroundColor = .yellow
+        $0.backgroundColor = .white
     }
     
     let bookImg = UIImageView().then {
@@ -30,7 +31,7 @@ class NewMeetingCVC: UICollectionViewCell {
         $0.text = "이승희"
         $0.font = UIFont.systemFont(ofSize: 10,weight: UIFont.Weight.light)
         $0.textAlignment = .left
-
+        
     }
     let bookMeetingMasterLabel = UILabel().then {
         $0.text = "By 라노벨 정균"
@@ -61,6 +62,9 @@ class NewMeetingCVC: UICollectionViewCell {
         $0.image = UIImage(named: "qmarkRight")
     }
     
+    //MARK: - Properties
+    
+    var newMeetingInfo: MainLists?
     
     //MARK: - Override Init
     
@@ -79,20 +83,20 @@ class NewMeetingCVC: UICollectionViewCell {
         
         
         
-       // MARK: - Draw shadow Effect
+        // MARK: - Draw shadow Effect
         
         shadowView.layer.borderWidth = 0.5
         shadowView.layer.cornerRadius = 5
         shadowView.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
         shadowView.layer.masksToBounds = false
         shadowView.layer.shadowColor = UIColor.black.cgColor
-
+        
         shadowView.layer.shadowOffset = .zero
         shadowView.layer.shadowRadius = 1.5
         shadowView.layer.shadowOpacity = 0.28
         shadowView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
-
-       // MARK: - AutoLayOut Set
+        
+        // MARK: - AutoLayOut Set
         
         shadowView.snp.makeConstraints { (make) in
             make.top.equalTo(contentView.snp.top).inset(1)
@@ -100,7 +104,7 @@ class NewMeetingCVC: UICollectionViewCell {
             make.leading.equalTo(contentView.snp.leading).inset(1)
             make.trailing   .equalTo(contentView.snp.trailing).inset(1)
         }
-
+        
         bookImg.snp.makeConstraints { ( make ) in
             make.top.equalTo(shadowView.snp.top).inset(0)
             make.leading.equalTo(shadowView.snp.leading).inset(0)
@@ -119,16 +123,16 @@ class NewMeetingCVC: UICollectionViewCell {
             make.leading.equalTo(bookTitleLabel.snp.trailing).inset(-3)
             make.height.equalTo(12)
         }
-
         
-
+        
+        
         explainBox.snp.makeConstraints { ( make ) in
             make.top.equalTo(bookTitleLabel.snp.bottom).inset(-9)
             make.leading.equalTo(bookImg.snp.trailing).inset(-10)
             make.trailing.equalTo(shadowView.snp.trailing).inset(12)
             make.height.equalTo(49)
         }
-
+        
         leftQuotataionMarkImage.snp.makeConstraints { ( make ) in
             make.top.equalTo(explainBox.snp.top).inset(0)
             make.leading.equalTo(explainBox.snp.leading).inset(0)
@@ -153,7 +157,7 @@ class NewMeetingCVC: UICollectionViewCell {
             make.trailing.equalTo(shadowView.snp.trailing).inset(12)
             make.height.equalTo(11)
             make.width.equalTo(200)
-        
+            
         }
         
     }
@@ -161,7 +165,19 @@ class NewMeetingCVC: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    func setCall(number : Int){
+        //        bookImage.setImage(from:  popularMeetingInfo?.maxRoomList[number].thumbnail ?? "", UIImage(named: "da70C3E762C8960615Ba191579B0C1B8") ?? UIImage())
+        
+        bookTitleLabel.text = newMeetingInfo?.newRoomList[number].title
+        bookAuthorLabel.text = newMeetingInfo?.newRoomList[number].authors
+        bookMeetingExplainementLabel.text = newMeetingInfo?.newRoomList[number].info
+        bookMeetingMasterLabel.text = "By " +  (newMeetingInfo?.newRoomList[number].nickName)!
+    }
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
