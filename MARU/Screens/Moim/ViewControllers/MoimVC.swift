@@ -62,7 +62,7 @@ class MoimVC: UIViewController {
         let layout = UpCarouselFlowLayout()
         
         
-        layout.itemSize = CGSize(width: view.frame.width * 0.77 , height: view.frame.height)
+        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.766323 - 42, height: view.frame.height)
         
         layout.scrollDirection = .horizontal
         
@@ -81,7 +81,8 @@ class MoimVC: UIViewController {
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
         // cell spacing 조절하기
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 14)
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 42
+        )
         
     }
     
@@ -121,7 +122,7 @@ extension MoimVC: UIScrollViewDelegate {
         //MARK: - 사이즈 문제 , 오토 문제 해결
         let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
-        let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x): scrollView.contentOffset.y
+        let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x * 0.766323): scrollView.contentOffset.y
          currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         
         self.paging.set(progress: currentPage, animated: true)
@@ -163,7 +164,7 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
         indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width * 0.77), height: (collectionView.frame.height))
+        return CGSize(width: (collectionView.frame.width * 0.766323), height: (collectionView.frame.height))
         
     }
     
