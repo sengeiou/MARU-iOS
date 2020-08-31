@@ -10,7 +10,7 @@ import CHIPageControl
 import UIKit
 
 class MoimVC: UIViewController {
- 
+    
     @IBOutlet weak var moimCollectionView: UICollectionView!
     @IBOutlet weak var paging: CHIPageControlFresno!
     
@@ -31,7 +31,6 @@ class MoimVC: UIViewController {
         pageControlSize()
         addCollectionView()
         
-//      self.moimCollectionView?.isPagingEnabled = true
         self.moimCollectionView?.showsHorizontalScrollIndicator = false
         
         self.moimCollectionView?.delegate = self
@@ -46,11 +45,11 @@ class MoimVC: UIViewController {
         paging.tintColor = UIColor(red: 194, green: 194, blue: 194)
         paging.currentPageTintColor = UIColor(red: 194, green: 194, blue: 194)
         paging.padding = 6
-
+        
         self.currentPage = 0
     }
     
-    // MARK: - 여기가 문제다 !!!!!!
+    
     func addCollectionView(){
         
         let layout = UpCarouselFlowLayout()
@@ -91,9 +90,8 @@ class MoimVC: UIViewController {
 
 
 extension MoimVC: UIScrollViewDelegate {
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        //MARK: - 사이즈 문제 , 오토 문제 해결
         let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
         let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x): scrollView.contentOffset.y
@@ -113,6 +111,7 @@ extension MoimVC: UICollectionViewDelegate{
 
 
 extension MoimVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 3
@@ -143,6 +142,6 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
     //     collectionView "ContentInset" 조정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-            return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
-        }
+        return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
     }
+}
