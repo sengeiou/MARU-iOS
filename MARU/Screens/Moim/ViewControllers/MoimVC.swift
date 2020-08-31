@@ -62,9 +62,11 @@ class MoimVC: UIViewController {
         let layout = UpCarouselFlowLayout()
         
         
-        layout.itemSize = CGSize(width: view.frame.width , height: view.frame.height)
+        layout.itemSize = CGSize(width: view.frame.width * 0.77 , height: view.frame.height)
         
         layout.scrollDirection = .horizontal
+        
+        
         
         
         //MARK: - 아래 코드를 살리면 collectionview가 안보임.
@@ -79,7 +81,7 @@ class MoimVC: UIViewController {
         let spacingLayout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         
         // cell spacing 조절하기
-        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 5)
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 14)
         
     }
     
@@ -119,8 +121,8 @@ extension MoimVC: UIScrollViewDelegate {
         //MARK: - 사이즈 문제 , 오토 문제 해결
         let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
-        let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
-        currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
+        let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x): scrollView.contentOffset.y
+         currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         
         self.paging.set(progress: currentPage, animated: true)
     }
@@ -161,22 +163,30 @@ extension MoimVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
         indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width - 28), height: (collectionView.frame.height))
+        return CGSize(width: (collectionView.frame.width * 0.77), height: (collectionView.frame.height))
         
     }
     
-    // collectionView "ContentInset" 조정
+//     collectionView "ContentInset" 조정
             func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-
-                    return UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
-
+                
+                if section == 0 {
+                    return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
+                }
+                // 적용 안됨
+                if section == 1 {
+                    return UIEdgeInsets(top: 0, left: 100, bottom: 0, right: 14)
+                }
+                else{
+                    return UIEdgeInsets(top: 0, left: 0 , bottom: 0, right: 100)
+                }
             }
     
-    // cell 좌우 간격 조정
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 28
-        
-    }
+//     cell 좌우 간격 조정
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//    return 28
+//
+//    }
 }
 
