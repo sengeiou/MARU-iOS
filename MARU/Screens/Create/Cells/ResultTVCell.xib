@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kq6-n6-umc">
-                        <rect key="frame" x="89" y="12" width="38" height="16"/>
+                        <rect key="frame" x="89" y="12" width="244" height="16"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,6 +41,7 @@
                     <constraint firstAttribute="bottom" secondItem="AtT-qg-21x" secondAttribute="bottom" constant="2" id="Ll8-xT-VVS"/>
                     <constraint firstItem="AtT-qg-21x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NxO-HG-oeA"/>
                     <constraint firstItem="wne-eU-aUa" firstAttribute="top" secondItem="kq6-n6-umc" secondAttribute="bottom" constant="3" id="azT-aT-LCX"/>
+                    <constraint firstAttribute="trailing" secondItem="kq6-n6-umc" secondAttribute="trailing" constant="10" id="b4H-ZJ-Ldc"/>
                     <constraint firstItem="kq6-n6-umc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="iEp-ky-jc7"/>
                     <constraint firstItem="AtT-qg-21x" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="sYf-Ce-uQ8"/>
                     <constraint firstAttribute="bottom" secondItem="wne-eU-aUa" secondAttribute="bottom" constant="67" id="vBW-16-naS"/>
@@ -53,7 +54,7 @@
                 <outlet property="resultBookImageView" destination="AtT-qg-21x" id="YuW-bq-Q2a"/>
                 <outlet property="resultBookTitle" destination="kq6-n6-umc" id="Cu0-yM-ZSI"/>
             </connections>
-            <point key="canvasLocation" x="111" y="143"/>
+            <point key="canvasLocation" x="110.86956521739131" y="142.63392857142856"/>
         </tableViewCell>
     </objects>
     <resources>

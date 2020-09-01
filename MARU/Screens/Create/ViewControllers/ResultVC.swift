@@ -75,14 +75,14 @@ class ResultVC: UIViewController {
 
 extension ResultVC: UITableViewDataSource,UITableViewDelegate{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        print("몇개일까요\(searchedBookResult?.count)")
-        return searchedBookResult?.count ?? 0
-    }
-    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        print("몇개일까요\(searchedBookResult?.count)")
+//        return searchedBookResult?.count ?? 0
+//    }
+//    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return searchedBookResult?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -110,13 +110,14 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTVCell", for: indexPath) as! ResultTVCell
         cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
-        for i in 0..<(searchedBookResult?.count ?? 0){
-            cell.searchedBookResult = searchedBookResult?[i]
-            print("책 결과? \(cell.searchedBookResult)")
-            print("i값: \(i)")
-           
-        }
+//        for i in 0..<(searchedBookResult?.count ?? 0){
+//            cell.searchedBookResult = searchedBookResult?[i]
+//            print("책 결과? \(cell.searchedBookResult)")
+//            print("i값: \(i)")
+//
+//        }
         //cell.searchedBookResult = searchedBookResult?[indexPath.row]
+        cell.searchedBookResult = searchedBookResult?[indexPath.row]
         cell.setCell()
         return cell
     }
