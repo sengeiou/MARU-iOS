@@ -27,9 +27,7 @@ class ResultTVCell: UITableViewCell {
     }
     
     func setCell(){
-//        resultBookImageView.imageFromUrl(searchedBookResult?.thumbnail, defaultImgPath: searchedBookResult?.data[num].thumbnail)
-//        resultBookAuthor.text = searchedBookResult?.data[num].authors
-//        resultBookTitle.text = searchedBookResult?.data[num].title
+
         resultBookImageView.imageFromUrl(searchedBookResult?.thumbnail ?? "", defaultImgPath: "")
         resultBookTitle.text = searchedBookResult?.title
        

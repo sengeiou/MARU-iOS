@@ -89,6 +89,8 @@
 		F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710C24F0158200FDAB01 /* CreateVC.swift */; };
 		F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */; };
 		F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */; };
+		F2E730A724FEA0C900E515BF /* SearchMoimService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E730A624FEA0C900E515BF /* SearchMoimService.swift */; };
+		F2E730A924FEA84100E515BF /* SearchMoimResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E730A824FEA84100E515BF /* SearchMoimResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +180,8 @@
 		F271710C24F0158200FDAB01 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTVCell.swift; sourceTree = "<group>"; };
 		F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTVCell.xib; sourceTree = "<group>"; };
+		F2E730A624FEA0C900E515BF /* SearchMoimService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoimService.swift; sourceTree = "<group>"; };
+		F2E730A824FEA84100E515BF /* SearchMoimResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoimResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +457,7 @@
 				D13A8F6924E5991700BB1656 /* ResponseResult.swift */,
 				77598B3E24F977A10095DA5D /* MainLists.swift */,
 				F212DB3324F823A300759BA9 /* SearchBookResult.swift */,
+				F2E730A824FEA84100E515BF /* SearchMoimResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				77598B4024F979C20095DA5D /* MainNewMeetingService.swift */,
 				77598B4224F97A590095DA5D /* MainPopularMeetingService.swift */,
 				F212DB3524F8240C00759BA9 /* SearchBookService.swift */,
+				F2E730A624FEA0C900E515BF /* SearchMoimService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -838,10 +844,12 @@
 				D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */,
 				77FB7D3E24ED990300365E8C /* MainVC + Constraints.swift in Sources */,
 				D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */,
+				F2E730A924FEA84100E515BF /* SearchMoimResult.swift in Sources */,
 				D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */,
 				D13A8F4E24E596E700BB1656 /* MARU.xcdatamodeld in Sources */,
 				77598B4124F979C20095DA5D /* MainNewMeetingService.swift in Sources */,
 				D11D521024E59AB000683870 /* ChatVC.swift in Sources */,
+				F2E730A724FEA0C900E515BF /* SearchMoimService.swift in Sources */,
 				D16EEE4524EBFB0800D0994F /* MyChatCVCell.swift in Sources */,
 				F25006EF24F3CA43001F6D3D /* ResultVC.swift in Sources */,
 				D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */,

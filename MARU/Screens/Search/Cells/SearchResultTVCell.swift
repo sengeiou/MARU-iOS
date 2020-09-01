@@ -22,15 +22,11 @@ class SearchResultTVCell: UITableViewCell {
     @IBOutlet weak var searchMoimValidate: UILabel! // 유효기간 날짜 수(Int)
     @IBOutlet weak var searchMoimIntro: UILabel! // 소개 문구
     
+    var searchedMoimResult: SearchMoimResult?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        shadowView.layer.cornerRadius = 5.0
-//        shadowView.layer.shadowColor = UIColor.black.cgColor
-//        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        shadowView.layer.shadowRadius = 1.5
-//        shadowView.layer.shadowOpacity = 0.3
-//        shadowView.layer.shadowPath = UIBezierPath(roundedRect: shadowView.bounds, cornerRadius: shadowView.layer.cornerRadius).cgPath
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,11 +34,13 @@ class SearchResultTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 0, bottom: 18, right: 3))
-//    }
 
+    func setCell(){
+        
+        searchBookImage.imageFromUrl(searchedMoimResult?.thumbnail ?? "", defaultImgPath: "")
+        searchBookName.text = searchedMoimResult?.title
+        searchBookAuthor.text = searchedMoimResult?.authors
+        searchMoimZang.text = searchedMoimResult?.nickName
+        searchMoimIntro.text = searchedMoimResult?.info
+    }
 }

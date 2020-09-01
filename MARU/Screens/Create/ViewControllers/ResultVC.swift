@@ -111,13 +111,6 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTVCell", for: indexPath) as! ResultTVCell
         cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
-//        for i in 0..<(searchedBookResult?.count ?? 0){
-//            cell.searchedBookResult = searchedBookResult?[i]
-//            print("책 결과? \(cell.searchedBookResult)")
-//            print("i값: \(i)")
-//
-//        }
-        //cell.searchedBookResult = searchedBookResult?[indexPath.row]
         cell.searchedBookResult = searchedBookResult?[indexPath.row]
         cell.setCell()
         return cell
@@ -135,7 +128,6 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         case.success(let res) :
             print("success")
             self.searchedBookResult = res as? [SearchBookResult]
-            //self.searchedBookResult = response
             dump(self.searchedBookResult)
             DispatchQueue.main.async{
                 self.resultTV.reloadData()

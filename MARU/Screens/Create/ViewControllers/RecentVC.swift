@@ -37,6 +37,7 @@ class RecentVC: UIViewController{
         RecentTV.register(nibName, forCellReuseIdentifier: "RecentTVCell")
         RecentTV.delegate = self
         RecentTV.dataSource = self
+        RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none
         searchTextField.delegate = self
         super.viewDidLoad()
         
@@ -69,12 +70,6 @@ class RecentVC: UIViewController{
         }
         set()
     }
-    //    @IBAction func cancelBtnTouched(_ sender: Any) {
-    //        guard let ResultVC = self.storyboard?.instantiateViewController(identifier:
-    //               "ResultVC") as? ResultVC else { return }
-    //               self.navigationController?.pushViewController(ResultVC, animated: true)
-    //
-    //    }
 }
 
 extension RecentVC: UITableViewDelegate,UITableViewDataSource{
