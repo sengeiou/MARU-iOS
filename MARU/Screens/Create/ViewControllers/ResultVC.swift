@@ -22,14 +22,15 @@ class ResultVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-            let nibName = UINib(nibName: "ResultTVCell", bundle: nil)
-            resultTV.register(nibName, forCellReuseIdentifier: "ResultTVCell")
-            resultTV.delegate = self
-            resultTV.dataSource = self
-            super.viewDidLoad()
-            resultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
-        }
+        
+        let nibName = UINib(nibName: "ResultTVCell", bundle: nil)
+        resultTV.register(nibName, forCellReuseIdentifier: "ResultTVCell")
+        resultTV.delegate = self
+        resultTV.dataSource = self
+        super.viewDidLoad()
+        resultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        searchProduct(searchResult ?? "")
+    }
     
     @IBAction func searchBtnTouched(_ sender: Any) {
         
