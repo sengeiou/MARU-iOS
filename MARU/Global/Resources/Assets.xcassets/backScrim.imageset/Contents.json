@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "starGray.png",
       "scale" : "1x",
-      "idiom" : "universal"
-    },
-    {
-      "scale" : "2x",
-      "filename" : "starGray@2x.png",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "backScrim.png"
     },
     {
       "idiom" : "universal",
-      "filename" : "starGray@3x.png",
-      "scale" : "3x"
+      "scale" : "2x",
+      "filename" : "backScrim@2x.png"
+    },
+    {
+      "scale" : "3x",
+      "idiom" : "universal",
+      "filename" : "backScrim@3x.png"
     }
   ],
   "info" : {

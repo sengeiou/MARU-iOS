@@ -41,16 +41,34 @@ class ChatVC: UIViewController {
     }
     
     let textFieldView = UIView().then {
-        $0.backgroundColor = .veryLightPink
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOffset = CGSize(width: 0, height: 0)
+        $0.layer.shadowRadius = 8.0
+        $0.layer.shadowOpacity = 0.2
+        $0.layer.shadowPath = UIBezierPath(roundedRect: $0.bounds, cornerRadius: $0.layer.cornerRadius).cgPath
+
     }
     
+    let outTextFieldView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 19
+        $0.borderColor = .veryLightPinkTwo
+        $0.borderWidth = 1
+    }
+
     let textField = UITextField().then {
         $0.tintColor = .black22
-//        $0.backgroundColor = .veryLightPinkTwo
+        $0.backgroundColor = .white
     }
     
+    let sendButton = UIButton().then {
+        $0.setImage(UIImage(named: "chatBtnSend"), for: .normal)
+        $0.frame = .init(x: 0, y: 0, width: 30, height: 30)
+    }
+
     let noticeView = UIView().then {
-        $0.backgroundColor = .veryLightPinkTwo
+        $0.backgroundColor = .white
     }
     
     let noticeLabel = UILabel().then {
@@ -60,28 +78,84 @@ class ChatVC: UIViewController {
     }
     
     let noticeDeleteButton = UIButton().then {
-        $0.setTitle("X", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setImage(UIImage(named: "grayDelete"), for: .normal)
         $0.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
+    }
+    
+    let popupView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 8
+    }
+    
+    let blurImageView = UIImageView().then {
+        $0.image = UIImage(named: "backScrim")
+    }
+        
+    let ratingGuideLabel = UILabel().then {
+        $0.text = "토론은 어떠셨나요?"
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+    }
+    
+    let firstRatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "starGray"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapFirst), for: .touchUpInside)
+    }
+    
+    let secondRatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "starGray"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapSecond), for: .touchUpInside)
+    }
+    
+    let thirdRatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "starGray"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapThird), for: .touchUpInside)
+    }
+    
+    let fourthRatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "starGray"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapFourth), for: .touchUpInside)
+    }
+    
+    let fifthRatingButton = UIButton().then {
+        $0.setImage(UIImage(named: "starGray"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapFifth), for: .touchUpInside)
+    }
+
+    let ratingNameLabel = UILabel().then {
+        $0.text = "님의 별점을 평가해주세요."
+        $0.font = .systemFont(ofSize: 15, weight: .light)
+    }
+    
+    let ratingEndButton = UIButton().then {
+        $0.setTitle("확인", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        $0.backgroundColor = .veryLightPink
+        $0.isEnabled = false
     }
     
     // MARK: - Variables and Properties
     
     let id = "오준현"
+    var rating = 0
     
     // MARK: - Dummy Data
     
     var chatDummy: [Message] = []
     var chat: [Message] = []
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         constraint()
+        constraintNotice()
         collectionView()
         KeychainWrapper.standard.set("오준현", forKey: "id")
+
+        setNavigation()
+//        setPopUpView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +176,18 @@ class ChatVC: UIViewController {
 // MARK: - Helper
 
 extension ChatVC {
+    
+    func setNavigation(){
+        let bar = navigationController?.navigationBar
+        bar?.setBackgroundImage(UIImage(), for: .default)
+        bar?.shadowImage = UIImage()
+        bar?.isTranslucent = true
+        bar?.topItem?.title = "외로운도시"
+        bar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15,
+                                                                                   weight: .medium)]
+
+    }
+    
     func scrollToBottom() {
         DispatchQueue.main.async {
             let lastItem = self.chatDummy.count - 1
@@ -125,12 +211,14 @@ extension ChatVC {
     
     func constraint() {
         view.addSubview(textFieldView)
+        view.addSubview(outTextFieldView)
         view.addSubview(textField)
+        view.addSubview(sendButton)
         view.addSubview(chatCollectionView)
         view.addSubview(noticeView)
         view.addSubview(noticeLabel)
         view.addSubview(noticeDeleteButton)
-
+        
         textFieldView.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.leading.equalToSuperview()
@@ -138,11 +226,25 @@ extension ChatVC {
             make.height.equalTo(46)
         }
         
-        textField.snp.makeConstraints { (make) in
+        outTextFieldView.snp.makeConstraints { (make) in
             make.leading.equalTo(textFieldView.snp.leading).offset(10)
             make.trailing.equalTo(textFieldView.snp.trailing).offset(-10)
-            make.bottom.equalTo(textFieldView.snp.bottom)
-            make.height.equalTo(46)
+            make.bottom.equalTo(textFieldView.snp.bottom).inset(4)
+            make.top.equalTo(textFieldView.snp.top).offset(4)
+        }
+
+        textField.snp.makeConstraints { (make) in
+            make.leading.equalTo(outTextFieldView.snp.leading).offset(10)
+            make.trailing.equalTo(sendButton.snp.leading).offset(-5)
+            make.bottom.equalTo(outTextFieldView.snp.bottom).inset(3)
+            make.top.equalTo(outTextFieldView.snp.top).offset(3)
+        }
+        
+        sendButton.snp.makeConstraints { (make) in
+            make.trailing.equalTo(outTextFieldView.snp.trailing).inset(5)
+            make.top.equalTo(outTextFieldView.snp.top).offset(5)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
         }
         
         chatCollectionView.snp.makeConstraints { (make) in
@@ -152,6 +254,10 @@ extension ChatVC {
             make.bottom.equalTo(textFieldView.snp.top)
         }
         
+        
+    }
+    
+    func constraintNotice(){
         noticeView.snp.makeConstraints { (make) in
             make.top.equalTo(chatCollectionView.snp.top)
             make.leading.equalToSuperview()
@@ -191,7 +297,11 @@ extension ChatVC {
     }
     
     @objc func didTapDeleteButton() {
-        print(#function)
+        UserDefaults.standard.set(id, forKey: "deleteid")
+        noticeView.isHidden = true
+        noticeLabel.isHidden = true
+        noticeDeleteButton.isHidden = true
+        
     }
     
     private func fetchChatData() {
@@ -208,7 +318,7 @@ extension ChatVC {
                 let decoder = JSONDecoder.init()
                 self.chatDummy = try decoder.decode([Message].self, from: data)
                 self.chat = try decoder.decode([Message].self, from: data)
-
+                
                 for index in 0 ..< chatDummy.count - 1 {
                     if chatDummy[index].name == id {
                         
@@ -228,6 +338,185 @@ extension ChatVC {
         }
     }
     
+    @objc func didTapFirst(){
+        rating = 1
+        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        secondRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        thirdRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        ratingEndButton.isEnabled = true
+        ratingEndButton.backgroundColor = .cornflowerBlue
+    }
+    @objc func didTapSecond(){
+        rating = 2
+        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        thirdRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        ratingEndButton.isEnabled = true
+        ratingEndButton.backgroundColor = .cornflowerBlue
+    }
+    @objc func didTapThird(){
+        rating = 3
+        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        ratingEndButton.isEnabled = true
+        ratingEndButton.backgroundColor = .cornflowerBlue
+    }
+    @objc func didTapFourth(){
+        rating = 4
+        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        fourthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
+        ratingEndButton.isEnabled = true
+        ratingEndButton.backgroundColor = .cornflowerBlue
+    }
+    @objc func didTapFifth(){
+        rating = 5
+        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        fourthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        fifthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
+        ratingEndButton.isEnabled = true
+        ratingEndButton.backgroundColor = .cornflowerBlue
+    }
+
+
+    func setPopUpView(){
+        blurImageView.bounds = .init(x: 0,
+                                     y: 0,
+                                     width: view.bounds.width,
+                                     height: view.bounds.height)
+        
+        popupView.bounds = CGRect(x: 0,
+                                  y: 0,
+                                  width: self.view.bounds.width*0.8,
+                                  height: 247)
+        
+        ratingEndButton.frame = .init(x: 0,
+                                      y: 0,
+                                      width: popupView.bounds.width,
+                                      height: 54)
+        
+        ratingEndButton.roundedBottom()
+
+        popupView.addSubview(ratingGuideLabel)
+        popupView.addSubview(firstRatingButton)
+        popupView.addSubview(secondRatingButton)
+        popupView.addSubview(thirdRatingButton)
+        popupView.addSubview(fourthRatingButton)
+        popupView.addSubview(fifthRatingButton)
+        popupView.addSubview(ratingNameLabel)
+        popupView.addSubview(ratingEndButton)
+        
+        ratingGuideLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(popupView.snp.top).offset(35)
+            make.centerX.equalTo(popupView.snp.centerX)
+        }
+        
+        firstRatingButton.snp.makeConstraints { (make) in
+            make.top.equalTo(thirdRatingButton.snp.top)
+            make.trailing.equalTo(thirdRatingButton.snp.leading).offset(-46)
+            make.width.equalTo(26)
+            make.height.equalTo(26)
+        }
+        
+        secondRatingButton.snp.makeConstraints { (make) in
+            make.top.equalTo(thirdRatingButton.snp.top)
+            make.trailing.equalTo(thirdRatingButton.snp.leading).offset(-10)
+            make.width.equalTo(26)
+            make.height.equalTo(26)
+        }
+        
+        thirdRatingButton.snp.makeConstraints { (make) in
+            make.top.equalTo(popupView.snp.top).offset(87)
+            make.centerX.equalTo(popupView.snp.centerX)
+            make.width.equalTo(26)
+            make.height.equalTo(26)
+        }
+        
+        fourthRatingButton.snp.makeConstraints { (make) in
+            make.top.equalTo(thirdRatingButton.snp.top)
+            make.leading.equalTo(thirdRatingButton.snp.trailing).offset(10)
+            make.width.equalTo(26)
+            make.height.equalTo(26)
+        }
+        
+        fifthRatingButton.snp.makeConstraints { (make) in
+            make.top.equalTo(thirdRatingButton.snp.top)
+            make.leading.equalTo(thirdRatingButton.snp.trailing).offset(46)
+            make.width.equalTo(26)
+            make.height.equalTo(26)
+        }
+        
+        ratingNameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(popupView.snp.top).offset(142)
+            make.centerX.equalTo(popupView.snp.centerX)
+        }
+        
+        ratingEndButton.snp.makeConstraints { (make) in
+            make.bottom.equalTo(popupView.snp.bottom)
+            make.centerX.equalTo(popupView.snp.centerX)
+            make.width.equalTo(popupView.snp.width)
+            make.height.equalTo(54)
+        }
+        
+        let name = "라노벨 정균"
+        let nameString = name + (ratingNameLabel.text ?? "")
+        let attrString = NSMutableAttributedString(string: nameString)
+        attrString.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String),
+                                value: UIFont.systemFont(ofSize: 15, weight: .semibold) as Any,
+                                range: NSMakeRange(0, name.count))
+        ratingNameLabel.attributedText = attrString
+
+        animateScaleIn(desiredView: blurImageView)
+        animateScaleIn(desiredView: popupView)
+        disable(false)
+    }
+    
+    func disable(_ bool: Bool){
+        chatCollectionView.isScrollEnabled = bool
+        noticeDeleteButton.isEnabled = bool
+        textField.isEnabled = bool
+    }
+    
+    func animateScaleIn(desiredView: UIView) {
+        let backgroundView = self.view!
+        backgroundView.addSubview(desiredView)
+        desiredView.center = backgroundView.center
+        desiredView.isHidden = false
+        
+        desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        desiredView.alpha = 0
+        
+        UIView.animate(withDuration: 0.2) {
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            desiredView.alpha = 1
+        }
+    }
+    
+    func animateScaleOut(desiredView: UIView) {
+        UIView.animate(withDuration: 0.2, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            desiredView.alpha = 0
+        }, completion: { (success: Bool) in
+            desiredView.removeFromSuperview()
+        })
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            
+        }, completion: { _ in
+            
+        })
+    }
 }
 
 extension ChatVC: UICollectionViewDelegateFlowLayout {
@@ -243,15 +532,15 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
                           options: options,
                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
                           context: nil)
-
+        
         if chatDummy[indexPath.row].name == id || chat[indexPath.row].name == "" {
             estimatedFrame.size.height += 3
         } else {
             estimatedFrame.size.height += 22
         }
-
+        
         return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
-
+        
     }
     
 }
@@ -261,7 +550,7 @@ extension ChatVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
@@ -270,7 +559,7 @@ extension ChatVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if chatDummy[indexPath.row].name == id {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.MyChat,
@@ -338,7 +627,7 @@ extension ChatVC {
                            delay: 0,
                            options: .init(rawValue: curve),
                            animations: {
-                self.view.layoutIfNeeded()
+                            self.view.layoutIfNeeded()
             })
         }
     }
@@ -355,18 +644,18 @@ extension ChatVC {
             chatCollectionView.snp.updateConstraints{
                 $0.bottom.equalTo(textFieldView.snp.top)
             }
-
-
+            
+            
             self.view.setNeedsLayout()
             UIView.animate(withDuration: duration,
                            delay: 0,
                            options: .init(rawValue: curve),
                            animations: {
-                self.view.layoutIfNeeded()
+                            self.view.layoutIfNeeded()
             })
         }
     }
-        
+    
 }
 
 extension ChatVC: UITextFieldDelegate {
