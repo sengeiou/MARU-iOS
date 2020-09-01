@@ -68,7 +68,8 @@ class SecondQuizVC: UIViewController {
         $0.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.semibold)
     }
     let stopwatchView = UIView().then {
-        $0.backgroundColor = UIColor(white: 0.94, alpha: 1)
+        $0.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        $0.cornerRadius = 15
     }
     
     let quizContent = UILabel().then {
@@ -170,18 +171,23 @@ extension SecondQuizVC {
             guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
 
-            self.present(nextQuizVC,animated: true,completion: nil)
+            self.navigationController?.pushViewController(nextQuizVC, animated: true)
             
         })
     
-//    guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
-//    nextQuizVC.modalPresentationStyle = .fullScreen
-//
-//    self.present(nextQuizVC,animated: true,completion: nil)
         
     }
     
     @objc func didTapIncorrectButton() {
         incorrectButton.setImage(UIImage(named: "incorrectRed"),for: .normal)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            
+            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
+            nextQuizVC.modalPresentationStyle = .fullScreen
+            
+            self.navigationController?.pushViewController(nextQuizVC, animated: true)
+            
+        })
     }
 }

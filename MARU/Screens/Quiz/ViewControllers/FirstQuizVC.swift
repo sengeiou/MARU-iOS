@@ -182,18 +182,23 @@ extension FirstQuizVC {
             guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
             
-            self.present(nextQuizVC,animated: true,completion: nil)
+            self.navigationController?.pushViewController(nextQuizVC, animated: true)
             
         })
         
-        //        guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
-        //        nextQuizVC.modalPresentationStyle = .fullScreen
-        //
-        //        self.present(nextQuizVC,animated: true,completion: nil)
         
     }
     @objc func didTapIncorrectButton() {
         incorrectButton.setImage(UIImage(named: "incorrectRed"),for: .normal)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            
+            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
+            nextQuizVC.modalPresentationStyle = .fullScreen
+            
+            self.navigationController?.pushViewController(nextQuizVC, animated: true)
+            
+        })
     }
 }
 
