@@ -46,7 +46,7 @@ class ChatVC: UIViewController {
     
     let textField = UITextField().then {
         $0.tintColor = .black22
-//        $0.backgroundColor = .veryLightPinkTwo
+        //        $0.backgroundColor = .veryLightPinkTwo
     }
     
     let noticeView = UIView().then {
@@ -65,6 +65,17 @@ class ChatVC: UIViewController {
         $0.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
     }
     
+    let popupView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 5
+    }
+    
+    let blurImageView = UIImageView().then {
+        $0.image = UIImage(named: "backScrim")
+    }
+        
+    
+    
     // MARK: - Variables and Properties
     
     let id = "오준현"
@@ -73,7 +84,7 @@ class ChatVC: UIViewController {
     
     var chatDummy: [Message] = []
     var chat: [Message] = []
-
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -82,6 +93,31 @@ class ChatVC: UIViewController {
         constraint()
         collectionView()
         KeychainWrapper.standard.set("오준현", forKey: "id")
+
+        blurImageView.bounds = .init(x: 0,
+                                     y: 0,
+                                     width: view.bounds.width,
+                                     height: view.bounds.height)
+        
+        popupView.bounds = CGRect(x: 0,
+                                  y: 0,
+                                  width: self.view.bounds.width*0.9,
+                                  height: self.view.bounds.height*0.4)
+        
+        let bar = navigationController?.navigationBar
+        bar?.setBackgroundImage(UIImage(), for: .default)
+        bar?.shadowImage = UIImage()
+        bar?.isTranslucent = true
+        bar?.topItem?.title = "외로운도시"
+        bar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15,
+                                                                                  weight: .medium)]
+
+
+        animateScaleIn(desiredView: blurImageView)
+        animateScaleIn(desiredView: popupView)
+        disable(false)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +138,43 @@ class ChatVC: UIViewController {
 // MARK: - Helper
 
 extension ChatVC {
+    
+    func disable(_ bool: Bool){
+        chatCollectionView.isScrollEnabled = bool
+        noticeDeleteButton.isEnabled = bool
+        textField.isEnabled = bool
+    }
+    
+    func animateScaleIn(desiredView: UIView) {
+        let backgroundView = self.view!
+        backgroundView.addSubview(desiredView)
+        desiredView.center = backgroundView.center
+        desiredView.isHidden = false
+        
+        desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        desiredView.alpha = 0
+        
+        UIView.animate(withDuration: 0.2) {
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            desiredView.alpha = 1
+        }
+    }
+    
+    func animateScaleOut(desiredView: UIView) {
+        UIView.animate(withDuration: 0.2, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            desiredView.alpha = 0
+        }, completion: { (success: Bool) in
+            desiredView.removeFromSuperview()
+        })
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            
+        }, completion: { _ in
+            
+        })
+    }
+    
     func scrollToBottom() {
         DispatchQueue.main.async {
             let lastItem = self.chatDummy.count - 1
@@ -130,7 +203,7 @@ extension ChatVC {
         view.addSubview(noticeView)
         view.addSubview(noticeLabel)
         view.addSubview(noticeDeleteButton)
-
+        
         textFieldView.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.leading.equalToSuperview()
@@ -172,7 +245,7 @@ extension ChatVC {
             make.height.equalTo(10)
             make.width.equalTo(10)
         }
-
+        
     }
     
     func collectionView() {
@@ -208,7 +281,7 @@ extension ChatVC {
                 let decoder = JSONDecoder.init()
                 self.chatDummy = try decoder.decode([Message].self, from: data)
                 self.chat = try decoder.decode([Message].self, from: data)
-
+                
                 for index in 0 ..< chatDummy.count - 1 {
                     if chatDummy[index].name == id {
                         
@@ -243,15 +316,15 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
                           options: options,
                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
                           context: nil)
-
+        
         if chatDummy[indexPath.row].name == id || chat[indexPath.row].name == "" {
             estimatedFrame.size.height += 3
         } else {
             estimatedFrame.size.height += 22
         }
-
+        
         return CGSize(width: view.frame.width, height: estimatedFrame.height + 20)
-
+        
     }
     
 }
@@ -261,7 +334,7 @@ extension ChatVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
@@ -270,7 +343,7 @@ extension ChatVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if chatDummy[indexPath.row].name == id {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.MyChat,
@@ -338,7 +411,7 @@ extension ChatVC {
                            delay: 0,
                            options: .init(rawValue: curve),
                            animations: {
-                self.view.layoutIfNeeded()
+                            self.view.layoutIfNeeded()
             })
         }
     }
@@ -355,18 +428,18 @@ extension ChatVC {
             chatCollectionView.snp.updateConstraints{
                 $0.bottom.equalTo(textFieldView.snp.top)
             }
-
-
+            
+            
             self.view.setNeedsLayout()
             UIView.animate(withDuration: duration,
                            delay: 0,
                            options: .init(rawValue: curve),
                            animations: {
-                self.view.layoutIfNeeded()
+                            self.view.layoutIfNeeded()
             })
         }
     }
-        
+    
 }
 
 extension ChatVC: UITextFieldDelegate {
