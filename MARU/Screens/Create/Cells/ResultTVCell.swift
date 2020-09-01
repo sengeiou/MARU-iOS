@@ -14,7 +14,7 @@ class ResultTVCell: UITableViewCell {
     @IBOutlet weak var resultBookAuthor: UILabel!
     @IBOutlet weak var resultBookTitle: UILabel!
     var searchedBookResult: SearchBookResult?
-    var searchedBookInfo: BookInfo?
+    //var searchedBookInfo: BookInfo?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,10 +26,12 @@ class ResultTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(num: Int){
-        resultBookImageView.imageFromUrl(searchedBookResult?.data[num].thumbnail, defaultImgPath: "")
-        resultBookAuthor.text = searchedBookResult?.data[num].authors
-        resultBookTitle.text = searchedBookResult?.data[num].title
+    func setCell(){
+
+        resultBookImageView.imageFromUrl(searchedBookResult?.thumbnail ?? "", defaultImgPath: "")
+        resultBookTitle.text = searchedBookResult?.title
+       
+        resultBookAuthor.text = searchedBookResult?.authors
     }
     
 }

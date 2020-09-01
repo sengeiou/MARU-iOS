@@ -37,7 +37,8 @@ class RecentVC: UIViewController{
         RecentTV.register(nibName, forCellReuseIdentifier: "RecentTVCell")
         RecentTV.delegate = self
         RecentTV.dataSource = self
-        RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none
+        searchTextField.delegate = self
         super.viewDidLoad()
         
         let context = self.getRecode()
@@ -55,14 +56,20 @@ class RecentVC: UIViewController{
         for i in 0..<recodeObject.count {
             recodeMemory.append(recodeObject[i].value(forKey: "recode") as! String)
         }
+        func viewWillAppear(_ animated: Bool){
+            self.RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        }
+        func viewDidAppear(_ animated: Bool){
+            self.RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        }
+        func viewWillDisappear(_ animated: Bool){
+            self.RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none
+        }
+        func viewDidDisappear(_ animated: Bool){
+            self.RecentTV.separatorStyle = UITableViewCell.SeparatorStyle.none
+        }
         set()
     }
-//    @IBAction func cancelBtnTouched(_ sender: Any) {
-//        guard let ResultVC = self.storyboard?.instantiateViewController(identifier:
-//               "ResultVC") as? ResultVC else { return }
-//               self.navigationController?.pushViewController(ResultVC, animated: true)
-//
-//    }
 }
 
 extension RecentVC: UITableViewDelegate,UITableViewDataSource{
@@ -89,13 +96,13 @@ extension RecentVC: UITableViewDelegate,UITableViewDataSource{
     
     @objc func deleteAllRecords(){
         let delegate = UIApplication.shared.delegate as! AppDelegate
-              let context = delegate.persistentContainer.viewContext
-
-              let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recode")
-              let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-
-              do {
-              
+        let context = delegate.persistentContainer.viewContext
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recode")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            
                   try context.execute(deleteRequest)
                   try context.save()
               
@@ -157,7 +164,9 @@ extension RecentVC {
         self.view.endEditing(true)
     }
     func set(){
-        //searchBtn.isHidden = true
+        searchBtn.isHidden = true
+        RecentTV.separatorStyle = .none // 테이블뷰 셀 구분선 없애기
+        RecentTV.tableFooterView = nil
         searchTextField.becomeFirstResponder()
         searchBtn.addTarget(self,
         action: #selector(search),

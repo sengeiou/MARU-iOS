@@ -14,7 +14,7 @@ class ResultVC: UIViewController {
     @IBOutlet weak var resultTV: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    private var searchedBookResult: SearchBookResult?
+    private var searchedBookResult: [SearchBookResult]?
     
     var searchResult: String?
     var recodeObject: [NSManagedObject] = []
@@ -22,14 +22,15 @@ class ResultVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-            let nibName = UINib(nibName: "ResultTVCell", bundle: nil)
-            resultTV.register(nibName, forCellReuseIdentifier: "ResultTVCell")
-            resultTV.delegate = self
-            resultTV.dataSource = self
-            super.viewDidLoad()
-            resultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
-        }
+        
+        let nibName = UINib(nibName: "ResultTVCell", bundle: nil)
+        resultTV.register(nibName, forCellReuseIdentifier: "ResultTVCell")
+        resultTV.delegate = self
+        resultTV.dataSource = self
+        super.viewDidLoad()
+        resultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        searchProduct(searchResult ?? "")
+    }
     
     @IBAction func searchBtnTouched(_ sender: Any) {
         
@@ -75,13 +76,14 @@ class ResultVC: UIViewController {
 
 extension ResultVC: UITableViewDataSource,UITableViewDelegate{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return searchedBookResult?.data.count ?? 0
-    }
-    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        print("몇개일까요\(searchedBookResult?.count)")
+//        return searchedBookResult?.count ?? 0
+//    }
+//    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return searchedBookResult?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -107,12 +109,10 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTVCell", for: indexPath) as! ResultTVCell
-//        cell.resultBookTitle.text = bookTitle[indexPath.row]
-//        cell.resultBookImageView.image = UIImage(named: "6A81B61199A158032Cd5A2D7Cd66E264")
         cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
-        cell.searchedBookResult = searchedBookResult
-        cell.setCell(num: indexPath.row)
+        cell.searchedBookResult = searchedBookResult?[indexPath.row]
+        cell.setCell()
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -126,20 +126,18 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         
         SearchBookService.shared.searchBook(result){ (responseData) in switch responseData{
         case.success(let res) :
-            let response = res as! SearchBookResult
-            self.searchedBookResult = response
-            print(self.searchedBookResult)
+            print("success")
+            self.searchedBookResult = res as? [SearchBookResult]
+            dump(self.searchedBookResult)
             DispatchQueue.main.async{
                 self.resultTV.reloadData()
             }
-            self.resultTV.reloadData() // pageindex 값 바꾸기
-//            self.pageIndex[0] = self.pageIndex[1] + 1
-//            self.pageIndex[1] = self.pageIndex[1] + 10
+            self.resultTV.reloadData()
         case.requestErr(_):
             print("requestErr")
         case .pathErr:
             print("pathErr")
-            print("??")
+            print("\(result)")
         case .serverErr:
             print("serverErr")
         case .networkFail:

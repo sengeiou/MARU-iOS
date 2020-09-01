@@ -80,14 +80,11 @@
 		D1AD279724EC5E8000B32D32 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */; };
 		D1AD279924EC5E8800B32D32 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279824EC5E8800B32D32 /* SearchVC.swift */; };
 		D1C7D53E24F0D7A400C097F8 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */; };
-
 		D1E4D92724FA94FE00732DB7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4D92624FA94FD00732DB7 /* ProfileView.swift */; };
 		D1E4D92A24FA9D8700732DB7 /* ProfileTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4D92924FA9D8700732DB7 /* ProfileTVCell.swift */; };
 		D1E4D92C24FB8BA900732DB7 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4D92B24FB8BA900732DB7 /* UserService.swift */; };
-
 		F212DB3424F823A300759BA9 /* SearchBookResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212DB3324F823A300759BA9 /* SearchBookResult.swift */; };
 		F212DB3624F8240C00759BA9 /* SearchBookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F212DB3524F8240C00759BA9 /* SearchBookService.swift */; };
-
 		F25006EF24F3CA43001F6D3D /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25006EE24F3CA43001F6D3D /* ResultVC.swift */; };
 		F25006F424F3DBA0001F6D3D /* ResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25006F224F3DBA0001F6D3D /* ResultTVCell.swift */; };
 		F25006F524F3DBA0001F6D3D /* ResultTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25006F324F3DBA0001F6D3D /* ResultTVCell.xib */; };
@@ -100,6 +97,8 @@
 		F271710D24F0158200FDAB01 /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F271710C24F0158200FDAB01 /* CreateVC.swift */; };
 		F2B9A1FC24F01AE00069D1D4 /* CreateTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */; };
 		F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */; };
+		F2E730A724FEA0C900E515BF /* SearchMoimService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E730A624FEA0C900E515BF /* SearchMoimService.swift */; };
+		F2E730A924FEA84100E515BF /* SearchMoimResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E730A824FEA84100E515BF /* SearchMoimResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,14 +179,11 @@
 		D1AD279624EC5E8000B32D32 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		D1AD279824EC5E8800B32D32 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
-
 		D1E4D92624FA94FD00732DB7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D1E4D92924FA9D8700732DB7 /* ProfileTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTVCell.swift; sourceTree = "<group>"; };
 		D1E4D92B24FB8BA900732DB7 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-
 		F212DB3324F823A300759BA9 /* SearchBookResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookResult.swift; sourceTree = "<group>"; };
 		F212DB3524F8240C00759BA9 /* SearchBookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookService.swift; sourceTree = "<group>"; };
-
 		F25006EE24F3CA43001F6D3D /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		F25006F224F3DBA0001F6D3D /* ResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTVCell.swift; sourceTree = "<group>"; };
 		F25006F324F3DBA0001F6D3D /* ResultTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTVCell.xib; sourceTree = "<group>"; };
@@ -200,6 +196,8 @@
 		F271710C24F0158200FDAB01 /* CreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		F2B9A1FA24F01AE00069D1D4 /* CreateTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTVCell.swift; sourceTree = "<group>"; };
 		F2B9A1FB24F01AE00069D1D4 /* CreateTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTVCell.xib; sourceTree = "<group>"; };
+		F2E730A624FEA0C900E515BF /* SearchMoimService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoimService.swift; sourceTree = "<group>"; };
+		F2E730A824FEA84100E515BF /* SearchMoimResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoimResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,11 +479,9 @@
 			isa = PBXGroup;
 			children = (
 				D13A8F6924E5991700BB1656 /* ResponseResult.swift */,
-
 				77598B3E24F977A10095DA5D /* MainLists.swift */,
-
 				F212DB3324F823A300759BA9 /* SearchBookResult.swift */,
-
+				F2E730A824FEA84100E515BF /* SearchMoimResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -503,13 +499,11 @@
 			children = (
 				D13A8F6524E5990400BB1656 /* APIConstants.swift */,
 				77598B3C24F8072B0095DA5D /* NetworkResult.swift */,
-
 				D1E4D92B24FB8BA900732DB7 /* UserService.swift */,
 				77598B4024F979C20095DA5D /* MainNewMeetingService.swift */,
 				77598B4224F97A590095DA5D /* MainPopularMeetingService.swift */,
-
 				F212DB3524F8240C00759BA9 /* SearchBookService.swift */,
-
+				F2E730A624FEA0C900E515BF /* SearchMoimService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -881,10 +875,12 @@
 				77FB7D3E24ED990300365E8C /* MainVC + Constraints.swift in Sources */,
 				77B0506E24FBBDC2007545C8 /* SecondQuizVC.swift in Sources */,
 				D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */,
+				F2E730A924FEA84100E515BF /* SearchMoimResult.swift in Sources */,
 				D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */,
 				D13A8F4E24E596E700BB1656 /* MARU.xcdatamodeld in Sources */,
 				77598B4124F979C20095DA5D /* MainNewMeetingService.swift in Sources */,
 				D11D521024E59AB000683870 /* ChatVC.swift in Sources */,
+				F2E730A724FEA0C900E515BF /* SearchMoimService.swift in Sources */,
 				D16EEE4524EBFB0800D0994F /* MyChatCVCell.swift in Sources */,
 				F25006EF24F3CA43001F6D3D /* ResultVC.swift in Sources */,
 				D13D627124E82F9C00A3A4A1 /* Identifier.swift in Sources */,

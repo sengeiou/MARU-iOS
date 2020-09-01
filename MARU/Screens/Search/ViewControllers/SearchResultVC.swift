@@ -12,10 +12,12 @@ import SwiftKeychainWrapper
 
 class SearchResultVC: UIViewController{
     // identifier: searchResultTVCell
-    var bookTitle:[String] = ["운다고 달라지는 일은 아무것도 없겠지만","운다고 달라지는 일은 아무것도 없겠지만","운다고 달라지는 일은 아무것도 없겠지만"]
-    var searchResult: String?
+    private var searchedMoimResult: [SearchMoimResult]?
+    
+    var moimResult: String?
     var recodeObject: [NSManagedObject] = []
     let con = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet weak var SearchResultTV: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
  
@@ -28,11 +30,14 @@ class SearchResultVC: UIViewController{
         SearchResultTV.delegate = self
         SearchResultTV.dataSource = self
         super.viewDidLoad()
-        SearchResultTV.separatorStyle = UITableViewCell.SeparatorStyle.none // 테이블뷰 셀 구분선 없애기
+        SearchResultTV.separatorStyle = UITableViewCell.SeparatorStyle.none// 테이블뷰 셀 구분선 없애기
+        searchMoim(moimResult ?? "")
+        
     }
     
     @IBAction func searchBtnTouched(_ sender: Any) {
-        
+        searchMoim(searchTextField.text ?? "")
+        save(searchTextField.text ?? "")
         
     }
     
@@ -76,12 +81,12 @@ class SearchResultVC: UIViewController{
 
 extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.bookTitle.count
-    }
-    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.bookTitle.count
+//    }
+//    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return searchedMoimResult?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -105,10 +110,12 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultTVCell", for: indexPath) as! SearchResultTVCell
-        cell.searchBookName.text = bookTitle[indexPath.row]
+        
         cell.searchBookImage.image = UIImage(named:"it8UKXxG2I8Evo3R6IDeNMx4W")
         cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
+        cell.searchedMoimResult = searchedMoimResult?[indexPath.row]
+        cell.setCell()
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -116,5 +123,29 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         guard let entryMoimVC = self.storyboard?.instantiateViewController(identifier:
         "SearchEntryMoimVC") as? SearchEntryMoimVC else { return }
         self.navigationController?.pushViewController(entryMoimVC, animated: true)
+    }
+    
+    @objc func searchMoim(_ result: String){
+        
+        SearchMoimService.shared.searchMoim(result){
+            (responseData) in switch responseData{
+            case.success(let res) :
+                print("success")
+                self.searchedMoimResult = res as? [SearchMoimResult]
+                dump(self.searchedMoimResult)
+                DispatchQueue.main.async{
+                    self.SearchResultTV.reloadData()
+                }
+                self.SearchResultTV.reloadData()
+            case.requestErr(_):
+                print("requestErr")
+            case.pathErr:
+                print("pathErr")
+            case.serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
     }
 }

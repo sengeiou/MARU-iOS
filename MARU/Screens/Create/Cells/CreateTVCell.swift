@@ -16,7 +16,7 @@ class CreateTVCell: UITableViewCell {
     @IBOutlet weak var correctBtn: UIButton!
     @IBOutlet weak var incorrectBtn: UIButton!
     
-    var answer: Int = 0 // 정답 1 오답 0
+    var answer: Int = 0 // 정답 ox 스트링으로 변경 예정
     override func awakeFromNib() {
         super.awakeFromNib()
         self.shadowView.layer.cornerRadius = 10.0

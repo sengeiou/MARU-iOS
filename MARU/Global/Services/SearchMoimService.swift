@@ -1,26 +1,26 @@
 //
-//  SearchBookService.swift
+//  SearchMoimService.swift
 //  MARU
 //
-//  Created by 이윤진 on 2020/08/28.
+//  Created by 이윤진 on 2020/09/02.
 //  Copyright © 2020 maru. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-// MARK:- 토론 생성 위한 책 검색  // GET 책 검색 - 토론방 개설 목적 search/book?title=책제목
+// MARK:- 토론 검색  // GET 책 검색 - 토론방 개설 목적 search/book?title=책제목
 //static let searchBook = BaseURL + "search/book"
-struct SearchBookService {
+struct SearchMoimService {
 
     private init(){}
-    static let shared = SearchBookService()
+    static let shared = SearchMoimService()
     
-    func searchBook(_ title: String,
+    func searchMoim(_ title: String,
                     completion: @escaping(NetworkResult<Any>)->Void){
         
         guard let title = title.stringByAddingPercentEncodingForFormData() else { return }
-        let URL = APIConstants.searchBook + "?title=" + title
+        let URL = APIConstants.searchMoim + "?title=" + title
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -43,10 +43,10 @@ struct SearchBookService {
                         case 200:
                             do{
                                 let decoder = JSONDecoder()
-                                let result = try decoder.decode(ResponseResult<SearchBookResult>.self,
+                                let result = try decoder.decode(ResponseResult<SearchMoimResult>.self,
                                                                 from: value)
                                 
-                                completion(.success(result.data ?? [SearchBookResult].self))
+                                completion(.success(result.data ?? [SearchMoimResult].self))
                                 dump(result)
                             } catch {
                                 completion(.pathErr)

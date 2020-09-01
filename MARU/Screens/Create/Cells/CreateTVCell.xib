@@ -33,7 +33,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="여기가 문제입력하는 곳이야" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CoO-1i-Jrd">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CoO-1i-Jrd">
                         <rect key="frame" x="16" y="46" width="343" height="73"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -97,6 +97,6 @@
     </objects>
     <resources>
         <image name="correctBlue52" width="52" height="52"/>
-        <image name="incorrectWhite" width="52" height="52"/>
+        <image name="incorrectWhite" width="89" height="89"/>
     </resources>
 </document>
