@@ -59,6 +59,8 @@ extension ProfileVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = ProfileView()
         
+        view.rootVC = self
+        
         if token == "" {
             view.toLoginView()
         } else {

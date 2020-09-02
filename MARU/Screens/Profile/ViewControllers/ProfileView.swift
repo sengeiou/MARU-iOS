@@ -58,6 +58,7 @@ class ProfileView: UIView {
     }
 
     var data: Profile?
+    var rootVC: UIViewController?
     
     func setView(){
         addSubview(closeButton)
@@ -130,6 +131,6 @@ class ProfileView: UIView {
     }
     
     @objc func didTapCloseButton() {
-        print(#function)
+        rootVC?.dismiss(animated: true)
     }
 }

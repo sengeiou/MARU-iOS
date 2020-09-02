@@ -137,6 +137,7 @@ class ChatVC: UIViewController {
     
     let id = "오준현"
     var rating = 0
+    var roomIndex: Int?
     
     // MARK: - Dummy Data
     
@@ -165,6 +166,9 @@ class ChatVC: UIViewController {
         addKeyboardNotification()
         self.chatCollectionView.reloadData()
         scrollToBottom()
+        
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
