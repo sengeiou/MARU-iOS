@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k6C-kc-gGe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XMO-Ks-KsG">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--나의 모임-->
+        <!--MoimVC-->
         <scene sceneID="xse-Cf-rhM">
             <objects>
                 <viewController id="k6C-kc-gGe" customClass="MoimVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
@@ -294,7 +294,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9A8-5A-ye5"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="나의 모임" image="tabBar2Blue" selectedImage="tabBar2Gray" id="IGE-pr-Zzm"/>
+                    <navigationItem key="navigationItem" id="NZ4-fP-XaH"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="moimCollectionView" destination="rCZ-eX-qlp" id="NTC-Wd-qR9"/>
@@ -303,7 +304,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lkd-cb-WqB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.59999999999999" y="84.975369458128085"/>
+            <point key="canvasLocation" x="319" y="97"/>
+        </scene>
+        <!--나의 모임-->
+        <scene sceneID="R0g-a1-hR4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XMO-Ks-KsG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="나의 모임" image="tabBar2Blue" selectedImage="tabBar2Gray" id="IGE-pr-Zzm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v4Z-Lg-Cb6">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k6C-kc-gGe" kind="relationship" relationship="rootViewController" id="cPo-ep-14e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Jl-K2-fo8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-606" y="92"/>
         </scene>
     </scenes>
     <resources>

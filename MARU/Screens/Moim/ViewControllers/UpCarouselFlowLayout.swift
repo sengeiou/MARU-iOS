@@ -36,7 +36,8 @@ open class UpCarouselFlowLayout: UICollectionViewFlowLayout {
     override open func prepare() {
         super.prepare()
 
-        let currentState = LayoutState(size: self.collectionView!.bounds.size, direction: self.scrollDirection)
+        let currentState = LayoutState(size: self.collectionView!.bounds.size,
+                                       direction: self.scrollDirection)
 
         if !self.state.isEqual(currentState) {
             self.setupCollectionView()
@@ -106,7 +107,8 @@ open class UpCarouselFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
 
-    override open func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override open func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint,
+                                           withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let collectionView = collectionView , !collectionView.isPagingEnabled,
             let layoutAttributes = self.layoutAttributesForElements(in: collectionView.bounds)
             else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mKR-k6-Sq1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mKR-k6-Sq1">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TLF-im-ggP">
-                                <rect key="frame" x="51" y="52" width="37.333333333333343" height="34"/>
+                                <rect key="frame" x="51" y="52" width="271" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -64,6 +64,7 @@
                             <constraint firstItem="xON-5L-H8R" firstAttribute="leading" secondItem="aqU-17-x90" secondAttribute="leading" constant="16" id="Tud-I1-ndP"/>
                             <constraint firstItem="TLF-im-ggP" firstAttribute="top" secondItem="aqU-17-x90" secondAttribute="top" constant="8" id="VXX-n0-sDQ"/>
                             <constraint firstItem="Tmi-Dw-mDX" firstAttribute="top" secondItem="aqU-17-x90" secondAttribute="top" constant="20" id="Yap-Cv-QnF"/>
+                            <constraint firstItem="TLF-im-ggP" firstAttribute="trailing" secondItem="hGm-8P-k3w" secondAttribute="trailing" id="bQU-nH-Uej"/>
                             <constraint firstItem="xON-5L-H8R" firstAttribute="top" secondItem="hGm-8P-k3w" secondAttribute="bottom" constant="8" id="lDQ-Pv-Vu3"/>
                             <constraint firstItem="hGm-8P-k3w" firstAttribute="leading" secondItem="aqU-17-x90" secondAttribute="leading" constant="16" id="nIo-YM-65c"/>
                             <constraint firstItem="yxM-Rl-Uto" firstAttribute="leading" secondItem="aqU-17-x90" secondAttribute="leading" constant="28" id="wvs-wP-BoG"/>
@@ -83,7 +84,7 @@
         <!--SearchVC-->
         <scene sceneID="2cu-7f-ab9">
             <objects>
-                <viewController id="jlS-xz-4bf" customClass="SearchVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SearchVC" storyboardIdentifier="SearchVC" id="jlS-xz-4bf" customClass="SearchVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MiL-qn-TCz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +101,7 @@
                                 <state key="normal" image="search"/>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="riX-on-gnX">
-                                <rect key="frame" x="51" y="52" width="37.333333333333343" height="34"/>
+                                <rect key="frame" x="51" y="52" width="271" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -114,9 +115,6 @@
                                 <state key="normal" title="취소">
                                     <color key="titleColor" red="0.25490196079999999" green="0.41176470590000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="cancelBtnTouched:" destination="jlS-xz-4bf" eventType="touchUpInside" id="046-dj-CnA"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-Qy-SXF">
                                 <rect key="frame" x="16" y="96" width="343" height="682"/>
@@ -130,6 +128,7 @@
                             <constraint firstItem="l1T-3U-KNH" firstAttribute="leading" secondItem="96W-IJ-sag" secondAttribute="trailing" constant="8" id="D2c-8l-mmO"/>
                             <constraint firstItem="C4d-Qy-SXF" firstAttribute="leading" secondItem="8qf-3T-LKW" secondAttribute="leading" constant="16" id="FoB-TZ-nQM"/>
                             <constraint firstItem="C4d-Qy-SXF" firstAttribute="top" secondItem="riX-on-gnX" secondAttribute="bottom" constant="10" id="U4s-w4-eKU"/>
+                            <constraint firstItem="riX-on-gnX" firstAttribute="trailing" secondItem="96W-IJ-sag" secondAttribute="trailing" id="YGK-Tg-4Ss"/>
                             <constraint firstItem="riX-on-gnX" firstAttribute="top" secondItem="8qf-3T-LKW" secondAttribute="top" constant="8" id="ZWJ-FA-5eV"/>
                             <constraint firstItem="riX-on-gnX" firstAttribute="leading" secondItem="zlK-jg-l36" secondAttribute="trailing" constant="7" id="azU-5N-7Dr"/>
                             <constraint firstItem="8qf-3T-LKW" firstAttribute="trailing" secondItem="C4d-Qy-SXF" secondAttribute="trailing" constant="16" id="cyO-TN-joY"/>
@@ -144,6 +143,7 @@
                     <navigationItem key="navigationItem" id="JC7-E7-ii2"/>
                     <connections>
                         <outlet property="SearchTV" destination="C4d-Qy-SXF" id="NFl-bf-RtK"/>
+                        <outlet property="cancelButton" destination="l1T-3U-KNH" id="nc0-pJ-wjG"/>
                         <outlet property="searchBtn" destination="zlK-jg-l36" id="gjZ-7t-FhU"/>
                         <outlet property="searchTextField" destination="riX-on-gnX" id="WSQ-qh-eq3"/>
                     </connections>
@@ -373,6 +373,7 @@
                         <outlet property="entryMoimPerson" destination="x2m-Gm-7wf" id="aV6-ON-HFu"/>
                         <outlet property="entryMoimZzang" destination="fTk-70-roP" id="aF0-Lm-bQF"/>
                         <outlet property="entryScoreLabel" destination="PcG-Ld-K2R" id="Gqq-Ve-JoE"/>
+                        <outlet property="quizButton" destination="BNR-vj-Y4n" id="UWy-kS-2CZ"/>
                         <outlet property="shadowImageView" destination="Rw6-Ae-wIy" id="JMi-yo-Ayq"/>
                     </connections>
                 </viewController>
@@ -380,10 +381,10 @@
             </objects>
             <point key="canvasLocation" x="2958" y="153"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Search NavVC-->
         <scene sceneID="qws-29-hp2">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mKR-k6-Sq1" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="SearchNavVC" storyboardIdentifier="SearchNavVC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mKR-k6-Sq1" customClass="SearchNavVC" customModule="MARU" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ylb-he-get">
                         <autoresizingMask key="autoresizingMask"/>

@@ -19,11 +19,13 @@ class SearchEntryMoimVC: UIViewController{
     @IBOutlet weak var entryScoreLabel: UILabel! // 평균 평점
     @IBOutlet weak var entryMoimPerson: UILabel! // 현재 참여 인원
     @IBOutlet weak var entryIntroLabel: UILabel! // 한 줄 평
+    @IBOutlet weak var quizButton: UIButton!
+    
     var roomIdx: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(roomIdx)")
+        print("\(roomIdx ?? 0)")
         // MARK: - boxview shadow attributes
         shadowImageView.layer.cornerRadius = 10.0
         shadowImageView.layer.shadowColor = UIColor.black.cgColor
@@ -33,8 +35,12 @@ class SearchEntryMoimVC: UIViewController{
         shadowImageView.layer.shadowPath = UIBezierPath(roundedRect: shadowImageView.bounds, cornerRadius: shadowImageView.layer.cornerRadius).cgPath
         // 임의코드
         self.entryBookTitle.text = "운다고 달라지는 일은 아무것도 없겠지만"
+        
+        quizButton.addTarget(self, action: #selector(didTapQuizButton), for: .touchUpInside)
     }
+    
     //MARK: - 네비게이션바 숨겼다가 재등장
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -55,6 +61,17 @@ class SearchEntryMoimVC: UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    @objc func didTapQuizButton() {
+        
+        let sb = UIStoryboard(name: "QuizVC", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "FirstQuizVC") as! FirstQuizVC
+        
+        // 여기에 해당 방 번호 넣어주세요
+        vc.roomIndex = 1
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

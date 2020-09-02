@@ -37,6 +37,13 @@ class MoimVC: UIViewController {
         self.moimCollectionView?.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+    }
+
     
     func pageControlSize() {
         paging.frame = .init(x: 0, y: 0, width: 100, height: 10)
@@ -105,7 +112,13 @@ extension MoimVC: UIScrollViewDelegate {
 extension MoimVC: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Chat", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ChatVC") as! ChatVC
         
+        // 여기에 룸 넘버를 넣어주세요
+        vc.roomIndex = 1
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
