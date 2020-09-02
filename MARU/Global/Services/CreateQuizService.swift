@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import Alamofire
+
+// MARK: - 퀴즈 생성 // // POST 토론방 개설 makeMoim = BaseURL + "room/make"
+struct CreateQuizService{
+    private init(){}
+    static let shared = CreateQuizService()
+    
+}
