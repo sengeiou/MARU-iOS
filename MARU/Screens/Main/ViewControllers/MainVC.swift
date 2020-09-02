@@ -156,7 +156,7 @@ extension MainVC: UICollectionViewDataSource {
                 
                 return headerView ?? UICollectionReusableView()
             default:
-                assert(false, "false")
+                return UICollectionReusableView()
             }
     }
     
