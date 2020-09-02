@@ -23,6 +23,7 @@ class SearchResultTVCell: UITableViewCell {
     @IBOutlet weak var searchMoimIntro: UILabel! // 소개 문구
     
     var searchedMoimResult: SearchMoimResult?
+    var roomIdx: Int?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,5 +43,6 @@ class SearchResultTVCell: UITableViewCell {
         searchBookAuthor.text = searchedMoimResult?.authors
         searchMoimZang.text = searchedMoimResult?.nickName
         searchMoimIntro.text = searchedMoimResult?.info
+        roomIdx = searchedMoimResult?.roomIdx
     }
 }

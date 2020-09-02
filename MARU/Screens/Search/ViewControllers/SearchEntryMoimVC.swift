@@ -19,10 +19,11 @@ class SearchEntryMoimVC: UIViewController{
     @IBOutlet weak var entryScoreLabel: UILabel! // 평균 평점
     @IBOutlet weak var entryMoimPerson: UILabel! // 현재 참여 인원
     @IBOutlet weak var entryIntroLabel: UILabel! // 한 줄 평
+    var roomIdx: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("\(roomIdx)")
         // MARK: - boxview shadow attributes
         shadowImageView.layer.cornerRadius = 10.0
         shadowImageView.layer.shadowColor = UIColor.black.cgColor

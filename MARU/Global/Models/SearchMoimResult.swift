@@ -10,6 +10,7 @@ import Foundation
 
 struct SearchMoimResult: Codable{
     
+    let roomIdx: Int
     let thumbnail, title, authors, info: String
     let nickName: String
 }

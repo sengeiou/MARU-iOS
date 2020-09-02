@@ -17,7 +17,7 @@ class SearchResultVC: UIViewController{
     var moimResult: String?
     var recodeObject: [NSManagedObject] = []
     let con = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var roomIdx: Int? // 방 인덱스넘버 받아오기
     @IBOutlet weak var SearchResultTV: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
  
@@ -116,6 +116,7 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
         cell.searchedMoimResult = searchedMoimResult?[indexPath.row]
         cell.setCell()
+        roomIdx = cell.roomIdx
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -123,6 +124,7 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         guard let entryMoimVC = self.storyboard?.instantiateViewController(identifier:
         "SearchEntryMoimVC") as? SearchEntryMoimVC else { return }
         self.navigationController?.pushViewController(entryMoimVC, animated: true)
+        entryMoimVC.roomIdx = roomIdx
     }
     
     @objc func searchMoim(_ result: String){
