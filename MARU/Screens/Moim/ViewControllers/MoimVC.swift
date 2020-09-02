@@ -37,6 +37,13 @@ class MoimVC: UIViewController {
         self.moimCollectionView?.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     
     func pageControlSize() {
         paging.frame = .init(x: 0, y: 0, width: 100, height: 10)
@@ -53,7 +60,8 @@ class MoimVC: UIViewController {
     func addCollectionView(){
         
         let layout = UpCarouselFlowLayout()
-        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.7, height: view.frame.height)
+        layout.itemSize = CGSize(width: moimCollectionView.frame.width * 0.7,
+                                 height: view.frame.height)
         layout.scrollDirection = .horizontal
         
         self.moimCollectionView.collectionViewLayout = layout
@@ -92,9 +100,13 @@ class MoimVC: UIViewController {
 extension MoimVC: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let layout = self.moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
-        let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
-        let offset = (layout.scrollDirection == .horizontal) ? (moimCollectionView.contentOffset.x): scrollView.contentOffset.y
+        let moimX = moimCollectionView.contentOffset.x
+        let moimY = scrollView.contentOffset.y
+        
+        let layout = moimCollectionView?.collectionViewLayout as! UpCarouselFlowLayout
+        let pageSide = (layout.scrollDirection == .horizontal) ? pageSize.width : pageSize.height
+        let offset = (layout.scrollDirection == .horizontal) ? (moimX): moimY
+        
         currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
         
         self.paging.set(progress: currentPage, animated: true)
@@ -104,7 +116,8 @@ extension MoimVC: UIScrollViewDelegate {
 
 extension MoimVC: UICollectionViewDelegate{
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         
     }
 }
@@ -112,20 +125,33 @@ extension MoimVC: UICollectionViewDelegate{
 
 extension MoimVC: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         
         return 3
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoimCVCell", for: indexPath) as!
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoimCVCell",
+                                                      for: indexPath) as!
         MoimCVCell
         
         cell.viewShadow()
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Chat", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "ChatVC") as! ChatVC
+        
+        // 여기에 룸 넘버를 넣어주세요
+        vc.roomIndex = 1
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -133,14 +159,18 @@ extension MoimVC: UICollectionViewDataSource {
 extension MoimVC: UICollectionViewDelegateFlowLayout {
     
     // collectionVeiw Cell의 "위치" 조정
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt
-        indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtindexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.frame.width * 0.766323), height: (collectionView.frame.height))
+        return CGSize(width: (collectionView.frame.width * 0.766323),
+                      height: (collectionView.frame.height))
     }
     
     //     collectionView "ContentInset" 조정
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0, left: 42 , bottom: 0, right: 42)
     }
