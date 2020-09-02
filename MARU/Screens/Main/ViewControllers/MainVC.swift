@@ -55,6 +55,13 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+    }
     //MARK: - Method
     
 }
