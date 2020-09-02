@@ -27,6 +27,7 @@ class SearchVC: UIViewController{
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var SearchTV: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var recodeMemory : [String] = []
     var recodeObject: [NSManagedObject] = []
@@ -60,6 +61,13 @@ class SearchVC: UIViewController{
         }
         
         set()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
     }
     
     
@@ -139,7 +147,8 @@ extension SearchVC{
         SearchTV.tableFooterView = nil
         searchTextField.becomeFirstResponder()
         searchBtn.addTarget(self,action: #selector(search),for: .touchUpInside)
-    
+        cancelButton.addTarget(self,action: #selector(cancel),for: .touchUpInside)
+
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
@@ -191,6 +200,9 @@ extension SearchVC{
         searchTextField.text = ""
 
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func cancel(){
+        self.navigationController?.popViewController(animated: true)
     }
 
     @objc func searchInList(){
