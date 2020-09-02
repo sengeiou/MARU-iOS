@@ -6,7 +6,6 @@ target 'MARU' do
   use_frameworks!
 
   pod 'Then'
-  pod 'YPImagePicker'  
   pod 'UPCarouselFlowLayout'
   pod 'Alamofire', '~> 4.8.2'
   pod 'Gedatsu', configuration: %w(Debug)
