@@ -104,6 +104,7 @@ class FirstQuizVC: UIViewController {
     var endTime: Date?
     var timer = Timer()
     
+    var roomIndex: Int?
     
     
     override func viewDidLoad() {
