@@ -6,14 +6,14 @@
       "scale" : "1x"
     },
     {
-      "filename" : "tabBar2Blue@2x.png",
+      "idiom" : "universal",
       "scale" : "2x",
-      "idiom" : "universal"
+      "filename" : "tabBar2Blue@2x.png"
     },
     {
       "scale" : "3x",
-      "idiom" : "universal",
-      "filename" : "tabBar2Blue@3x.png"
+      "filename" : "tabBar2Blue@3x.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
