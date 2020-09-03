@@ -20,12 +20,13 @@ class ProfileVC: UIViewController {
     
     // MARK: - Variables and Properties
     
-    let token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+    var token: String?
     var profile: Profile?
+    
     // MARK: - Dummy Data
     
-    var data: [String] = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
-    
+    var data: [String] = ["이용약관","오픈소스 라이선스"]
+
     
     // MARK: - Life Cycle
     
@@ -33,7 +34,11 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         
         setTableView()
+        
+        token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+                
         if token != "" {
+            data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
             profileService()
         }
         
@@ -92,6 +97,26 @@ extension ProfileVC: UITableViewDataSource {
         cell.setCell()
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch data[indexPath.row] {
+
+        case "로그아웃":
+            print(111)
+            
+        case "이용약관":
+            print(222)
+            
+        case "오픈소스 라이선스":
+            print(333)
+            
+        case "회원탈퇴":
+            print(444)
+
+        default:
+            print("default")
+        }
     }
     
     
