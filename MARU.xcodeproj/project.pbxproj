@@ -47,6 +47,7 @@
 		D11D521724E59B5000683870 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11D521624E59B5000683870 /* Login.storyboard */; };
 		D11D521924E59B6000683870 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D521824E59B6000683870 /* LoginVC.swift */; };
 		D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D521B24E59CBB00683870 /* Tabbar.swift */; };
+		D1316222250116F3008CE266 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1316221250116F3008CE266 /* LoginNavigationController.swift */; };
 		D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4324E596E700BB1656 /* AppDelegate.swift */; };
 		D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4524E596E700BB1656 /* SceneDelegate.swift */; };
 		D13A8F4824E596E700BB1656 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4724E596E700BB1656 /* MainVC.swift */; };
@@ -147,6 +148,7 @@
 		D11D521624E59B5000683870 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D11D521824E59B6000683870 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D11D521B24E59CBB00683870 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		D1316221250116F3008CE266 /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		D13A8F4024E596E700BB1656 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13A8F4324E596E700BB1656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D13A8F4524E596E700BB1656 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				D11D521824E59B6000683870 /* LoginVC.swift */,
 				D1C7D53D24F0D7A400C097F8 /* SignUpVC.swift */,
+				D1316221250116F3008CE266 /* LoginNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				D13A8F6624E5990400BB1656 /* APIConstants.swift in Sources */,
 				77FB7D3E24ED990300365E8C /* MainVC + Constraints.swift in Sources */,
 				77B0506E24FBBDC2007545C8 /* SecondQuizVC.swift in Sources */,
+				D1316222250116F3008CE266 /* LoginNavigationController.swift in Sources */,
 				D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */,
 				F2E730A924FEA84100E515BF /* SearchMoimResult.swift in Sources */,
 				D13D627524E83A2D00A3A4A1 /* UIViewController+Extension.swift in Sources */,
@@ -1059,7 +1063,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1081,7 +1085,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

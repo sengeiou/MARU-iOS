@@ -43,7 +43,7 @@ class ProfileView: UIView {
         $0.setTitle("로그인 하세요", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         $0.setTitleColor(.veryLightPink, for: .normal)
-        $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     
     let loginSecondButton = UIButton().then {
@@ -54,7 +54,7 @@ class ProfileView: UIView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         $0.titleLabel?.numberOfLines = 0
         $0.setTitleColor(.veryLightPink, for: .normal)
-        $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
 
     var data: Profile?
@@ -133,4 +133,18 @@ class ProfileView: UIView {
     @objc func didTapCloseButton() {
         rootVC?.dismiss(animated: true)
     }
+    
+    @objc func didTapLoginButton() {
+        let sb = UIStoryboard(name: "Login", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "LoginNavigationController")
+            as! LoginNavigationController
+
+//        rootVC?.navigationController?.navigationBar.backItem?.title = ""
+//        rootVC?.navigationController?.title = ""
+//        rootVC?.navigationController?.navigationItem.backBarButtonItem?.title = ""
+        vc.modalPresentationStyle = .overFullScreen
+        
+        rootVC?.present(vc, animated: true)
+    }
+
 }
