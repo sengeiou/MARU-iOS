@@ -116,15 +116,19 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
         cell.searchedMoimResult = searchedMoimResult?[indexPath.row]
         cell.setCell()
+        cell.selectionStyle = .none
         roomIdx = cell.roomIdx
+        print("방번호??\(roomIdx)")
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         print(indexPath)
         guard let entryMoimVC = self.storyboard?.instantiateViewController(identifier:
         "SearchEntryMoimVC") as? SearchEntryMoimVC else { return }
+       
         self.navigationController?.pushViewController(entryMoimVC, animated: true)
-        entryMoimVC.roomIdx = roomIdx
+        print("여기 방번호??\(searchedMoimResult?[indexPath.row].roomIdx)")
+        entryMoimVC.roomIdx = searchedMoimResult?[indexPath.row].roomIdx
     }
     
     @objc func searchMoim(_ result: String){

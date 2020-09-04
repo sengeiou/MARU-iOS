@@ -111,6 +111,7 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultTVCell", for: indexPath) as! ResultTVCell
         cell.backgroundView = UIImageView(image: UIImage(named: "listBackGround"))
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
+        cell.selectionStyle = .none
         cell.searchedBookResult = searchedBookResult?[indexPath.row]
         cell.setCell()
         return cell
