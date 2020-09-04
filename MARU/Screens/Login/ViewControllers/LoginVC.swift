@@ -18,6 +18,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     var delegate: LoginDelegate?
+    
+    var isMain: Bool = true
 
     let closeButton = UIButton().then {
         $0.setImage(UIImage(named: "deleteIcon"), for: .normal)
@@ -65,6 +67,10 @@ class LoginVC: UIViewController {
     }
     
     @objc func didTapCloseButton() {
+        if isMain {
+            self.dismiss(animated: true)
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
 

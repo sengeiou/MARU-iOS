@@ -148,7 +148,7 @@ class ProfileView: UIView {
             as! LoginVC
 
         loginVC.delegate = rootVC as? LoginDelegate
-        
+        loginVC.isMain = false
         rootVC?.navigationController?.pushViewController(loginVC, animated: true)
     }
 

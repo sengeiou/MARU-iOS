@@ -8,11 +8,17 @@
 
 import UIKit
 
+import SwiftKeychainWrapper
+
 class Tabbar: UITabBarController {
+    
+    let token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.delegate = self
+        
         setupStyle()
     }
     
@@ -21,9 +27,34 @@ class Tabbar: UITabBarController {
         self.tabBar.layer.applyShadow(color: .black, alpha: 0.3, x: 0, y: 0, blur: 12)
     }
     
+    
 }
 
-extension Tabbar : UITabBarControllerDelegate { }
+extension Tabbar : UITabBarControllerDelegate {
+    
+    
+    func tabBarController(_ tabBarController: UITabBarController,
+                          shouldSelect viewController: UIViewController) -> Bool {
+        if token == nil || token == "" {
+            
+            loginAlert(title: "서비스 이용을 위해 로그인이 필요합니다.",
+                       msg: "",
+                       handler:
+                { (action) in
+                    let sb = UIStoryboard(name: "Login", bundle: nil)
+                    let vc = sb.instantiateViewController(withIdentifier: "LoginNavigationController")
+                        as! LoginNavigationController
+                    vc.modalPresentationStyle = .overFullScreen
+
+                    self.present(vc, animated: true)
+                    
+            })
+            return false
+        }
+        
+        return true
+    }
+}
 
 extension CALayer {
     func applyShadow(
@@ -38,5 +69,5 @@ extension CALayer {
         shadowOffset = CGSize(width: x, height: y)
         shadowRadius = blur / 2.0
     }
-
+    
 }

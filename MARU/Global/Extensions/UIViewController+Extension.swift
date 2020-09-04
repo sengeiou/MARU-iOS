@@ -33,10 +33,25 @@ extension UIViewController {
         self.present(alert, animated: true)
     }
     
-    func normalAlertWithHandler(title: String, msg: String?, okTitle: String, noTitle: String, handler: ((UIAlertAction) -> Void)?) {
+    func loginAlert(title: String, msg: String?, handler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "취소", style: .default)
+        let noAction = UIAlertAction(title: "로그인", style: .default, handler: handler)
+        
+        alert.addAction(okAction)
+        alert.addAction(noAction)
+        
+        self.present(alert, animated: true)
+    }
+
+    func normalAlertWithHandler(title: String,
+                                msg: String?,
+                                okTitle: String,
+                                noTitle: String,
+                                handler: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let noAction = UIAlertAction(title: noTitle, style: .default)
-        let okAction = UIAlertAction(title: okTitle, style: .destructive, handler: handler)
+        let okAction = UIAlertAction(title: okTitle, style: .default, handler: handler)
 
         alert.addAction(noAction)
         alert.addAction(okAction)

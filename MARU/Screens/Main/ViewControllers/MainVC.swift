@@ -59,7 +59,7 @@ class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
     }
     //MARK: - Method
