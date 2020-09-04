@@ -67,6 +67,7 @@ class LoginVC: UIViewController {
     }
     
     @objc func didTapCloseButton() {
+        
         if isMain {
             self.dismiss(animated: true)
         }
@@ -105,8 +106,11 @@ extension LoginVC {
             switch responsedata {
                 
             case .success(_):
-                self.delegate?.didLogin()
+                if self.isMain {
+                    self.dismiss(animated: true)
+                }
                 
+                self.delegate?.didLogin()
                 self.navigationController?.popViewController(animated: true)
 
             case .requestErr(let res):
