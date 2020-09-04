@@ -6,6 +6,7 @@
 //  Copyright © 2020 maru. All rights reserved.
 //
 
-enum Keychian: String {
+enum Keychain: String {
     case token = "token"
+    case name = "name"
 }

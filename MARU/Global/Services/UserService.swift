@@ -52,7 +52,7 @@ struct UserService {
                                                                     from: value)
                                     
                                     KeychainWrapper.standard.set(result.data?.accessToken ?? "",
-                                                                 forKey: Keychian.token.rawValue)
+                                                                 forKey: Keychain.token.rawValue)
                                     
                                     completion(.success(result))
                                 } catch {
@@ -243,7 +243,7 @@ struct UserService {
                                                                     from: value)
                                     
                                     KeychainWrapper.standard.set(result.data?.accessToken ?? "",
-                                                                 forKey: Keychian.token.rawValue)
+                                                                 forKey: Keychain.token.rawValue)
                                     
                                     completion(.success(result))
                                 } catch {
@@ -277,12 +277,11 @@ struct UserService {
     func profile(completion: @escaping (NetworkResult<Any>) -> Void) {
         
         let URL = APIConstants.myInfo
-        let token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+        let token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
             "token": token
         ]
-        print(token)
         
         Alamofire.request(URL,
                           method: .get,
@@ -298,8 +297,6 @@ struct UserService {
                     if let value = response.result.value {
                         //response의 respones안에 있는 statusCode를 추출
                         if let status = response.response?.statusCode {
-                            print(status)
-                            dump(value)
                             switch status {
                             case 200:
                                 do {

@@ -138,13 +138,18 @@ class ProfileView: UIView {
         let sb = UIStoryboard(name: "Login", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "LoginNavigationController")
             as! LoginNavigationController
-
+        
 //        rootVC?.navigationController?.navigationBar.backItem?.title = ""
 //        rootVC?.navigationController?.title = ""
 //        rootVC?.navigationController?.navigationItem.backBarButtonItem?.title = ""
         vc.modalPresentationStyle = .overFullScreen
         
-        rootVC?.present(vc, animated: true)
+        let loginVC = sb.instantiateViewController(withIdentifier: "LoginVC")
+            as! LoginVC
+
+        loginVC.delegate = rootVC as? LoginDelegate
+        
+        rootVC?.navigationController?.pushViewController(loginVC, animated: true)
     }
 
 }

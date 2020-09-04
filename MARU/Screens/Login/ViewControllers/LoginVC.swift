@@ -17,13 +17,23 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
-    
+    var delegate: LoginDelegate?
+
+    let closeButton = UIButton().then {
+        $0.setImage(UIImage(named: "deleteIcon"), for: .normal)
+        $0.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextField()
         setButton()
-        setNavigationController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        navigationController?.navigationBar.isHidden = true
     }
 
     func setTextField(){
@@ -43,12 +53,19 @@ class LoginVC: UIViewController {
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         loginButton.backgroundColor = .cornflowerBlue
         signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
+        
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(17)
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+        }
+
     }
     
-    func setNavigationController(){
-        navigationController?.navigationBar.setBackgroundImage(UIImage(),
-                                                               for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+    @objc func didTapCloseButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     @objc func didTapLoginButton(){
@@ -81,10 +98,11 @@ extension LoginVC {
             
             switch responsedata {
                 
-            case .success(let res):
+            case .success(_):
+                self.delegate?.didLogin()
                 
-                print(res)
-                
+                self.navigationController?.popViewController(animated: true)
+
             case .requestErr(let res):
                 
                 print(res)
@@ -105,4 +123,8 @@ extension LoginVC {
         
     }
 
+}
+
+protocol LoginDelegate {
+    func didLogin()
 }

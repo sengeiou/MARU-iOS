@@ -13,17 +13,16 @@ import SnapKit
 import SwiftKeychainWrapper
 import RxSwift
 import RxCocoa
+import SocketIO
 
 struct Message: Codable {
     let name: String
     let message: String
-    let time: Int
 }
 
 class ChatVC: UIViewController {
     
     // MARK: - UI components
-    
     let chatCollectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout()).then
         {
@@ -47,7 +46,7 @@ class ChatVC: UIViewController {
         $0.layer.shadowRadius = 8.0
         $0.layer.shadowOpacity = 0.2
         $0.layer.shadowPath = UIBezierPath(roundedRect: $0.bounds, cornerRadius: $0.layer.cornerRadius).cgPath
-
+        
     }
     
     let outTextFieldView = UIView().then {
@@ -56,17 +55,20 @@ class ChatVC: UIViewController {
         $0.borderColor = .veryLightPinkTwo
         $0.borderWidth = 1
     }
-
+    
     let textField = UITextField().then {
         $0.tintColor = .black22
         $0.backgroundColor = .white
+        $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     let sendButton = UIButton().then {
         $0.setImage(UIImage(named: "chatBtnSend"), for: .normal)
         $0.frame = .init(x: 0, y: 0, width: 30, height: 30)
+        $0.addTarget(self, action: #selector(didTapSendButton), for: .touchUpInside)
+        $0.isHidden = true
     }
-
+    
     let noticeView = UIView().then {
         $0.backgroundColor = .white
     }
@@ -90,7 +92,7 @@ class ChatVC: UIViewController {
     let blurImageView = UIImageView().then {
         $0.image = UIImage(named: "backScrim")
     }
-        
+    
     let ratingGuideLabel = UILabel().then {
         $0.text = "토론은 어떠셨나요?"
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -120,7 +122,7 @@ class ChatVC: UIViewController {
         $0.setImage(UIImage(named: "starGray"), for: .normal)
         $0.addTarget(self, action: #selector(didTapFifth), for: .touchUpInside)
     }
-
+    
     let ratingNameLabel = UILabel().then {
         $0.text = "님의 별점을 평가해주세요."
         $0.font = .systemFont(ofSize: 15, weight: .light)
@@ -133,29 +135,35 @@ class ChatVC: UIViewController {
         $0.isEnabled = false
     }
     
+    
     // MARK: - Variables and Properties
     
-    let id = "오준현"
+    let id = KeychainWrapper.standard.string(forKey: Keychain.name.rawValue)
     var rating = 0
     var roomIndex: Int?
-    
+    var time = 18
     // MARK: - Dummy Data
     
     var chatDummy: [Message] = []
     var chat: [Message] = []
-    
+    var message: String?
+    var name: String?
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         constraint()
-        constraintNotice()
+        
+        if UserDefaults.standard.string(forKey: "deleteid") == "" {
+            constraintNotice()
+        }
+        
         collectionView()
-        KeychainWrapper.standard.set("오준현", forKey: "id")
-
+        
         setNavigation()
-//        setPopUpView()
+        
+        //        setPopUpView()
         
     }
     
@@ -166,9 +174,22 @@ class ChatVC: UIViewController {
         addKeyboardNotification()
         self.chatCollectionView.reloadData()
         scrollToBottom()
+        SocketIOManager.shared.establishConnection(id ?? "")
+        SocketIOManager.shared.connect { (res) in
+            self.name = (res[0] as? String)
+            self.message = (res[1] as? String)
+            self.chatCollectionView.reloadData()
+            //            self.scrollToBottom()
+        }
         
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = true
+        
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
@@ -189,7 +210,13 @@ extension ChatVC {
         bar?.topItem?.title = "외로운도시"
         bar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15,
                                                                                    weight: .medium)]
-
+        
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.setBackgroundImage(UIImage(),
+                                                               for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isHidden = false
     }
     
     func scrollToBottom() {
@@ -213,77 +240,6 @@ extension ChatVC {
         }
     }
     
-    func constraint() {
-        view.addSubview(textFieldView)
-        view.addSubview(outTextFieldView)
-        view.addSubview(textField)
-        view.addSubview(sendButton)
-        view.addSubview(chatCollectionView)
-        view.addSubview(noticeView)
-        view.addSubview(noticeLabel)
-        view.addSubview(noticeDeleteButton)
-        
-        textFieldView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(46)
-        }
-        
-        outTextFieldView.snp.makeConstraints { (make) in
-            make.leading.equalTo(textFieldView.snp.leading).offset(10)
-            make.trailing.equalTo(textFieldView.snp.trailing).offset(-10)
-            make.bottom.equalTo(textFieldView.snp.bottom).inset(4)
-            make.top.equalTo(textFieldView.snp.top).offset(4)
-        }
-
-        textField.snp.makeConstraints { (make) in
-            make.leading.equalTo(outTextFieldView.snp.leading).offset(10)
-            make.trailing.equalTo(sendButton.snp.leading).offset(-5)
-            make.bottom.equalTo(outTextFieldView.snp.bottom).inset(3)
-            make.top.equalTo(outTextFieldView.snp.top).offset(3)
-        }
-        
-        sendButton.snp.makeConstraints { (make) in
-            make.trailing.equalTo(outTextFieldView.snp.trailing).inset(5)
-            make.top.equalTo(outTextFieldView.snp.top).offset(5)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-        }
-        
-        chatCollectionView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalTo(textFieldView.snp.top)
-        }
-        
-        
-    }
-    
-    func constraintNotice(){
-        noticeView.snp.makeConstraints { (make) in
-            make.top.equalTo(chatCollectionView.snp.top)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(60)
-        }
-        
-        noticeLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(chatCollectionView.snp.top).offset(12)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-32)
-            make.height.equalTo(36)
-        }
-        
-        noticeDeleteButton.snp.makeConstraints { (make) in
-            make.top.equalTo(chatCollectionView.snp.top).offset(9)
-            make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(10)
-            make.width.equalTo(10)
-        }
-
-    }
     
     func collectionView() {
         chatCollectionView.delegate = self
@@ -293,7 +249,11 @@ extension ChatVC {
                                     forCellWithReuseIdentifier: Identifier.Chat)
         chatCollectionView.register(MyChatCVCell.self,
                                     forCellWithReuseIdentifier: Identifier.MyChat)
-        
+        let view = UIView()
+        view.backgroundColor = nil
+        chatCollectionView.backgroundView = view
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                          action: #selector(handleTap)))
     }
     
     func delegate() {
@@ -328,8 +288,7 @@ extension ChatVC {
                         
                     } else if chatDummy[index].name == chatDummy[index + 1].name {
                         chat[index + 1] = Message(name: "",
-                                                  message: chatDummy[index+1].message,
-                                                  time: chatDummy[index+1].time)
+                                                  message: chatDummy[index+1].message)
                     }
                 }
                 
@@ -342,185 +301,22 @@ extension ChatVC {
         }
     }
     
-    @objc func didTapFirst(){
-        rating = 1
-        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        secondRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        thirdRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        ratingEndButton.isEnabled = true
-        ratingEndButton.backgroundColor = .cornflowerBlue
-    }
-    @objc func didTapSecond(){
-        rating = 2
-        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        thirdRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        ratingEndButton.isEnabled = true
-        ratingEndButton.backgroundColor = .cornflowerBlue
-    }
-    @objc func didTapThird(){
-        rating = 3
-        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        fourthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        ratingEndButton.isEnabled = true
-        ratingEndButton.backgroundColor = .cornflowerBlue
-    }
-    @objc func didTapFourth(){
-        rating = 4
-        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        fourthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        fifthRatingButton.setImage(UIImage(named: "starGray"), for: .normal)
-        ratingEndButton.isEnabled = true
-        ratingEndButton.backgroundColor = .cornflowerBlue
-    }
-    @objc func didTapFifth(){
-        rating = 5
-        firstRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        secondRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        thirdRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        fourthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        fifthRatingButton.setImage(UIImage(named: "starBlue"), for: .normal)
-        ratingEndButton.isEnabled = true
-        ratingEndButton.backgroundColor = .cornflowerBlue
-    }
-
-
-    func setPopUpView(){
-        blurImageView.bounds = .init(x: 0,
-                                     y: 0,
-                                     width: view.bounds.width,
-                                     height: view.bounds.height)
-        
-        popupView.bounds = CGRect(x: 0,
-                                  y: 0,
-                                  width: self.view.bounds.width*0.8,
-                                  height: 247)
-        
-        ratingEndButton.frame = .init(x: 0,
-                                      y: 0,
-                                      width: popupView.bounds.width,
-                                      height: 54)
-        
-        ratingEndButton.roundedBottom()
-
-        popupView.addSubview(ratingGuideLabel)
-        popupView.addSubview(firstRatingButton)
-        popupView.addSubview(secondRatingButton)
-        popupView.addSubview(thirdRatingButton)
-        popupView.addSubview(fourthRatingButton)
-        popupView.addSubview(fifthRatingButton)
-        popupView.addSubview(ratingNameLabel)
-        popupView.addSubview(ratingEndButton)
-        
-        ratingGuideLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(popupView.snp.top).offset(35)
-            make.centerX.equalTo(popupView.snp.centerX)
-        }
-        
-        firstRatingButton.snp.makeConstraints { (make) in
-            make.top.equalTo(thirdRatingButton.snp.top)
-            make.trailing.equalTo(thirdRatingButton.snp.leading).offset(-46)
-            make.width.equalTo(26)
-            make.height.equalTo(26)
-        }
-        
-        secondRatingButton.snp.makeConstraints { (make) in
-            make.top.equalTo(thirdRatingButton.snp.top)
-            make.trailing.equalTo(thirdRatingButton.snp.leading).offset(-10)
-            make.width.equalTo(26)
-            make.height.equalTo(26)
-        }
-        
-        thirdRatingButton.snp.makeConstraints { (make) in
-            make.top.equalTo(popupView.snp.top).offset(87)
-            make.centerX.equalTo(popupView.snp.centerX)
-            make.width.equalTo(26)
-            make.height.equalTo(26)
-        }
-        
-        fourthRatingButton.snp.makeConstraints { (make) in
-            make.top.equalTo(thirdRatingButton.snp.top)
-            make.leading.equalTo(thirdRatingButton.snp.trailing).offset(10)
-            make.width.equalTo(26)
-            make.height.equalTo(26)
-        }
-        
-        fifthRatingButton.snp.makeConstraints { (make) in
-            make.top.equalTo(thirdRatingButton.snp.top)
-            make.leading.equalTo(thirdRatingButton.snp.trailing).offset(46)
-            make.width.equalTo(26)
-            make.height.equalTo(26)
-        }
-        
-        ratingNameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(popupView.snp.top).offset(142)
-            make.centerX.equalTo(popupView.snp.centerX)
-        }
-        
-        ratingEndButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(popupView.snp.bottom)
-            make.centerX.equalTo(popupView.snp.centerX)
-            make.width.equalTo(popupView.snp.width)
-            make.height.equalTo(54)
-        }
-        
-        let name = "라노벨 정균"
-        let nameString = name + (ratingNameLabel.text ?? "")
-        let attrString = NSMutableAttributedString(string: nameString)
-        attrString.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String),
-                                value: UIFont.systemFont(ofSize: 15, weight: .semibold) as Any,
-                                range: NSMakeRange(0, name.count))
-        ratingNameLabel.attributedText = attrString
-
-        animateScaleIn(desiredView: blurImageView)
-        animateScaleIn(desiredView: popupView)
-        disable(false)
+    
+    @objc func didTapSendButton() {
+        SocketIOManager.shared.sendMessage(roomIndex ?? 1, textField.text ?? "", id ?? "")
+        chat.append(Message.init(name: id ?? "", message: textField.text ?? ""))
+        chatDummy.append(Message.init(name: id ?? "", message: textField.text ?? ""))
+        time += 1
+        textField.text = ""
+        sendButton.isHidden = true
+        chatCollectionView.reloadData()
+        //        scrollToBottom()
     }
     
-    func disable(_ bool: Bool){
-        chatCollectionView.isScrollEnabled = bool
-        noticeDeleteButton.isEnabled = bool
-        textField.isEnabled = bool
-    }
+}
+
+extension ChatVC {
     
-    func animateScaleIn(desiredView: UIView) {
-        let backgroundView = self.view!
-        backgroundView.addSubview(desiredView)
-        desiredView.center = backgroundView.center
-        desiredView.isHidden = false
-        
-        desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        desiredView.alpha = 0
-        
-        UIView.animate(withDuration: 0.2) {
-            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            desiredView.alpha = 1
-        }
-    }
-    
-    func animateScaleOut(desiredView: UIView) {
-        UIView.animate(withDuration: 0.2, animations: {
-            desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            desiredView.alpha = 0
-        }, completion: { (success: Bool) in
-            desiredView.removeFromSuperview()
-        })
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            
-        }, completion: { _ in
-            
-        })
-    }
 }
 
 extension ChatVC: UICollectionViewDelegateFlowLayout {
@@ -557,6 +353,13 @@ extension ChatVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
+        if (name == id) || name == "" || name == nil {
+        } else {
+            chat.append(Message.init(name: name ?? "",
+                                     message: message ?? ""))
+            chatDummy.append(Message.init(name: name ?? "",
+                                          message: message ?? ""))
+        }
         
         return chatDummy.count
     }
@@ -565,7 +368,6 @@ extension ChatVC: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if chatDummy[indexPath.row].name == id {
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.MyChat,
                                                           for: indexPath) as! MyChatCVCell
             cell.message = chat[indexPath.row]
@@ -584,11 +386,15 @@ extension ChatVC: UICollectionViewDataSource {
         }
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+    }
 }
 
 extension ChatVC: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+    func collectionView(_ collectionView: UICollectionView,
+                        prefetchItemsAt indexPaths: [IndexPath]) {
         
     }
     
@@ -598,8 +404,12 @@ extension ChatVC: UICollectionViewDataSourcePrefetching {
 // MARK: - Keyboard
 extension ChatVC {
     func addKeyboardNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
     }
     
     @objc private func keyboardWillShow(_ notification: Notification)  {
@@ -663,5 +473,7 @@ extension ChatVC {
 }
 
 extension ChatVC: UITextFieldDelegate {
-    
+    @objc func textFieldDidChange(_ textField: UITextField){
+        textField.text == "" ? (sendButton.isHidden = true) : (sendButton.isHidden = false)
+    }
 }

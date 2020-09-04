@@ -112,7 +112,8 @@ class HeaderVC: UICollectionReusableView {
     
     @objc func didTapMyPageButton(){
         let sb = UIStoryboard(name: "Profile", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        let vc = sb.instantiateViewController(withIdentifier: "ProfileNavigationController")
+            as! ProfileNavigationController
         vc.modalPresentationStyle = .overFullScreen
         rootVC?.present(vc, animated: true)
     }

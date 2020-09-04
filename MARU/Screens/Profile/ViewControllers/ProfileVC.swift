@@ -11,6 +11,7 @@ import UIKit
 import SwiftKeychainWrapper
 import SnapKit
 
+
 class ProfileVC: UIViewController {
     
     // MARK: - UI components
@@ -22,7 +23,8 @@ class ProfileVC: UIViewController {
     
     var token: String?
     var profile: Profile?
-    
+    var delegate: LoginDelegate?
+
     // MARK: - Dummy Data
     
     var data: [String] = ["이용약관","오픈소스 라이선스"]
@@ -34,16 +36,21 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         
         setTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+        navigationController?.navigationBar.isHidden = true
+        
+        token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
                 
         if token != "" {
             data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
             profileService()
         }
-        
     }
-    
+        
 }
 
 // MARK: - Helper
@@ -103,8 +110,19 @@ extension ProfileVC: UITableViewDataSource {
         switch data[indexPath.row] {
 
         case "로그아웃":
-            print(111)
+            KeychainWrapper.standard.removeAllKeys()
             
+            token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
+                    
+            if token != "" {
+                data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
+                profileService()
+            } else {
+                data = ["이용약관","오픈소스 라이선스"]
+            }
+            
+            tableView.reloadData()
+
         case "이용약관":
             print(222)
             
@@ -130,12 +148,10 @@ extension ProfileVC {
                 
             case .success(let response):
                 let res = response as! ResponseSimpleResult<Profile>
-                
                 self.profile = res.data
-                print(res.data)
-                print(self.profile)
+                KeychainWrapper.standard.set(self.profile?.nickName ?? "",
+                                             forKey: Keychain.name.rawValue)
                 self.profileTableView.reloadData()
-                
             case .requestErr(let res):
                 
                 print(res)
@@ -156,4 +172,12 @@ extension ProfileVC {
         
     }
     
+}
+
+extension ProfileVC: LoginDelegate {
+    func didLogin() {
+        print(#function)
+        data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
+        profileService()
+    }
 }

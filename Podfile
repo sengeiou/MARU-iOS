@@ -16,6 +16,7 @@ target 'MARU' do
   pod 'CHIPageControl', '~> 0.1.3'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
 
 
 

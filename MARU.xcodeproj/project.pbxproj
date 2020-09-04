@@ -47,6 +47,10 @@
 		D11D521724E59B5000683870 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11D521624E59B5000683870 /* Login.storyboard */; };
 		D11D521924E59B6000683870 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D521824E59B6000683870 /* LoginVC.swift */; };
 		D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11D521B24E59CBB00683870 /* Tabbar.swift */; };
+		D12C382D250148130002133F /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12C382C250148130002133F /* SocketIOManager.swift */; };
+		D12C38312501FB5E0002133F /* Chat+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12C38302501FB5E0002133F /* Chat+Constraint.swift */; };
+		D12C383325021C170002133F /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12C383225021C170002133F /* ChatService.swift */; };
+		D12C3835250223C20002133F /* ProfileNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12C3834250223C20002133F /* ProfileNavigationController.swift */; };
 		D1316222250116F3008CE266 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1316221250116F3008CE266 /* LoginNavigationController.swift */; };
 		D13A8F4424E596E700BB1656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4324E596E700BB1656 /* AppDelegate.swift */; };
 		D13A8F4624E596E700BB1656 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A8F4524E596E700BB1656 /* SceneDelegate.swift */; };
@@ -148,6 +152,10 @@
 		D11D521624E59B5000683870 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		D11D521824E59B6000683870 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D11D521B24E59CBB00683870 /* Tabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		D12C382C250148130002133F /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		D12C38302501FB5E0002133F /* Chat+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chat+Constraint.swift"; sourceTree = "<group>"; };
+		D12C383225021C170002133F /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		D12C3834250223C20002133F /* ProfileNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationController.swift; sourceTree = "<group>"; };
 		D1316221250116F3008CE266 /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		D13A8F4024E596E700BB1656 /* MARU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MARU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13A8F4324E596E700BB1656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +281,7 @@
 			children = (
 				D11D520324E59A5F00683870 /* ProfileVC.swift */,
 				D1E4D92624FA94FD00732DB7 /* ProfileView.swift */,
+				D12C3834250223C20002133F /* ProfileNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -332,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				D11D520F24E59AB000683870 /* ChatVC.swift */,
+				D12C38302501FB5E0002133F /* Chat+Constraint.swift */,
 			);
 			path = ViewContollers;
 			sourceTree = "<group>";
@@ -516,6 +526,8 @@
 				F2E730A624FEA0C900E515BF /* SearchMoimService.swift */,
 				F226B29E24FF6E04005E1C3D /* CreateQuizService.swift */,
 				F226B2A024FF7839005E1C3D /* EntryMoimInfoService.swift */,
+				D12C382C250148130002133F /* SocketIOManager.swift */,
+				D12C383225021C170002133F /* ChatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -860,8 +872,10 @@
 				7FFA711224ED8A33000C1D33 /* MoimCVCell.swift in Sources */,
 				D174F1A224EC5DCE0095DEB6 /* SearchResultTVCell.swift in Sources */,
 				F226B29F24FF6E04005E1C3D /* CreateQuizService.swift in Sources */,
+				D12C383325021C170002133F /* ChatService.swift in Sources */,
 				77B0507224FBBDF3007545C8 /* FourthQuizVC.swift in Sources */,
 				7732D12224F2F60F003C772D /* FirstQuizVC + Constraints.swift in Sources */,
+				D12C38312501FB5E0002133F /* Chat+Constraint.swift in Sources */,
 				77598B4324F97A590095DA5D /* MainPopularMeetingService.swift in Sources */,
 				D16EEE4124EBF8C000D0994F /* Spinner.swift in Sources */,
 				D11D520824E59A7800683870 /* FirstQuizVC.swift in Sources */,
@@ -875,6 +889,7 @@
 				D13D627D24E83A7700A3A4A1 /* Date+Extension.swift in Sources */,
 				D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */,
 				F212DB3624F8240C00759BA9 /* SearchBookService.swift in Sources */,
+				D12C382D250148130002133F /* SocketIOManager.swift in Sources */,
 				D13D627324E8316100A3A4A1 /* Font.swift in Sources */,
 				F271710724EFC5FE00FDAB01 /* SearchTVCell.swift in Sources */,
 				F226B2A124FF7839005E1C3D /* EntryMoimInfoService.swift in Sources */,
@@ -915,6 +930,7 @@
 				D11D521924E59B6000683870 /* LoginVC.swift in Sources */,
 				77FAE04124F54B0000FB473C /* HeaderVC + Constraints.swift in Sources */,
 				D13D627924E83A5100A3A4A1 /* UIButton+Extension.swift in Sources */,
+				D12C3835250223C20002133F /* ProfileNavigationController.swift in Sources */,
 				D1AD279924EC5E8800B32D32 /* SearchVC.swift in Sources */,
 				D13D627F24E83A8500A3A4A1 /* UITableView+Extension.swift in Sources */,
 				F212DB3424F823A300759BA9 /* SearchBookResult.swift in Sources */,
@@ -1063,7 +1079,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1085,7 +1101,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

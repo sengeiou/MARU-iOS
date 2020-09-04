@@ -9,7 +9,7 @@
 import UIKit
 
 class SignUpVC: UIViewController {
-
+    
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordCertificationTextField: UITextField!
@@ -19,7 +19,7 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var passwordCheckImage: UIImageView!
     @IBOutlet weak var passwordCertificationCheckImage: UIImageView!
     @IBOutlet weak var nicknameCheckImage: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,23 +31,27 @@ class SignUpVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.setBackgroundImage(UIImage(),
+                                                               for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isHidden = false
     }
     
     func setTextField(){
         idTextField.attributedPlaceholder =
             NSAttributedString(string: "아이디",
-                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder =
             NSAttributedString(string: "비밀번호",
-                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordCertificationTextField.attributedPlaceholder =
             NSAttributedString(string: "비밀번호 확인",
-                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         nameTextField.attributedPlaceholder =
             NSAttributedString(string: "닉네임",
-                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
         idTextField.delegate = self
         passwordTextField.delegate = self
@@ -59,11 +63,11 @@ class SignUpVC: UIViewController {
         nameTextField.addTarget(self, action: #selector(checkNickNameTextField),
                                 for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(checkPasswordTextField),
-                                for: .editingChanged)
+                                    for: .editingChanged)
         passwordCertificationTextField.addTarget(self, action: #selector(checkPasswordCertificationTextField),
-                                for: .editingChanged)
+                                                 for: .editingChanged)
     }
-
+    
     
     func setButton(){
         signUpButton.backgroundColor = .cornflowerBlue
@@ -76,14 +80,14 @@ class SignUpVC: UIViewController {
         passwordCertificationCheckImage.alpha = 0
         nicknameCheckImage.alpha = 0
     }
-
+    
     @objc func didTapSignUpButton(){
         
         signUpService(idTextField.text ?? "",
                       passwordTextField.text ?? "",
                       nameTextField.text ?? "")
     }
-
+    
 }
 
 extension SignUpVC: UITextFieldDelegate {
@@ -115,7 +119,7 @@ extension SignUpVC: UITextFieldDelegate {
         } else {
             passwordCheckImage.alpha = 0
             passwordCertificationCheckImage.alpha = 0
-
+            
         }
     }
 }
@@ -128,14 +132,13 @@ extension SignUpVC {
             switch responsedata {
                 
             case .success(_):
-
                 
-                self.navigationController?.popToRootViewController(animated: true)
-
+                self.navigationController?.popViewController(animated: true)
+                
             case .requestErr(let res):
                 
                 print(res)
-
+                
             case .pathErr:
                 print(".pathErr")
                 
@@ -164,19 +167,19 @@ extension SignUpVC {
             case .requestErr(_):
                 
                 self.idCheckImage.alpha = 0
-
+                
             case .pathErr:
                 
                 self.idCheckImage.alpha = 0
-
+                
             case .serverErr:
                 
                 self.idCheckImage.alpha = 0
-
+                
             case .networkFail :
                 
                 self.idCheckImage.alpha = 0
-
+                
             }
         }
         
@@ -194,22 +197,22 @@ extension SignUpVC {
             case .requestErr(_):
                 
                 self.nicknameCheckImage.alpha = 0
-
+                
             case .pathErr:
-
+                
                 self.nicknameCheckImage.alpha = 0
-
+                
             case .serverErr:
                 
                 self.nicknameCheckImage.alpha = 0
-
+                
             case .networkFail :
                 
                 self.nicknameCheckImage.alpha = 0
-
+                
             }
         }
         
     }
-
+    
 }
