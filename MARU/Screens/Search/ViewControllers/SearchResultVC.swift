@@ -116,6 +116,7 @@ extension SearchResultVC: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFill
         cell.searchedMoimResult = searchedMoimResult?[indexPath.row]
         cell.setCell()
+        cell.selectionStyle = .none
         roomIdx = cell.roomIdx
         print("방번호??\(roomIdx)")
         return cell

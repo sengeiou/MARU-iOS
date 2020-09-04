@@ -44,5 +44,8 @@ class SearchResultTVCell: UITableViewCell {
         searchMoimZang.text = searchedMoimResult?.nickName
         searchMoimIntro.text = searchedMoimResult?.info
         roomIdx = searchedMoimResult?.roomIdx
+//        let originPostTime = searchedMoimResult?.createdAt
+//        let postTimeDateFormat = originPostTime?.getDateFormat(time: originPostTime!)
+//        searchMoimValidate.text = postTimeDateFormat?.timeAgoSince(postTimeDateFormat!)
     }
 }

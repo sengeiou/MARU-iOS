@@ -85,6 +85,12 @@ extension SearchEntryMoimVC {
             self.entryMoimZzang.text = res.nickName
             self.entryScoreLabel.text = res.avgRating
             self.entryMoimPerson.text = String(res.peopleCount)
+            self.entryIntroLabel.text = res.info
+            
+            let originPostTime = res.createdAt
+            let postTimeDateFormat = originPostTime.getDateFormat(time: originPostTime)
+            self.entryLeftTime.text = postTimeDateFormat?.timeAgoSince(postTimeDateFormat!)
+            print("남은일수\(postTimeDateFormat?.timeAgoSince(postTimeDateFormat!))")
             
             
         case .requestErr(_):

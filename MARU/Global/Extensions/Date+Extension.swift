@@ -28,13 +28,16 @@ extension Date {
         if let week = components.weekOfYear, week >= 2 {
             return "\(week)주 전"
         }
-                
+        
+        // 남은 일수 계산
         if let day = components.day, day >= 2 {
-            return "\(day)일 전"
+            let remain = 7 - day
+            return "\(remain)일 전"
         }
         
         if let day = components.day, day >= 1 {
-            return "어제"
+            let remain = 7 - day
+            return "\(remain)"
         }
         
         if let hour = components.hour, hour >= 2 {
