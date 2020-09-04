@@ -16,15 +16,17 @@ struct EntryMoimInfoService{
     private init(){}
     static let shared = EntryMoimInfoService()
     
-    func entryMoimInfoService(_ roomIdx: String, completion: @escaping(NetworkResult<Any>)->
+    func entryMoimInfoService(_ roomIdx: Int, completion: @escaping(NetworkResult<Any>)->
         Void){
         
-        let URL = APIConstants.IntroMoim + roomIdx
+        let URL = APIConstants.IntroMoim + "\(roomIdx)"
+        print("주소: \(URL)")
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-        Alamofire.request(URL,method: .get,parameters: nil,encoding: URLEncoding.queryString,headers: headers).responseData{
+        Alamofire.request(URL,method: .get,parameters: nil,encoding: JSONEncoding.default ,headers: headers).responseData{
             response in
+            dump(response.result)
             
             switch response.result {
                 
@@ -37,10 +39,9 @@ struct EntryMoimInfoService{
                         case 200:
                             do{
                                 let decoder = JSONDecoder()
-                                let result = try decoder.decode(ResponseResult<SearchMoimResult>.self,
-                                                                from: value)
+                                let result = try decoder.decode(ResponseResult<MoimInfoResult>.self,from: value)
                                 
-                                completion(.success(result.data ?? [SearchMoimResult].self))
+                                completion(.success(result.data ?? [MoimInfoResult].self))
                                 dump(result)
                             } catch {
                                 completion(.pathErr)
@@ -48,7 +49,7 @@ struct EntryMoimInfoService{
                         case 400:
                             do{
                                 let decoder = JSONDecoder()
-                                let result = try decoder.decode(ResponseTempResult.self,
+                                let result = try decoder.decode(MoimInfoResult.self,
                                                                 from: value)
                                 completion(.requestErr(result))
                             } catch {

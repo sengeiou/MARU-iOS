@@ -8,9 +8,9 @@
 
 import Foundation
 import Alamofire
-
+import SwiftKeychainWrapper
 // MARK:- 토론 검색  // GET 책 검색 - 토론방 개설 목적 search/book?title=책제목
-//static let searchBook = BaseURL + "search/book"
+//static let searchBook = BaseURL + "search/room"
 struct SearchMoimService {
 
     private init(){}
@@ -21,10 +21,14 @@ struct SearchMoimService {
         
         guard let title = title.stringByAddingPercentEncodingForFormData() else { return }
         let URL = APIConstants.searchMoim + "?title=" + title
+        let token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
         let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "token": token
         ]
         print(URL)
+        print(token)
+        
         Alamofire.request(URL,
                           method: .get,
                           parameters: nil,
