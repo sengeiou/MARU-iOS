@@ -44,6 +44,7 @@ class ProfileView: UIView {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         $0.setTitleColor(.veryLightPink, for: .normal)
         $0.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        $0.contentHorizontalAlignment = .left
     }
     
     let loginSecondButton = UIButton().then {
@@ -55,6 +56,8 @@ class ProfileView: UIView {
         $0.titleLabel?.numberOfLines = 0
         $0.setTitleColor(.veryLightPink, for: .normal)
         $0.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        $0.titleLabel?.textAlignment = .left
+        $0.contentHorizontalAlignment = .left
     }
 
     var data: Profile?
@@ -117,14 +120,14 @@ class ProfileView: UIView {
         loginButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(60)
             make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(162)
+            make.width.equalTo(300)
             make.height.equalTo(35)
         }
         
         loginSecondButton.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(111)
             make.leading.equalToSuperview().offset(16)
-            make.width.equalTo(184)
+            make.trailing.equalToSuperview()
             make.height.equalTo(46)
         }
 

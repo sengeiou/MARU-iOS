@@ -10,6 +10,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import SwiftKeychainWrapper
 
 class LoginVC: UIViewController {
 
@@ -58,7 +59,7 @@ class LoginVC: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.leading.equalToSuperview().offset(17)
             make.width.equalTo(16)
             make.height.equalTo(16)
@@ -111,6 +112,7 @@ extension LoginVC {
                 }
                 
                 self.delegate?.didLogin()
+                self.profileService()
                 self.navigationController?.popViewController(animated: true)
 
             case .requestErr(let res):
@@ -132,6 +134,37 @@ extension LoginVC {
         }
         
     }
+    
+    func profileService() {
+        UserService.shared.profile() { responsedata in
+            
+            switch responsedata {
+                
+            case .success(let response):
+                let res = response as! ResponseSimpleResult<Profile>
+                KeychainWrapper.standard.set(res.data?.nickName ?? "",
+                                             forKey: Keychain.name.rawValue)
+                
+            case .requestErr(let res):
+                
+                print(res)
+                
+            case .pathErr:
+                print(".pathErr")
+                
+            case .serverErr:
+                
+                print(".serverErr")
+                
+            case .networkFail :
+                
+                print("failure")
+                
+            }
+        }
+        
+    }
+
 
 }
 

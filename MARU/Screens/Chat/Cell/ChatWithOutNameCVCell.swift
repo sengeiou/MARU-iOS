@@ -1,8 +1,8 @@
 //
-//  MyChatCVCell.swift
+//  ChatWithOutNameCVCell.swift
 //  MARU
 //
-//  Created by 오준현 on 2020/08/18.
+//  Created by 오준현 on 2020/09/05.
 //  Copyright © 2020 maru. All rights reserved.
 //
 
@@ -12,10 +12,15 @@ import Then
 import SnapKit
 import SwiftKeychainWrapper
 
-class MyChatCVCell: UICollectionViewCell {
+class ChatWithOutNameCVCell: UICollectionViewCell {
     
     let id = KeychainWrapper.standard.string(forKey: "id")
     var message: Chat?
+    
+    let nameLabel = UILabel().then {
+        $0.font = Font.chatNameLabel
+        $0.numberOfLines = 0
+    }
     
     let chatLabel = UILabel().then {
         $0.font = Font.chatLabel
@@ -31,7 +36,8 @@ class MyChatCVCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-
+        
+        nameLabel.text = nil
         chatLabel.text = nil
         chatBubbleView.backgroundColor = .white
         chatBubbleView.setBorder(borderColor: .black22, borderWidth: 0)
@@ -43,36 +49,42 @@ class MyChatCVCell: UICollectionViewCell {
         self.setNeedsLayout()
         self.layoutIfNeeded()
     }
-
+    
     
     func setConstraint() {
         contentView.addSubview(chatBubbleView)
         contentView.addSubview(chatLabel)
-
-        chatLabel.text = message?.msg
-        chatLabel.sizeToFit()
+        if message?.nickName != "" {
+            contentView.addSubview(nameLabel)
+            nameLabel.text = message?.nickName
+            nameLabel.sizeToFit()
+        }
         
         contentView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                 action: #selector(viewTap)))
         chatBubbleView.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                action: #selector(chatTap)))
+                                                                   action: #selector(chatTap)))
         chatBubbleView.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
                                                                          action: #selector(chatLongTap)))
-
-    }
-    
-    func find() {
-        setMyChat()
-    }
-    
-    func setMyChat(){
-        chatBubbleView.backgroundColor = .veryLightPinkTwo
         
-        chatLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView.snp.top).offset(11)
-            make.trailing.equalTo(contentView.snp.trailing).offset(-20)
-            make.width.lessThanOrEqualTo(contentView.snp.width).offset(-100)
+        chatLabel.text = message?.msg
+        chatLabel.sizeToFit()
+    }
+    
+    
+    func setOtherChat(){
+        chatBubbleView.setBorder(borderColor: .black22, borderWidth: 1)
+        chatBubbleView.backgroundColor = .white
+        
+        if message?.nickName == "" {
+            chatLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(contentView.snp.top).offset(11)
+                make.leading.equalTo(contentView.snp.leading).offset(20)
+                make.width.lessThanOrEqualTo(contentView.snp.width).offset(-100)
+            }
+            chatLabel.sizeToFit()
         }
+        
         chatLabel.sizeToFit()
         
         chatBubbleView.snp.makeConstraints { (make) in
@@ -81,11 +93,13 @@ class MyChatCVCell: UICollectionViewCell {
             make.trailing.equalTo(chatLabel.snp.trailing).offset(13)
             make.bottom.equalTo(chatLabel.snp.bottom).offset(11)
         }
+        
     }
     
     @objc func viewTap(sender: UITapGestureRecognizer) {
+        print(#function)
         self.rootVC?.view.endEditing(true)
-
+        
     }
     
     @objc func chatTap(sender: UITapGestureRecognizer) {
@@ -95,6 +109,10 @@ class MyChatCVCell: UICollectionViewCell {
     
     @objc func chatLongTap(sender: UILongPressGestureRecognizer) {
         print(#function)
+        
+        self.rootVC?.simpleAlert(title: "신고 기능이 들어갈", message: "거에요")
+        
     }
-
+    
 }
+

@@ -12,7 +12,7 @@ class SocketIOManager: NSObject {
     
     static let shared = SocketIOManager()
     
-    var manager = SocketManager(socketURL: URL(string: "http://52.79.90.119:8080/chat/12")!,
+    var manager = SocketManager(socketURL: URL(string: "http://52.79.90.119:8080/chat/0")!,
                                 config: [.log(false), .compress])
     
     var socket: SocketIOClient!
@@ -42,13 +42,17 @@ class SocketIOManager: NSObject {
         socket.on("chat message") { (data, ack) in
             completion(data)
         }
+        socket.on("joinRoom") { (data, ack) in
+            print(data)
+        }
+
     }
     
     func sendMessage(_ roomIndex: Int,
                      _ message: String,
                      _ nickname: String) {
         socket.emit("joinRoom", nickname)
-        socket.emit("chat message", roomIndex, message, nickname)
+        socket.emit("chat message", nickname, message, roomIndex)
     }
     
 }

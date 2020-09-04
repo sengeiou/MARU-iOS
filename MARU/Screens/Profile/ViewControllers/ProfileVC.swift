@@ -41,12 +41,13 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        profileService()
+        
         navigationController?.navigationBar.isHidden = true
         
         token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
-                
         if token != "" {
-            data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
+            data = ["로그아웃","이용약관","오픈소스 라이선스"]
             profileService()
         }
     }
@@ -115,8 +116,8 @@ extension ProfileVC: UITableViewDataSource {
             token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
                     
             if token != "" {
-                data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
-                profileService()
+                data = ["로그아웃","이용약관","오픈소스 라이선스"]
+
             } else {
                 data = ["이용약관","오픈소스 라이선스"]
             }
@@ -142,6 +143,7 @@ extension ProfileVC: UITableViewDataSource {
 
 extension ProfileVC {
     func profileService() {
+        print(#function)
         UserService.shared.profile() { responsedata in
             
             switch responsedata {
@@ -172,11 +174,42 @@ extension ProfileVC {
         
     }
     
+    func signOut() {
+        UserService.shared.signOut("123") { responsedata in
+            
+            switch responsedata {
+                
+            case .success(let response):
+                _ = response as! ResponseTempResult
+                KeychainWrapper.standard.removeAllKeys()
+                
+                self.token != "" ? (self.data = ["로그아웃","이용약관","오픈소스 라이선스"]) : (self.data = ["이용약관","오픈소스 라이선스"])
+                
+                self.profileTableView.reloadData()
+            case .requestErr(let res):
+                
+                print(res)
+                
+            case .pathErr:
+                print(".pathErr")
+                
+            case .serverErr:
+                
+                print(".serverErr")
+                
+            case .networkFail :
+                
+                print("failure")
+                
+            }
+        }
+        
+    }
+
 }
 
 extension ProfileVC: LoginDelegate {
     func didLogin() {
-        print(#function)
         data = ["로그아웃","이용약관","오픈소스 라이선스","회원탈퇴"]
         profileService()
     }

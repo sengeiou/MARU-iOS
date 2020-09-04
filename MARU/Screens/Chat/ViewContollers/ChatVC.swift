@@ -138,16 +138,20 @@ class ChatVC: UIViewController {
     
     // MARK: - Variables and Properties
     
-    let id = KeychainWrapper.standard.string(forKey: Keychain.name.rawValue)
+    var id = KeychainWrapper.standard.string(forKey: Keychain.name.rawValue)
     var rating = 0
-    var roomIndex: Int?
+    var roomIndex: Int = 5
     var time = 18
+    var size: CGFloat = 0
+    var isKeyboardShow: Bool = false
+    var keyboardH: CGFloat = 0
     // MARK: - Dummy Data
     
-    var chatDummy: [Message] = []
-    var chat: [Message] = []
+    var chatDummy: [Chat] = []
+    var chat: [Chat] = []
     var message: String?
     var name: String?
+    var bookTitle: String = "MARU"
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -170,17 +174,24 @@ class ChatVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchChatData()
+        id = KeychainWrapper.standard.string(forKey: Keychain.name.rawValue)
+        
+        //        fetchChatData()
+        chatService()
         addKeyboardNotification()
         self.chatCollectionView.reloadData()
         scrollToBottom()
         SocketIOManager.shared.establishConnection(id ?? "")
         SocketIOManager.shared.connect { (res) in
+            print(res[0])
+            print(res[1])
             self.name = (res[0] as? String)
             self.message = (res[1] as? String)
             self.chatCollectionView.reloadData()
             //            self.scrollToBottom()
         }
+        
+        delegate()
         
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = true
@@ -189,7 +200,7 @@ class ChatVC: UIViewController {
     
     @objc func handleTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
-
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,
@@ -207,7 +218,7 @@ extension ChatVC {
         bar?.setBackgroundImage(UIImage(), for: .default)
         bar?.shadowImage = UIImage()
         bar?.isTranslucent = true
-        bar?.topItem?.title = "외로운도시"
+        navigationItem.title = bookTitle
         bar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15,
                                                                                    weight: .medium)]
         
@@ -249,11 +260,13 @@ extension ChatVC {
                                     forCellWithReuseIdentifier: Identifier.Chat)
         chatCollectionView.register(MyChatCVCell.self,
                                     forCellWithReuseIdentifier: Identifier.MyChat)
+        chatCollectionView.register(ChatWithOutNameCVCell.self,
+                                    forCellWithReuseIdentifier: Identifier.ChatWithOutName)
         let view = UIView()
         view.backgroundColor = nil
         chatCollectionView.backgroundView = view
         view.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                          action: #selector(handleTap)))
+                                                         action: #selector(handleTap)))
     }
     
     func delegate() {
@@ -272,7 +285,7 @@ extension ChatVC {
         
         let spinner = Spinner.init()
         spinner.show()
-        
+        chatService()
         if let url = Bundle.main.url(forResource: "chat", withExtension: "json") {
             DispatchQueue.main.async {
                 spinner.hide()
@@ -280,15 +293,17 @@ extension ChatVC {
             do {
                 let data = try Data.init(contentsOf: url)
                 let decoder = JSONDecoder.init()
-                self.chatDummy = try decoder.decode([Message].self, from: data)
-                self.chat = try decoder.decode([Message].self, from: data)
+                self.chatDummy = try decoder.decode([Chat].self, from: data)
+                self.chat = try decoder.decode([Chat].self, from: data)
                 
                 for index in 0 ..< chatDummy.count - 1 {
-                    if chatDummy[index].name == id {
+                    if chatDummy[index].nickName == id {
                         
-                    } else if chatDummy[index].name == chatDummy[index + 1].name {
-                        chat[index + 1] = Message(name: "",
-                                                  message: chatDummy[index+1].message)
+                    } else if chatDummy[index].nickName == chatDummy[index + 1].nickName {
+                        chat[index + 1] = Chat(nickName: "",
+                                               msg: chatDummy[index+1].msg,
+                                               chatTime: chatDummy[index+1].chatTime,
+                                               roomIdx: chatDummy[index+1].roomIdx)
                     }
                 }
                 
@@ -303,20 +318,88 @@ extension ChatVC {
     
     
     @objc func didTapSendButton() {
-        SocketIOManager.shared.sendMessage(roomIndex ?? 1, textField.text ?? "", id ?? "")
-        chat.append(Message.init(name: id ?? "", message: textField.text ?? ""))
-        chatDummy.append(Message.init(name: id ?? "", message: textField.text ?? ""))
+        SocketIOManager.shared.sendMessage(roomIndex,
+                                           textField.text ?? "",
+                                           id ?? "")
+        
+        chat.append(Chat(nickName: id ?? "",
+                         msg: textField.text ?? "",
+                         chatTime: "",
+                         roomIdx: roomIndex))
+        chatDummy.append(Chat(nickName: id ?? "",
+                              msg: textField.text ?? "",
+                              chatTime: "",
+                              roomIdx: roomIndex))
         time += 1
         textField.text = ""
         sendButton.isHidden = true
         chatCollectionView.reloadData()
-        //        scrollToBottom()
+        
+        if isKeyboardShow {
+            if size < chatCollectionView.frame.height + 10 + keyboardH {
+                scrollToBottomAnimate()
+            }
+        } else {
+            if size < chatCollectionView.frame.height + 10 {
+                scrollToBottomAnimate()
+            }
+        }
+        
     }
     
 }
 
 extension ChatVC {
+    func chatService() {
+        ChatService.shared.messages(String(roomIndex)) { responsedata in
+            
+            switch responsedata {
+                
+            case .success(let response):
+                let res = response as! ResponseResult<Chat>
+                
+                self.chat = res.data ?? []
+                self.chatDummy = res.data ?? []
+                
+                for index in 0 ..< self.chatDummy.count - 1 {
+                    if self.chatDummy[index].nickName == self.id {
+                        
+                    } else if self.chatDummy[index].nickName == self.chatDummy[index + 1].nickName {
+                        self.chat[index + 1] = Chat(nickName: "",
+                                                    msg: self.chatDummy[index+1].msg,
+                                                    chatTime: self.chatDummy[index+1].chatTime,
+                                                    roomIdx: self.chatDummy[index+1].roomIdx)
+                    }
+                }
+                
+                self.chatCollectionView.reloadData()
+                self.scrollToBottom()
+            case .requestErr(let res):
+                
+                print(res)
+                
+            case .pathErr:
+                print(".pathErr")
+                
+            case .serverErr:
+                
+                print(".serverErr")
+                
+            case .networkFail :
+                
+                print("failure")
+                
+            }
+        }
+        
+    }
     
+}
+
+extension ChatVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        size = scrollView.contentSize.height - scrollView.contentOffset.y
+    }
 }
 
 extension ChatVC: UICollectionViewDelegateFlowLayout {
@@ -327,13 +410,13 @@ extension ChatVC: UICollectionViewDelegateFlowLayout {
         let chatting = chatDummy[indexPath.item]
         let size = CGSize(width: 250, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        var estimatedFrame = NSString(string: chatting.message)
+        var estimatedFrame = NSString(string: chatting.msg)
             .boundingRect(with: size,
                           options: options,
                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)],
                           context: nil)
         
-        if chatDummy[indexPath.row].name == id || chat[indexPath.row].name == "" {
+        if chatDummy[indexPath.row].nickName == id || chat[indexPath.row].nickName == "" {
             estimatedFrame.size.height += 3
         } else {
             estimatedFrame.size.height += 22
@@ -353,12 +436,18 @@ extension ChatVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
+        print(name ?? "", message ?? "")
         if (name == id) || name == "" || name == nil {
         } else {
-            chat.append(Message.init(name: name ?? "",
-                                     message: message ?? ""))
-            chatDummy.append(Message.init(name: name ?? "",
-                                          message: message ?? ""))
+            chat.append(Chat(nickName: name ?? "",
+                             msg: message ?? "",
+                             chatTime: "",
+                             roomIdx: roomIndex))
+            
+            chatDummy.append(Chat(nickName: name ?? "",
+                                  msg: message ?? "",
+                                  chatTime: "",
+                                  roomIdx: roomIndex))
         }
         
         return chatDummy.count
@@ -367,28 +456,43 @@ extension ChatVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if chatDummy[indexPath.row].name == id {
+        if chatDummy[indexPath.row].nickName == id {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.MyChat,
                                                           for: indexPath) as! MyChatCVCell
             cell.message = chat[indexPath.row]
             cell.setConstraint()
             cell.setMyChat()
+            cell.rootVC = self
             
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.Chat,
-                                                          for: indexPath) as! ChatCVCell
-            cell.message = chat[indexPath.row]
-            cell.setConstraint()
-            cell.setOtherChat()
-            
-            return cell
+            if chat[indexPath.row].nickName == "" {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.ChatWithOutName,
+                                                              for: indexPath) as! ChatWithOutNameCVCell
+                cell.message = chat[indexPath.row]
+                cell.setConstraint()
+                cell.setOtherChat()
+                cell.rootVC = self
+                
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifier.Chat,
+                                                              for: indexPath) as! ChatCVCell
+                cell.message = chat[indexPath.row]
+                cell.setConstraint()
+                cell.setOtherChat()
+                cell.rootVC = self
+                
+                return cell
+                
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         print(#function)
+        print(chat[indexPath.row])
     }
 }
 
@@ -397,8 +501,6 @@ extension ChatVC: UICollectionViewDataSourcePrefetching {
                         prefetchItemsAt indexPaths: [IndexPath]) {
         
     }
-    
-    
 }
 
 // MARK: - Keyboard
@@ -435,6 +537,8 @@ extension ChatVC {
                 $0.bottom.equalTo(textFieldView.snp.top)
             }
             
+            isKeyboardShow = true
+            keyboardH = keyboardHeight - bottomPadding
             
             self.view.setNeedsLayout()
             UIView.animate(withDuration: duration,
@@ -459,7 +563,8 @@ extension ChatVC {
                 $0.bottom.equalTo(textFieldView.snp.top)
             }
             
-            
+            isKeyboardShow = false
+
             self.view.setNeedsLayout()
             UIView.animate(withDuration: duration,
                            delay: 0,
@@ -475,5 +580,20 @@ extension ChatVC {
 extension ChatVC: UITextFieldDelegate {
     @objc func textFieldDidChange(_ textField: UITextField){
         textField.text == "" ? (sendButton.isHidden = true) : (sendButton.isHidden = false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let txt = textField.text, txt.count >= 1 {
+            textField.resignFirstResponder()
+            return true
+        }
+        
+        return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        didTapSendButton()
     }
 }

@@ -76,9 +76,9 @@
 		D13D628324E83AB300A3A4A1 /* UITabbar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D628224E83AB300A3A4A1 /* UITabbar+Extension.swift */; };
 		D13D628524E8403700A3A4A1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13D628424E8403700A3A4A1 /* UIColor+Extension.swift */; };
 		D16EEE4124EBF8C000D0994F /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16EEE4024EBF8C000D0994F /* Spinner.swift */; };
-		D16EEE4324EBF93B00D0994F /* chat.json in Resources */ = {isa = PBXBuildFile; fileRef = D16EEE4224EBF93B00D0994F /* chat.json */; };
 		D16EEE4524EBFB0800D0994F /* MyChatCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16EEE4424EBFB0800D0994F /* MyChatCVCell.swift */; };
 		D174F1A224EC5DCE0095DEB6 /* SearchResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D174F1A124EC5DCE0095DEB6 /* SearchResultTVCell.swift */; };
+		D17C02A52502C309003156BC /* ChatWithOutNameCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C02A42502C309003156BC /* ChatWithOutNameCVCell.swift */; };
 		D1AD279024EC5E2A00B32D32 /* SearchResultTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AD278F24EC5E2A00B32D32 /* SearchResultTVCell.xib */; };
 		D1AD279324EC5E6200B32D32 /* SearchEntryMoimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279224EC5E6200B32D32 /* SearchEntryMoimVC.swift */; };
 		D1AD279524EC5E7A00B32D32 /* SearchNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */; };
@@ -183,9 +183,9 @@
 		D13D628224E83AB300A3A4A1 /* UITabbar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabbar+Extension.swift"; sourceTree = "<group>"; };
 		D13D628424E8403700A3A4A1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D16EEE4024EBF8C000D0994F /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
-		D16EEE4224EBF93B00D0994F /* chat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chat.json; sourceTree = "<group>"; };
 		D16EEE4424EBFB0800D0994F /* MyChatCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChatCVCell.swift; sourceTree = "<group>"; };
 		D174F1A124EC5DCE0095DEB6 /* SearchResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTVCell.swift; sourceTree = "<group>"; };
+		D17C02A42502C309003156BC /* ChatWithOutNameCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWithOutNameCVCell.swift; sourceTree = "<group>"; };
 		D1AD278F24EC5E2A00B32D32 /* SearchResultTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTVCell.xib; sourceTree = "<group>"; };
 		D1AD279224EC5E6200B32D32 /* SearchEntryMoimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEntryMoimVC.swift; sourceTree = "<group>"; };
 		D1AD279424EC5E7A00B32D32 /* SearchNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavVC.swift; sourceTree = "<group>"; };
@@ -579,7 +579,6 @@
 		D13A8F7124E5993000BB1656 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				D16EEE4224EBF93B00D0994F /* chat.json */,
 				D13D626D24E8245100A3A4A1 /* Cell */,
 				D11D520E24E59A9E00683870 /* Storyboards */,
 				D11D520D24E59A9800683870 /* ViewContollers */,
@@ -639,6 +638,7 @@
 			children = (
 				D13D626E24E82EF600A3A4A1 /* ChatCVCell.swift */,
 				D16EEE4424EBFB0800D0994F /* MyChatCVCell.swift */,
+				D17C02A42502C309003156BC /* ChatWithOutNameCVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -800,7 +800,6 @@
 				D11D51F924E599FE00683870 /* Profile.storyboard in Resources */,
 				F2B9A1FD24F01AE00069D1D4 /* CreateTVCell.xib in Resources */,
 				D11D51F724E599F600683870 /* Search.storyboard in Resources */,
-				D16EEE4324EBF93B00D0994F /* chat.json in Resources */,
 				D13A8F4B24E596E700BB1656 /* Main.storyboard in Resources */,
 				D11D521724E59B5000683870 /* Login.storyboard in Resources */,
 			);
@@ -875,6 +874,7 @@
 				D12C383325021C170002133F /* ChatService.swift in Sources */,
 				77B0507224FBBDF3007545C8 /* FourthQuizVC.swift in Sources */,
 				7732D12224F2F60F003C772D /* FirstQuizVC + Constraints.swift in Sources */,
+				D17C02A52502C309003156BC /* ChatWithOutNameCVCell.swift in Sources */,
 				D12C38312501FB5E0002133F /* Chat+Constraint.swift in Sources */,
 				77598B4324F97A590095DA5D /* MainPopularMeetingService.swift in Sources */,
 				D16EEE4124EBF8C000D0994F /* Spinner.swift in Sources */,
@@ -1079,7 +1079,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1101,7 +1101,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 36BC59Q598;
 				INFOPLIST_FILE = "MARU/Global/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

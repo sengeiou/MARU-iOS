@@ -15,7 +15,7 @@ import SwiftKeychainWrapper
 class ChatCVCell: UICollectionViewCell {
     
     let id = KeychainWrapper.standard.string(forKey: "id")
-    var message: Message?
+    var message: Chat?
     
     let nameLabel = UILabel().then {
         $0.font = Font.chatNameLabel
@@ -31,6 +31,8 @@ class ChatCVCell: UICollectionViewCell {
         $0.backgroundColor = .white
         $0.setRounded(radius: 16)
     }
+    
+    var rootVC: UIViewController?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -48,17 +50,24 @@ class ChatCVCell: UICollectionViewCell {
         self.layoutIfNeeded()
     }
     
-    
+
     func setConstraint() {
         contentView.addSubview(chatBubbleView)
         contentView.addSubview(chatLabel)
-        if message?.name != "" {
+        if message?.nickName != "" {
             contentView.addSubview(nameLabel)
-            nameLabel.text = message?.name
+            nameLabel.text = message?.nickName
             nameLabel.sizeToFit()
         }
         
-        chatLabel.text = message?.message
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                action: #selector(viewTap)))
+        chatBubbleView.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                   action: #selector(chatTap)))
+        chatBubbleView.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                         action: #selector(chatLongTap)))
+
+        chatLabel.text = message?.msg
         chatLabel.sizeToFit()
     }
     
@@ -67,23 +76,25 @@ class ChatCVCell: UICollectionViewCell {
         chatBubbleView.setBorder(borderColor: .black22, borderWidth: 1)
         chatBubbleView.backgroundColor = .white
         
-        if message?.name == "" {
-            chatLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(contentView.snp.top).offset(11)
-                make.leading.equalTo(contentView.snp.leading).offset(20)
-                make.width.lessThanOrEqualTo(contentView.snp.width).offset(-100)
-            }
-        } else {
+//        if message?.nickName == "" {
+//            chatLabel.snp.makeConstraints { (make) in
+//                make.top.equalTo(contentView.snp.top).offset(11)
+//                make.leading.equalTo(contentView.snp.leading).offset(20)
+//                make.width.lessThanOrEqualTo(contentView.snp.width).offset(-100)
+//            }
+//            chatLabel.sizeToFit()
+//        } else {
             nameLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(contentView.snp.top)
                 make.leading.equalTo(contentView.snp.leading).offset(16)
             }
+            nameLabel.sizeToFit()
             chatLabel.snp.makeConstraints { (make) in
                 make.top.equalTo(nameLabel.snp.bottom).offset(16)
                 make.leading.equalTo(contentView.snp.leading).offset(20)
                 make.width.lessThanOrEqualTo(contentView.snp.width).offset(-100)
             }
-        }
+//        }
         
         chatLabel.sizeToFit()
         
@@ -95,4 +106,23 @@ class ChatCVCell: UICollectionViewCell {
         }
         
     }
+
+    @objc func viewTap(sender: UITapGestureRecognizer) {
+        print(#function)
+        self.rootVC?.view.endEditing(true)
+
+    }
+    
+    @objc func chatTap(sender: UITapGestureRecognizer) {
+        self.rootVC?.view.endEditing(true)
+        print(message ?? (Any).self)
+    }
+    
+    @objc func chatLongTap(sender: UILongPressGestureRecognizer) {
+        print(#function)
+        
+        self.rootVC?.simpleAlert(title: "신고 기능이 들어갈", message: "거에요")
+        
+    }
+
 }

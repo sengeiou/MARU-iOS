@@ -116,7 +116,7 @@ extension MoimVC: UICollectionViewDelegate{
         let vc = sb.instantiateViewController(withIdentifier: "ChatVC") as! ChatVC
         
         // 여기에 룸 넘버를 넣어주세요
-        vc.roomIndex = 1
+        vc.roomIndex = 5
         
         navigationController?.pushViewController(vc, animated: true)
     }

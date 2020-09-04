@@ -21,7 +21,7 @@ struct SearchMoimService {
         
         guard let title = title.stringByAddingPercentEncodingForFormData() else { return }
         let URL = APIConstants.searchMoim + "?title=" + title
-        let token = KeychainWrapper.standard.string(forKey: Keychian.token.rawValue) ?? ""
+        let token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
         let headers: HTTPHeaders = [
             "Content-Type": "application/json",
             "token": token

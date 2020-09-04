@@ -44,5 +44,6 @@ struct APIConstants {
     // POST 방장 별점 평가
     static let rateLeader = BaseURL + "user/rating"
     
-    
+    // GET 채팅 목록 받아오기
+    static let chat = BaseURL + "message/"
 }

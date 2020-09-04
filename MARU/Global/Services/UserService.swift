@@ -274,6 +274,71 @@ struct UserService {
         }
     }
     
+    func signOut(_ password: String,
+                completion: @escaping (NetworkResult<Any>) -> Void) {
+        
+        let URL = APIConstants.userWithdrawal
+        let token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue) ?? ""
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "token": token
+        ]
+        
+        let body: Parameters = [
+            "password": password
+        ]
+        
+        Alamofire.request(URL,
+                          method: .post,
+                          parameters: body,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseData
+            { response in
+                
+                switch response.result {
+                    
+                case .success:
+                    // parameter 위치
+                    if let value = response.result.value {
+                        //response의 respones안에 있는 statusCode를 추출
+                        if let status = response.response?.statusCode {
+                            switch status {
+                            case 200:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    
+                                    completion(.success(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 400:
+                                do{
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 500:
+                                print("실패 500")
+                                completion(.serverErr)
+                            default:
+                                break
+                            }
+                        }
+                    }
+                    break
+                case .failure(let err):
+                    print(err.localizedDescription)
+                    completion(.networkFail)
+                }
+        }
+    }
+
+    
     func profile(completion: @escaping (NetworkResult<Any>) -> Void) {
         
         let URL = APIConstants.myInfo
@@ -303,7 +368,6 @@ struct UserService {
                                     let decoder = JSONDecoder()
                                     let result = try decoder.decode(ResponseSimpleResult<Profile>.self,
                                                                     from: value)
-                                    print(result)
                                     completion(.success(result))
                                 } catch {
                                     completion(.pathErr)
@@ -313,6 +377,16 @@ struct UserService {
                                     let decoder = JSONDecoder()
                                     let result = try decoder.decode(ResponseTempResult.self,
                                                                     from: value)
+                                    completion(.requestErr(result))
+                                } catch {
+                                    completion(.pathErr)
+                                }
+                            case 401:
+                                do {
+                                    let decoder = JSONDecoder()
+                                    let result = try decoder.decode(ResponseTempResult.self,
+                                                                    from: value)
+                                    print(result)
                                     completion(.requestErr(result))
                                 } catch {
                                     completion(.pathErr)

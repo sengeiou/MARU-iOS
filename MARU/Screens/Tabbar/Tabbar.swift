@@ -12,7 +12,7 @@ import SwiftKeychainWrapper
 
 class Tabbar: UITabBarController {
     
-    let token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue)
+    var token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,8 @@ extension Tabbar : UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController,
                           shouldSelect viewController: UIViewController) -> Bool {
+        token = KeychainWrapper.standard.string(forKey: Keychain.token.rawValue)
+        
         if token == nil || token == "" {
             
             loginAlert(title: "서비스 이용을 위해 로그인이 필요합니다.",
