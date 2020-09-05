@@ -100,32 +100,33 @@ class SecondQuizVC: UIViewController {
     //MARK: - Properties
     
     var stateNumber = 1
-    var timeLeft: TimeInterval = 30
+    var timeLeft: TimeInterval = 0.0
     var endTime: Date?
     var timer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        
         drawBgShapeLayer()
         drawTimeLeftShapeLayer()
         
-        timeLabel.text = timeLeft.time
-        strokeIt.fromValue = 0
+        strokeIt.fromValue =  1 - timeLeft / 30
         strokeIt.toValue = 1
         strokeIt.duration = timeLeft
-        
-        
+        timeLabel.text = timeLeft.time
         endTime = Date().addingTimeInterval(timeLeft)
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         setTouchImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         timeLeftShapeLayer.add(strokeIt, forKey: nil)
     }
     
     @objc func updateTime() {
+        
         if timeLeft > 0 {
             timeLeft = endTime?.timeIntervalSinceNow ?? 0
             timeLabel.text = timeLeft.time
@@ -134,7 +135,9 @@ class SecondQuizVC: UIViewController {
             timer.invalidate()
         }
     }
+    
     func drawBgShapeLayer(){
+        
         bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: stopwatchView.frame.midX + 15 , y: stopwatchView.frame.midY + 15), radius:
             15, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
         bgShapeLayer.strokeColor = UIColor.white.cgColor
@@ -151,43 +154,46 @@ class SecondQuizVC: UIViewController {
         timeLeftShapeLayer.lineWidth = 3
         stopwatchView.layer.addSublayer(timeLeftShapeLayer)
     }
-    
-    
 }
 
 
 extension SecondQuizVC {
     func setTouchImage() {
+        
         correctButton.addTarget(self, action: #selector(didTapCorrectButton), for: .touchUpInside)
         incorrectButton.addTarget(self, action: #selector(didTapIncorrectButton), for: .touchUpInside)
-        
     }
+    
     @objc func didTapCorrectButton() {
-    correctButton.setImage(UIImage(named: "correctBlue"),for: .normal)
         
+        guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
+        nextQuizVC.timeLeft = self.timeLeft
+        correctButton.setImage(UIImage(named: "correctBlue"),for: .normal)
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
             
-            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
-
             self.navigationController?.pushViewController(nextQuizVC, animated: true)
-            
         })
     
         
     }
     
     @objc func didTapIncorrectButton() {
+        
+        guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
+        nextQuizVC.timeLeft = self.timeLeft
         incorrectButton.setImage(UIImage(named: "incorrectRed"),for: .normal)
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             
-            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "ThirdQuizVC") as? ThirdQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
             
             self.navigationController?.pushViewController(nextQuizVC, animated: true)
-            
         })
     }
 }
