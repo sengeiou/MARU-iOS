@@ -34,6 +34,7 @@ PODS:
   - SwiftKeychainWrapper (3.4.0)
   - SwiftyGif (5.3.0)
   - Then (2.7.0)
+  - Toaster (2.2.0)
   - UPCarouselFlowLayout (1.1.2)
 
 DEPENDENCIES:
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - SwiftKeychainWrapper
   - SwiftyGif
   - Then
+  - Toaster
   - UPCarouselFlowLayout
 
 SPEC REPOS:
@@ -65,6 +67,7 @@ SPEC REPOS:
     - SwiftKeychainWrapper
     - SwiftyGif
     - Then
+    - Toaster
     - UPCarouselFlowLayout
 
 SPEC CHECKSUMS:
@@ -81,8 +84,9 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
   SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  Toaster: c1a81b376edcc2470157b4d1ee1e9341d3b96455
   UPCarouselFlowLayout: 4c7d2c43a10ebb1597bde502a53699d378341dad
 
-PODFILE CHECKSUM: 188984843cd4effb336c3ef1ae1174a8fbdd9081
+PODFILE CHECKSUM: 78f87bcd23f47198e53e54f834dafc8cd39400a0
 
 COCOAPODS: 1.9.3

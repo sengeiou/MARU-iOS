@@ -17,7 +17,7 @@ target 'MARU' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'Socket.IO-Client-Swift', '~> 15.2.0'
-
+  pod 'Toaster'
 
 
   # Pods for MARU

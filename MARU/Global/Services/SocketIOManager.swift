@@ -12,8 +12,8 @@ class SocketIOManager: NSObject {
     
     static let shared = SocketIOManager()
     
-    var manager = SocketManager(socketURL: URL(string: "http://52.79.90.119:8080/chat/0")!,
-                                config: [.log(false), .compress])
+    var manager = SocketManager(socketURL: URL(string: "http://52.79.90.119:8080/chat/5")!,
+                                config: [.log(true), .compress])
     
     var socket: SocketIOClient!
     
@@ -26,6 +26,11 @@ class SocketIOManager: NSObject {
         socket.connect()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.socket.emit("joinRoom", name)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                self.socket.on("chat message") { (data, ack) in
+                    print(data)
+                }
+            })
         })
     }
     
@@ -36,6 +41,10 @@ class SocketIOManager: NSObject {
     func joinRoom(_ roomIndex: Int,
                   _ name: String){
         socket.emit("joinRoom", name)
+        socket.on("chat message") { (data, ack) in
+            print(data)
+        }
+
     }
     
     func connect(completion: @escaping ([Any]) -> Void){
@@ -51,7 +60,6 @@ class SocketIOManager: NSObject {
     func sendMessage(_ roomIndex: Int,
                      _ message: String,
                      _ nickname: String) {
-        socket.emit("joinRoom", nickname)
         socket.emit("chat message", nickname, message, roomIndex)
     }
     

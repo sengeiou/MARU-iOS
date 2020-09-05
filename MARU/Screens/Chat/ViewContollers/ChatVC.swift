@@ -168,7 +168,15 @@ class ChatVC: UIViewController {
         setNavigation()
         
         //        setPopUpView()
-        
+        SocketIOManager.shared.connect { (res) in
+            print(res[0])
+            print(res[1])
+            self.name = (res[0] as? String)
+            self.message = (res[1] as? String)
+            self.chatCollectionView.reloadData()
+            self.scrollToBottom()
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -182,13 +190,14 @@ class ChatVC: UIViewController {
         self.chatCollectionView.reloadData()
         scrollToBottom()
         SocketIOManager.shared.establishConnection(id ?? "")
+        SocketIOManager.shared.joinRoom(roomIndex, id ?? "")
         SocketIOManager.shared.connect { (res) in
             print(res[0])
             print(res[1])
             self.name = (res[0] as? String)
             self.message = (res[1] as? String)
             self.chatCollectionView.reloadData()
-            //            self.scrollToBottom()
+            self.scrollToBottom()
         }
         
         delegate()
