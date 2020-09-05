@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lPt-0m-qoR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lPt-0m-qoR">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -247,6 +247,9 @@
                     </view>
                     <connections>
                         <outlet property="CreateTV" destination="FeX-t3-wYy" id="5xN-Oe-rLl"/>
+                        <outlet property="bookAuthor" destination="EhE-Bu-kOY" id="qIx-BT-aGg"/>
+                        <outlet property="bookImageView" destination="qcH-uP-j3r" id="n6o-vX-J69"/>
+                        <outlet property="bookTitle" destination="cSI-YL-9G4" id="LXE-1H-Ln6"/>
                         <outlet property="introInfoView" destination="3WC-yf-2PT" id="0yT-FN-1FN"/>
                         <outlet property="introTextView" destination="XaM-u8-Afe" id="kKA-yz-ad3"/>
                     </connections>

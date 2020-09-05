@@ -93,6 +93,7 @@
 		F226B29F24FF6E04005E1C3D /* CreateQuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226B29E24FF6E04005E1C3D /* CreateQuizService.swift */; };
 		F226B2A124FF7839005E1C3D /* EntryMoimInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226B2A024FF7839005E1C3D /* EntryMoimInfoService.swift */; };
 		F226B2A324FFC4BF005E1C3D /* MoimInfoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226B2A224FFC4BF005E1C3D /* MoimInfoResult.swift */; };
+		F22B951F2502A7BE0083901E /* MoimIndexResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22B951E2502A7BE0083901E /* MoimIndexResult.swift */; };
 		F25006EF24F3CA43001F6D3D /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25006EE24F3CA43001F6D3D /* ResultVC.swift */; };
 		F25006F424F3DBA0001F6D3D /* ResultTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25006F224F3DBA0001F6D3D /* ResultTVCell.swift */; };
 		F25006F524F3DBA0001F6D3D /* ResultTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25006F324F3DBA0001F6D3D /* ResultTVCell.xib */; };
@@ -200,6 +201,7 @@
 		F226B29E24FF6E04005E1C3D /* CreateQuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuizService.swift; sourceTree = "<group>"; };
 		F226B2A024FF7839005E1C3D /* EntryMoimInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryMoimInfoService.swift; sourceTree = "<group>"; };
 		F226B2A224FFC4BF005E1C3D /* MoimInfoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoimInfoResult.swift; sourceTree = "<group>"; };
+		F22B951E2502A7BE0083901E /* MoimIndexResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoimIndexResult.swift; sourceTree = "<group>"; };
 		F25006EE24F3CA43001F6D3D /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		F25006F224F3DBA0001F6D3D /* ResultTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTVCell.swift; sourceTree = "<group>"; };
 		F25006F324F3DBA0001F6D3D /* ResultTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultTVCell.xib; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				F212DB3324F823A300759BA9 /* SearchBookResult.swift */,
 				F2E730A824FEA84100E515BF /* SearchMoimResult.swift */,
 				F226B2A224FFC4BF005E1C3D /* MoimInfoResult.swift */,
+				F22B951E2502A7BE0083901E /* MoimIndexResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				D16EEE4124EBF8C000D0994F /* Spinner.swift in Sources */,
 				D11D520824E59A7800683870 /* FirstQuizVC.swift in Sources */,
 				D13D627724E83A4200A3A4A1 /* UITextView+Extension.swift in Sources */,
+				F22B951F2502A7BE0083901E /* MoimIndexResult.swift in Sources */,
 				F25006F424F3DBA0001F6D3D /* ResultTVCell.swift in Sources */,
 				77FAE03E24F53F6000FB473C /* HeaderVC.swift in Sources */,
 				D11D521C24E59CBB00683870 /* Tabbar.swift in Sources */,

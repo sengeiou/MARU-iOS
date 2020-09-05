@@ -114,6 +114,7 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         cell.selectionStyle = .none
         cell.searchedBookResult = searchedBookResult?[indexPath.row]
         cell.setCell()
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -121,6 +122,10 @@ extension ResultVC: UITableViewDataSource,UITableViewDelegate{
         guard let createMoimVC = self.storyboard?.instantiateViewController(identifier:
             "CreateVC") as? CreateVC else { return }
         self.navigationController?.pushViewController(createMoimVC, animated: true)
+        createMoimVC.authors = searchedBookResult?[indexPath.row].authors
+        createMoimVC.thumbnail = searchedBookResult?[indexPath.row].thumbnail
+        createMoimVC.booktitle = searchedBookResult?[indexPath.row].title
+        
     }
     
     @objc func searchProduct(_ result: String){
