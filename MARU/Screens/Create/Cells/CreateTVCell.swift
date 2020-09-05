@@ -16,7 +16,8 @@ class CreateTVCell: UITableViewCell {
     @IBOutlet weak var correctBtn: UIButton!
     @IBOutlet weak var incorrectBtn: UIButton!
     
-    var answer: String? // 정답 ox 스트링으로 변경 예정
+    var answer: String = "정답" // 정답 ox 스트링
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.shadowView.layer.cornerRadius = 10.0
@@ -42,7 +43,11 @@ class CreateTVCell: UITableViewCell {
     @IBAction func incorrectBtnTouched(_ sender: Any) {
         answer = "X"
         incorrectBtn.setImage(UIImage(named: "incorrectWhite52"), for: .normal)
-        correctBtn.setImage(UIImage(named: "correctBlue52"), for: .normal)
+        correctBtn.setImage(UIImage(named: "correctWhite"), for: .normal)
+    }
+    
+    func sendCell(){
+        
     }
 }
 // MARK:- textview placeholder
