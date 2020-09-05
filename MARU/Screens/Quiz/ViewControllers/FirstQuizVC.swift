@@ -92,6 +92,7 @@ class FirstQuizVC: UIViewController {
         $0.textAlignment = .center
         $0.font = UIFont.systemFont(ofSize: 13)
     }
+    
     let strokeIt = CABasicAnimation(keyPath: "strokeEnd")
     let contentView = UIView()
     let timeLeftShapeLayer = CAShapeLayer()
@@ -110,6 +111,7 @@ class FirstQuizVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        
         drawBgShapeLayer()
         drawTimeLeftShapeLayer()
         
@@ -124,6 +126,7 @@ class FirstQuizVC: UIViewController {
     }
     
     func drawBgShapeLayer(){
+        
         bgShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: stopwatchView.frame.midX + 15 , y: stopwatchView.frame.midY + 15), radius:
             15, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
         bgShapeLayer.strokeColor = UIColor.white.cgColor
@@ -133,6 +136,7 @@ class FirstQuizVC: UIViewController {
     }
     
     func drawTimeLeftShapeLayer(){
+        
         timeLeftShapeLayer.path = UIBezierPath(arcCenter: CGPoint(x: stopwatchView.frame.midX + 15 , y: stopwatchView.frame.midY + 15), radius:
             15, startAngle: -90.degreesToRadians, endAngle: 270.degreesToRadians, clockwise: true).cgPath
         timeLeftShapeLayer.strokeColor = UIColor.blue.cgColor
@@ -144,6 +148,7 @@ class FirstQuizVC: UIViewController {
     
     
     @objc func updateTime() {
+        
         if timeLeft > 0 {
             timeLeft = endTime?.timeIntervalSinceNow ?? 0
             timeLabel.text = timeLeft.time
@@ -168,6 +173,7 @@ extension Int {
 
 extension FirstQuizVC {
     func setTouchImage() {
+        
         correctButton.addTarget(self, action: #selector(didTapCorrectButton), for: .touchUpInside)
         incorrectButton.addTarget(self, action: #selector(didTapIncorrectButton), for: .touchUpInside)
         
@@ -175,30 +181,32 @@ extension FirstQuizVC {
     
     @objc func didTapCorrectButton() {
         
-        
+        guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
+        nextQuizVC.timeLeft = self.timeLeft
         correctButton.setImage(UIImage(named: "correctBlue"),for: .normal)
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             
-            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
-            
             self.navigationController?.pushViewController(nextQuizVC, animated: true)
-            
         })
         
         
     }
     @objc func didTapIncorrectButton() {
+        
+        guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
+        nextQuizVC.timeLeft = self.timeLeft
         incorrectButton.setImage(UIImage(named: "incorrectRed"),for: .normal)
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             
-            guard let nextQuizVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondQuizVC") as? SecondQuizVC else { return }
             nextQuizVC.modalPresentationStyle = .fullScreen
-            
             self.navigationController?.pushViewController(nextQuizVC, animated: true)
-            
         })
     }
 }

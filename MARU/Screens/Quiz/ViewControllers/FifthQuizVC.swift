@@ -100,18 +100,19 @@ class FifthQuizVC: UIViewController {
     //MARK: - Properties
     
     var stateNumber = 1
-    var timeLeft: TimeInterval = 30
+    var timeLeft: TimeInterval = 0.0
     var endTime: Date?
     var timer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        
         drawBgShapeLayer()
         drawTimeLeftShapeLayer()
         
         timeLabel.text = timeLeft.time
-        strokeIt.fromValue = 0
+        strokeIt.fromValue = 1 - timeLeft / 30
         strokeIt.toValue = 1
         strokeIt.duration = timeLeft
         
@@ -161,17 +162,14 @@ extension FifthQuizVC {
     }
     @objc func didTapCorrectButton() {
         correctButton.setImage(UIImage(named: "correctBlue"),for: .normal)
-        
-        
-        
-        
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
     }
+    
     @objc func didTapIncorrectButton() {
         incorrectButton.setImage(UIImage(named: "incorrectRed"),for: .normal)
-        
-    
-        
-        
+        correctButton.isEnabled = false
+        incorrectButton.isEnabled = false
     }
 }
 
